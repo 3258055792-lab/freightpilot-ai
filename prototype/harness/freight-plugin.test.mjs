@@ -16,7 +16,9 @@ function registered(approval, withGet=true) {
 }
 const call = async (tools, name, args, exec=execution()) => JSON.parse(await tools.get(name).execute(args,exec));
 function assertNoAmounts(value) {
-  const json = JSON.stringify(value);
+  // A freshly generated workbook has a different SHA each time; numeric
+  // fragments of that fingerprint are not leaked monetary amounts.
+  const json = JSON.stringify(value, (key, item) => key === 'sha256' ? undefined : item);
   for (const field of ['base_freight_usd','unit_price_usd_per_cbm','known_subtotals','total_payable']) {
     assert.equal(Object.hasOwn(value,field),false,field);
   }
