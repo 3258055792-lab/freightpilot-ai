@@ -1,3 +1,4 @@
+from contextlib import closing
 import hashlib
 import json
 import sqlite3
@@ -52,9 +53,9 @@ class FreightToolTests(unittest.TestCase):
   with tempfile.TemporaryDirectory() as tmp:
    path=Path(tmp)/'test.db'
    path.write_bytes(DATABASE.read_bytes())
-   with sqlite3.connect(path) as db:db.execute('DELETE FROM user_rule_confirmations')
+   with closing(sqlite3.connect(path)) as db, db:db.execute('DELETE FROM user_rule_confirmations')
    with self.assertRaises(ValueError):dispatch('freight_calculate',{'category':'普货一类','volume_cbm':'1','weight_kg':'100'},path)
-   with sqlite3.connect(path) as db:
+   with closing(sqlite3.connect(path)) as db, db:
     db.execute("INSERT INTO workbook_archives(source_path,sha256,original_xlsx) VALUES('other','other',X'00')")
    with self.assertRaises(ValueError):dispatch('freight_lookup',{'query':'CBM'},path)
 

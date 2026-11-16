@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from contextlib import closing
 """Lossless XLSX archive plus searchable cells. Does not approve or calculate rates."""
 import argparse
 import hashlib
@@ -62,7 +63,7 @@ def import_workbook(path, dbpath):
                 cells.append((c.attrib['r'], kind, text, formula, value, ET.tostring(c, encoding='unicode')))
             merges = [m.attrib['ref'] for m in tree.findall('s:mergeCells/s:mergeCell', N)]
             sheets.append((node.attrib['name'], position, node.get('state','visible'), member, xml, json.dumps(merges), cells))
-    with sqlite3.connect(str(dbpath)) as db:
+    with closing(sqlite3.connect(str(dbpath))) as db, db:
         db.execute('PRAGMA foreign_keys=ON')
         db.execute('BEGIN IMMEDIATE')
         for ddl in DDL:

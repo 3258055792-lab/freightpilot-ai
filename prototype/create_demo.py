@@ -1,3 +1,4 @@
+from contextlib import closing
 """Generate entirely synthetic fixtures. Never import or overwrite business data."""
 import json
 import sqlite3
@@ -49,7 +50,7 @@ def main():
     db = output / 'freight_quotes.db'
     import_pending(raw, db, source)
     import_workbook(xlsx, db)
-    with sqlite3.connect(db) as conn:
+    with closing(sqlite3.connect(db)) as conn, conn:
         for key, value in {'cbm_boundary_assignment': {'5':'1-5CBM','10':'5-10CBM'}, 'pricing_method':'whole_shipment', 'minimum_billable_cbm':1}.items():
             conn.execute('INSERT INTO user_rule_confirmations(workbook_id,scope,rule_key,value_json,original_user_text,confirmation_source) VALUES(1,?,?,?,?,?)', (ws.title, key, json.dumps(value), 'SYNTHETIC TEST FIXTURE ONLY; not human approval', 'synthetic_fixture'))
     print('Synthetic demo generated. Never use for real quotes or customer approval.')

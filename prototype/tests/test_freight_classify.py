@@ -1,3 +1,4 @@
+from contextlib import closing
 """Classification checks; mutations use disposable copies of the synthetic archive."""
 import hashlib
 import json
@@ -26,7 +27,7 @@ class FreightClassifyTests(unittest.TestCase):
 
     def update_cell(self, database, coordinate, **changes):
         # Column names below come only from these tests, never external input.
-        with sqlite3.connect(database) as conn:
+        with closing(sqlite3.connect(database)) as conn, conn:
             conn.execute(
                 'UPDATE workbook_cells SET ' + ','.join(f'{key}=?' for key in changes)
                 + ' WHERE coordinate=? AND sheet_id IN '
@@ -146,7 +147,7 @@ class FreightClassifyTests(unittest.TestCase):
 
     def test_multiple_versions_require_explicit_unique_sha(self):
         path = self.copy_database()
-        with sqlite3.connect(path) as conn:
+        with closing(sqlite3.connect(path)) as conn, conn:
             conn.execute('INSERT INTO workbook_archives(source_path,sha256,original_xlsx) '
                          'VALUES(?,?,?)', ('other.xlsx', '0' * 64, b'placeholder'))
         with self.assertRaises(ValueError):
@@ -161,7 +162,7 @@ class FreightClassifyTests(unittest.TestCase):
 
     def test_duplicate_sha_in_damaged_schema_is_rejected(self):
         path = self.copy_database()
-        with sqlite3.connect(path) as conn:
+        with closing(sqlite3.connect(path)) as conn, conn:
             # Simulate a damaged/legacy schema without the UNIQUE SHA constraint.
             conn.execute('CREATE TABLE archive_copy AS SELECT * FROM workbook_archives')
             conn.execute('INSERT INTO archive_copy SELECT id+100,source_path,sha256,'
@@ -176,7 +177,7 @@ class FreightClassifyTests(unittest.TestCase):
         for table in ['workbook_archives', 'workbook_sheets']:
             with self.subTest(table=table):
                 path = self.copy_database()
-                with sqlite3.connect(path) as conn:
+                with closing(sqlite3.connect(path)) as conn, conn:
                     conn.execute('DELETE FROM ' + table)
                 with self.assertRaises(ValueError):
                     dispatch('freight_classify', {'product_name': '塑料收纳盒'}, path)
@@ -185,7 +186,7 @@ class FreightClassifyTests(unittest.TestCase):
         for coordinate in ['A5', 'B5', 'A16', 'B16']:
             with self.subTest(coordinate=coordinate):
                 path = self.copy_database()
-                with sqlite3.connect(path) as conn:
+                with closing(sqlite3.connect(path)) as conn, conn:
                     conn.execute('DELETE FROM workbook_cells WHERE coordinate=? AND '
                                  'sheet_id IN (SELECT id FROM workbook_sheets WHERE name=?)',
                                  (coordinate, CHANNEL))

@@ -1,3 +1,4 @@
+from contextlib import closing
 """Regression checks use temporary databases; original Excel/JSON are read only."""
 
 import copy
@@ -24,7 +25,7 @@ class PendingImportTests(unittest.TestCase):
         return import_pending(self.input, self.db, ROOT / "source")
 
     def query(self, sql):
-        with sqlite3.connect(str(self.db)) as conn:
+        with closing(sqlite3.connect(str(self.db))) as conn, conn:
             return conn.execute(sql).fetchall()
 
     def test_repeat_and_reordered_input_do_not_duplicate(self):
@@ -81,7 +82,7 @@ class PendingImportTests(unittest.TestCase):
         subset = copy.deepcopy(self.data)
         subset["records"][0]["reviewed"] = True
         self.run_import(subset)
-        with sqlite3.connect(str(self.db)) as conn:
+        with closing(sqlite3.connect(str(self.db))) as conn, conn:
             conn.execute("UPDATE pending_prices SET price_amount = '999999' WHERE price_cell = 'G12'")
         before = self.db.read_bytes()
         with self.assertRaises(ValueError):
@@ -102,12 +103,12 @@ class PendingImportTests(unittest.TestCase):
             "UPDATE pending_prices SET boundary_status = 'confirmed'",
         ]
         for sql in statements:
-            with self.subTest(sql=sql), sqlite3.connect(str(self.db)) as conn:
+            with self.subTest(sql=sql), closing(sqlite3.connect(str(self.db))) as conn, conn:
                 with self.assertRaises(sqlite3.IntegrityError):
                     conn.execute(sql)
 
     def test_unrelated_database_is_not_modified(self):
-        with sqlite3.connect(str(self.db)) as conn:
+        with closing(sqlite3.connect(str(self.db))) as conn, conn:
             conn.execute("CREATE TABLE other_data (note TEXT)")
             conn.execute("INSERT INTO other_data VALUES ('keep')")
         before = self.db.read_bytes()
