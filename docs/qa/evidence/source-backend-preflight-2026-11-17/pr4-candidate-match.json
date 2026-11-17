@@ -1,0 +1,74 @@
+{
+  "commit": "b4195b892f846f9b16194ca2531948d52a4e1a51",
+  "sourceBundleSha256": "023105b4abe584059d3c4bade78fb930245320bfe882859fc11d97ced0f77e04",
+  "sourceBundleBytes": 88945,
+  "matchedFiles": 13,
+  "allMatch": true,
+  "files": [
+    {
+      "file": "HANDOFF.md",
+      "sha256": "3dba332cfb23c1ee27f5af25d9d3ab66be9830ca940c51e1f046b2d5341b2bbe",
+      "match": true
+    },
+    {
+      "file": "README.md",
+      "sha256": "209f002b11145c9ecfc0533cc09940947cbf67329ac1e5331747fdb62412eec1",
+      "match": true
+    },
+    {
+      "file": "SHA256SUMS.json",
+      "sha256": "4cccacdca6d903bd0403652c2eb1c9387df8518d7e414007fe0bf3d82e664af9",
+      "match": true
+    },
+    {
+      "file": "TEST-RESULTS.txt",
+      "sha256": "63031767408fd292be334e09a09b252a4fa5e6d7a4ce5bc9910e271c0ee44ee0",
+      "match": true
+    },
+    {
+      "file": "dist/app.js",
+      "sha256": "c82f49b7c330a3ed756e1e4dfe46b6895facc46a79a64ba043bde5d5b204cb44",
+      "match": true
+    },
+    {
+      "file": "dist/core.js",
+      "sha256": "ee325264d8f52d94da15c9e947c83868689b205d82e049e68bb636ce7975c502",
+      "match": true
+    },
+    {
+      "file": "dist/demo-rates.json",
+      "sha256": "b88c43e080e9a6595cf8836be75de805bcd88d400f6c16e32f88e058bda70951",
+      "match": true
+    },
+    {
+      "file": "dist/index.html",
+      "sha256": "9a4e1132ad53240628610cffedf92fb6d3fd7c7819941eea029bad40fd5373cb",
+      "match": true
+    },
+    {
+      "file": "dist/style.css",
+      "sha256": "3c5184cf24c6b2f9e860f774b4e660dd9b137813b2efa9e5b74e9f86da2f0e2f",
+      "match": true
+    },
+    {
+      "file": "fixtures.json",
+      "sha256": "ad532c634b7952215941dba1ddb5af78d291d0ab923ff805544fa5f49d950023",
+      "match": true
+    },
+    {
+      "file": "package.json",
+      "sha256": "9ae21b0d630d74f81b99f5c39b38c1a534aa34aa24f2d296195f1cafb1606b2f",
+      "match": true
+    },
+    {
+      "file": "tests/ui-regression.test.mjs",
+      "sha256": "6fe1b6a74172bd1fcd4addffa5dbe1dac6d004bd52a3a34f73ec61167346890b",
+      "match": true
+    },
+    {
+      "file": "tests/workflow.test.mjs",
+      "sha256": "7c793aa3a33088daff7b2205fd7a4ead9275a6d0ffcfc201e039e1d2ce20e508",
+      "match": true
+    }
+  ]
+}
