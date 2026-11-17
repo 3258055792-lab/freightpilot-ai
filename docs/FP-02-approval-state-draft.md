@@ -1,6 +1,6 @@
 # FP-02 审批状态草案
 
-状态：供负责人审阅，未实现。日期：2026-11-16。
+状态：供负责人审阅，未实现。初稿：2026-11-16；本节增补：2026-11-17。
 基线：本地 HEAD `6be5371454c4a8054cb1d9ad9e802cdb6b87666a`。本草案仅据本地源码与文档；未读取、验证或引用 Pachat 讨论为事实。
 负责人：业务审批负责人待指定；接口实现建议 A、恢复与并发建议 B、审批展示与验收建议 C，均待成员确认（现有建议见 TEAM.md）。涉及范围：本文件；后续业务服务及存储方案尚未确定。
 
@@ -85,3 +85,142 @@ DRAFT 与 PENDING 不得直接执行；REJECTED/CANCELLED 不得靠重试、换�
 5. 明确正式报价完整性要求、客户确认凭据和与后续订单授权的分界，再确定实现范围。
 
 本草案尚待负责人评审；本次仅交付设计文档，未修改业务代码、未运行测试。上述验收条件是未来实现的目标，不是本次已通过的结论。
+
+## 十、对接契约补充（建议，未实现）
+
+本节将现有状态机草案细化为 FP-01/FP-03 可讨论的字段绑定、请求重放与证据约定。路径、字段名、状态响应和错误码均是建议，不代表仓库已有对应 API。范围仍限于合成数据上的分类试算和本地模拟，不包括真实报价、订舱、付款或其他外部副作用。
+
+### 10.1 记录与快照绑定
+
+| 字段 | 建议含义及校验 |
+| --- | --- |
+| `case.id`、`case.version` | 由业务记录服务确定。版本单调递增；审批创建及消费认领时均核对权威当前版本。 |
+| `approval_id`、`revision` | 由审批服务生成。`approval_id` 标识审批，`revision` 标识其状态/决定版本；它与 `case.version` 是不同版本轴。人工决定和消费都需带预期 revision 做条件更新。 |
+| `source.bytes_sha256` | 服务端对实际读取并参与处理的来源字节计算；不可采信请求方自报哈希。对 JSON 源应明确哈希覆盖的原始字节范围。 |
+| `source.declared_sha256` | 来源内容中自带的声明值，单独保存为来源数据；不能当作实际字节哈希或身份凭据。只有在格式规范定义其覆盖范围时才可验证，不能默认它与 `bytes_sha256` 相等。 |
+| `snapshot_hash` | 服务端对有版本的规范化输入快照计算，覆盖 case ID/版本、有效输入、来源字节哈希、分类证据、规则快照及计算器版本。哈希算法和规范化版本写入协议。 |
+| `operation_id`、`request_digest` | 调用方为一次逻辑执行生成稳定 operation ID；服务端计算摘要，覆盖 case ID/版本、approval ID/预期 revision、scope、snapshot hash、action 和所有执行参数。重试、查询、恢复沿用同一 operation ID。 |
+
+快照创建时应从权威来源读取 case 当前版本；消费认领事务中再次核对。即使版本失效通知尚未处理，版本已变化也必须拒绝旧快照。对已消费记录保留当时事实，不回写成失效。原草案关于输入或来源变化后重新审批的规则继续适用。
+
+### 10.2 建议请求与响应
+
+下面的路由和字段是讨论用示例。占位哈希不是有效摘要，也不构成已实现接口承诺。
+
+创建审批：`POST /approvals`
+
+```json
+{
+  "idempotency_key": "create-case-17-v3",
+  "case": { "id": "case-17", "version": 3 },
+  "scope": "classification_trial",
+  "source_ref": "synthetic-source-1",
+  "input": { "product_name": "合成样例", "volume_cbm": "2", "weight_kg": "100" }
+}
+```
+
+服务端校验 case 版本和来源后生成 `approval_id`、`revision`、不可变快照与哈希；请求体不得指定批准人、决定状态或服务端校验结果。读取审批应返回同一权威记录、当前 revision、有效期及权限允许查看的审阅快照。
+
+建议响应：
+
+```json
+{
+  "approval_id": "approval-17",
+  "revision": 1,
+  "state": "PENDING",
+  "case": { "id": "case-17", "version": 3 },
+  "source": {
+    "bytes_sha256": "sha256:<source-bytes>",
+    "declared_sha256": null
+  },
+  "snapshot_hash": "sha256:<snapshot>"
+}
+```
+
+人工决定：`POST /approvals/{approval_id}/decisions`
+
+```json
+{
+  "idempotency_key": "decision-17-1",
+  "expected_revision": 1,
+  "snapshot_hash": "sha256:<snapshot>",
+  "decision": "APPROVE",
+  "reason": "已核对合成样例"
+}
+```
+
+服务端从独立认证上下文取得决定人、权限和可信通道记录，并持久化这些证据；不得接受模型或请求体自报的 `actor_id`、`confirmed` 或审批状态。拒绝、撤销及批准都绑定指定 approval revision 和 snapshot hash。
+
+建议响应：
+
+```json
+{
+  "approval_id": "approval-17",
+  "revision": 2,
+  "state": "APPROVED",
+  "decision_record": {
+    "id": "decision-17",
+    "actor_type": "human",
+    "actor_id": "authenticated-principal",
+    "channel_event_ref": "event-17",
+    "snapshot_hash": "sha256:<snapshot>"
+  }
+}
+```
+
+执行模拟：`POST /operations`
+
+```json
+{
+  "operation_id": "op-17",
+  "approval_id": "approval-17",
+  "expected_approval_revision": 2,
+  "case": { "id": "case-17", "version": 3 },
+  "snapshot_hash": "sha256:<snapshot>",
+  "action": "simulate_classification_trial"
+}
+```
+
+执行器只使用已批准快照，不接受额外未审批参数。操作记录至少绑定 `operation_id`、服务端 `request_digest`、`approval_id`/revision、case ID/version、snapshot hash、执行者、终态及结果引用/哈希。操作状态（如 `SUCCEEDED`）与审批状态（如 `CONSUMED`）分开表达；模拟结果仍须保持 `usable_for_quote=false`，不得被描述成正式报价。
+
+建议成功响应：
+
+```json
+{
+  "operation_id": "op-17",
+  "request_digest": "sha256:<request>",
+  "state": "SUCCEEDED",
+  "approval_state": "CONSUMED",
+  "result": {
+    "record_id": "result-17",
+    "result_hash": "sha256:<result>",
+    "usable_for_quote": false,
+    "total_payable": null
+  }
+}
+```
+
+重放约定：
+
+- 同一 `operation_id`、同一服务端摘要：返回原操作记录和已保存结果，不再次执行；客户端也可查询 `GET /operations/{operation_id}`。已存在操作的重放先解析该操作，不能因其首次执行改变了 approval revision 而误创建第二次操作。
+- 同一 `operation_id` 但摘要不同（包括换 approval ID/revision、case 版本、snapshot 或 action）：拒绝并返回明确冲突；原记录不变。
+- 不同 `operation_id` 试图消费同一一次性审批：拒绝。拒绝、取消、过期或失效的审批保持终态；重办需新 `approval_id`。
+- case 当前版本与快照不一致：拒绝旧审批；未消费记录按既定规则失效。不得用新的 operation ID 绕过版本检查。
+- `IN_DOUBT` 时只查询或恢复同一 operation ID；不能把未知结果当成失败并新建操作。
+
+### 10.3 权威决定与执行证据
+
+| 要证明的事实 | 权威证据 | 不足以证明的内容 |
+| --- | --- | --- |
+| 人工批准/拒绝 | 服务端认证授权后的持久决定记录，关联审批人/主体、approval ID、revision、snapshot hash、决定时间及可信通道事件引用 | 模型自述、群聊确认、前端按钮状态或未认证回调 |
+| 模拟执行成功 | 执行器持久结果记录，关联 execution/result ID、operation ID、request digest、approval ID/revision、case ID/version、来源与 snapshot hash、执行者、终态及结果引用/哈希 | HTTP 200、前端日志、模型“已完成”文字、仅有 CONSUMING 状态 |
+
+审计链应能从 `operation_id` 找到获准快照、已认证的人类决定以及执行器结果。若效果可能已经发生但没有可验证的持久结果，状态为 `IN_DOUBT`；不得报告成功或释放审批供另一操作使用。知晓 ID 不等于有权读取记录，读取、重放和恢复仍需主体/租户授权。
+
+### 10.4 原子边界与文案校正
+
+若本地模拟效果、一次性授权消费、结果记录和审计事件位于同一数据库，可在一个事务里完成版本校验、唯一消费绑定、效果写入及成功结果提交；事务提交后才报告模拟成功。效果和结果不在同一原子边界时，超时或提交结果不明则保留同一 operation ID 并进入/呈现 `IN_DOUBT`，通过权威记录查询；不得承诺跨系统 exactly-once。
+
+关于金额和审批的产品文案，应准确区分计算与状态决定：若 FP-01 在比对阶段已预计算金额并将其存入请求，批准只改变审批状态；通过后展示已保存的试算结果。不得写成“批准后才计算金额”。此描述须由 FP-01 与负责人按实际实现确认，不能据此声称本仓库已有该流程。
+
+本节是接口讨论稿；上述字段绑定、端点、持久化证据和事务边界均未实现、未联调、未测试。原第八节验收条件仍需在实现后逐项验证。
