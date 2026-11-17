@@ -24,3 +24,7 @@ https://github.com/3258055792-lab/freightpilot-ai/blob/8c218d51b78993418e167152f
 验收报告在 PR #2；本次是独立源码交付，不修改他人验收分支。FP-04 静态复核仍待完成。真实后端、第二来源切换、真实 Excel 映射、订单和发布未据此验收。
 
 启动见根 README；应用 JS 读取同源合成 JSON，CSS 还请求 Google Fonts。原工作台中的订单等入口不属于本轮验收范围。
+
+## Windows 检出格式
+
+GitHub Windows CI 首轮将源码检出为 CRLF，导致动作测试的首行 import 去除规则失配。`.gitattributes` 固定工作台及原始 JSON 归档为 LF；应用和测试字节不变，同时保证 Windows 检出的文件仍符合候选 SHA。
