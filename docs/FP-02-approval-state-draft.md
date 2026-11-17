@@ -1,7 +1,7 @@
 # FP-02 审批状态草案
 
 状态：供负责人审阅，未实现。初稿：2026-11-16；本节增补：2026-11-17。
-基线：本地 HEAD `6be5371454c4a8054cb1d9ad9e802cdb6b87666a`。原始实现边界依据该基线的本地源码与文档；协作方报告见第 10.4 节，尚未在本仓库独立验证。
+基线：本地 HEAD `6be5371454c4a8054cb1d9ad9e802cdb6b87666a`。原始实现边界依据该基线的本地源码与文档；第 10.2 节的创建幂等约定来自协作评审，第 10.4 节记录固定前端候选的协作方报告，均不作为已实现证据。
 负责人：业务审批负责人待指定；接口实现建议 A、恢复与并发建议 B、审批展示与验收建议 C，均待成员确认（现有建议见 TEAM.md）。涉及范围：本文件；后续业务服务及存储方案尚未确定。
 
 ## 一、当前已实现的边界
@@ -115,21 +115,30 @@ DRAFT 与 PENDING 不得直接执行；REJECTED/CANCELLED 不得靠重试、换�
   "case": { "id": "case-17", "version": 3 },
   "scope": "classification_trial",
   "source_ref": "synthetic-source-1",
+  "source_version": "v1",
   "input": { "product_name": "合成样例", "volume_cbm": "2", "weight_kg": "100" }
 }
 ```
 
 服务端校验 case 版本和来源后生成 `approval_id`、`revision`、不可变快照与哈希；请求体不得指定批准人、决定状态或服务端校验结果。读取审批应返回同一权威记录、当前 revision、有效期及权限允许查看的审阅快照。
 
+创建幂等约定：键的唯一作用域为经认证的 `tenant_id`、`principal_id`、操作类型 `approval:create` 和 `idempotency_key`。创建请求必须引用不可变的 `source_ref/source_version`，不得直接以可变的 `latest` 作为来源身份。服务端先按版本化规则规范化稳定的请求信封并计算 `create_digest`，摘要覆盖 `case.id/version`、scope、不可变来源引用/版本及完整有效输入。收到重试时，先按作用域和幂等键查已存在的绑定，再比较 `create_digest`；相同则立即返回原 `approval_id` 及当前状态，不重新读取来源；不同则返回明确冲突（例如 `409 IDEMPOTENCY_KEY_REUSED`），原审批不变。只有在键尚无绑定时，服务端才解析被固定的来源、计算实际 `bytes_sha256` 并将其写入审批快照。这样即使首次响应丢失后来源暂时不可读，重试也能返回已提交记录；快照中的字节哈希仍是首次创建时的权威来源证据。
+
+服务端应以同一事务/原子提交写入幂等键绑定、摘要和审批记录，并对作用域键设唯一约束：并发请求同时发现无绑定时，获胜方创建，竞争方读取获胜绑定后按摘要返回原记录或冲突。若键绑定与审批记录无法原子落库，不得先返回已创建。键绑定或防重 tombstone 至少保留到关联审批审计记录的保留期结束；保留期策略待负责人确定。
+
 建议响应：
 
 ```json
 {
   "approval_id": "approval-17",
+  "create_digest": "sha256:<create-request>",
+  "replayed": false,
   "revision": 1,
   "state": "PENDING",
   "case": { "id": "case-17", "version": 3 },
   "source": {
+    "ref": "synthetic-source-1",
+    "version": "v1",
     "bytes_sha256": "sha256:<source-bytes>",
     "declared_sha256": null
   },
@@ -202,6 +211,7 @@ DRAFT 与 PENDING 不得直接执行；REJECTED/CANCELLED 不得靠重试、换�
 
 重放约定：
 
+- 创建阶段在键的保留期内，同一作用域/键/`create_digest` 指向同一审批记录；重试先查键绑定，不重新解析来源。即使该审批已批准、拒绝、取消、过期、失效或消费，创建重试也只返回原 ID 和当前/终态，不能重新建为 `PENDING`。需要重新审批时使用新键创建新记录并保留旧记录关联；同键不同创建载荷返回冲突。
 - 同一 `operation_id`、同一服务端摘要：返回原操作记录和已保存结果，不再次执行；客户端也可查询 `GET /operations/{operation_id}`。已存在操作的重放先解析该操作，不能因其首次执行改变了 approval revision 而误创建第二次操作。
 - 同一 `operation_id` 但摘要不同（包括换 approval ID/revision、case 版本、snapshot 或 action）：拒绝并返回明确冲突；原记录不变。
 - 不同 `operation_id` 试图消费同一一次性审批：拒绝。拒绝、取消、过期或失效的审批保持终态；重办需新 `approval_id`。
