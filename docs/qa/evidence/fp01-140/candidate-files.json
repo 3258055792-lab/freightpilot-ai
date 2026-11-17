@@ -1,0 +1,12 @@
+{
+  "package.json": "9ae21b0d630d74f81b99f5c39b38c1a534aa34aa24f2d296195f1cafb1606b2f",
+  "README.md": "209f002b11145c9ecfc0533cc09940947cbf67329ac1e5331747fdb62412eec1",
+  "tests/workflow.test.mjs": "7c793aa3a33088daff7b2205fd7a4ead9275a6d0ffcfc201e039e1d2ce20e508",
+  "dist/index.html": "9a4e1132ad53240628610cffedf92fb6d3fd7c7819941eea029bad40fd5373cb",
+  "dist/app.js": "c288034c6a2a38efdfba628822f3ca87bc0159cabe9f51fc0975c50e0645af45",
+  "dist/core.js": "e3d4dab7c70faee267efd74e76cf8c2d6a98d42fb3741ccd46715db3b7e2bdd0",
+  "dist/style.css": "3c5184cf24c6b2f9e860f774b4e660dd9b137813b2efa9e5b74e9f86da2f0e2f",
+  "dist/demo-rates.json": "b88c43e080e9a6595cf8836be75de805bcd88d400f6c16e32f88e058bda70951",
+  "HANDOFF.md": "f7c414658465a8be142b5f02d38a11e03ad89c404c7673675d2375931f20597c",
+  "fixtures.json": "ad532c634b7952215941dba1ddb5af78d291d0ab923ff805544fa5f49d950023"
+}
