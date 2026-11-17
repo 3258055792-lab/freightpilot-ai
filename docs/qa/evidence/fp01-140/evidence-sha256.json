@@ -100,6 +100,11 @@
     "sha256": "9269ec1913da398bce7dc4936326b141dcd4ad80591128829b803390d79669db"
   },
   {
+    "file": "12-defect-visible.jpg",
+    "bytes": 87056,
+    "sha256": "66782c7297547d7979a56d7b77992c4fec6bb1adf4f56dbd59915d60d660c625"
+  },
+  {
     "file": "candidate-files.json",
     "bytes": 882,
     "sha256": "6a3c04b8e997e221f309edb1e20345a833f6f61f0c1840becf94896e4e3f0be4"
