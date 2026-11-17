@@ -1,0 +1,26 @@
+
+> test
+> node --test tests/*.test.mjs
+
+✔ UI-01 all visible fields, name and raw inquiry block stale approval without erasing edits (6.919ms)
+✔ UI-01 saving requires reclassification and then snapshots the new weight (0.849292ms)
+✔ UI-02 invalid original box tokens retain evidence and block extracted-form approval (3.701417ms)
+✔ UI-02 normal integer with punctuation remains valid and yields 1260 CNY (1.205792ms)
+✔ missing fields remain blank and ambiguous quantities are not guessed (0.915958ms)
+✔ all explicit fields extracted; invalid positive quantities block (0.124334ms)
+✔ service, dimensions, transit and verification all participate in matching (0.292834ms)
+✔ request needs human classification, and does not itself approve or calculate (1.987167ms)
+✔ reject is terminal across edit, approve, retry and order paths (0.179ms)
+✔ snapshot survives source changes; approval and customer order are each once (0.153791ms)
+✔ weight billing honors volumetric factor and per-currency charges (0.062833ms)
+✔ restart retains locked workflow and duplicate protection (0.086125ms)
+✔ invalid source definitions are refused (0.142583ms)
+✔ ranges, thousands separators and per-box quantities require a human (0.100709ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 45.597458
