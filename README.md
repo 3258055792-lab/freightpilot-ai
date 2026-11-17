@@ -24,7 +24,7 @@ prototype/
   tests/                  # Python 回归测试
   harness/                # Harness 适配器及 Node 测试
   source/, output/        # 本机生成，不提交 Git
-frontend/workbench/       # 独立浏览器模拟工作台及 14 项测试
+frontend/workbench/       # 独立浏览器模拟工作台及 15 项测试
 scripts/                  # 跨平台测试入口
 docs/                    # 项目边界、迁移与协作说明
 .github/workflows/        # Mac / Windows 自动测试配置

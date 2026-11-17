@@ -29,7 +29,7 @@ test('UI-01 saving requires reclassification and then snapshots the new weight',
  await context.run('confirm-class');await context.run('request');assert.equal(context.getCase().snapshot.fields.weight,'800');assert.equal(context.getCase().approval,'待审批');
 });
 test('UI-02 invalid original box tokens retain evidence and block extracted-form approval',async()=>{
- for(const token of ['1.5箱','-2箱','−2箱','1，5箱','1,5箱','1．5箱','.5箱','0箱','1.5 cartons','1-2箱','20箱、30箱']){
+ for(const token of ['1/2箱','1e3箱','1e-3箱','1／2箱','0x20箱','9007199254740993箱','1.5箱','-2箱','−2箱','1，5箱','1,5箱','1．5箱','.5箱','0箱','1.5 cartons','1-2箱','20箱、30箱']){
   const {context,nodes}=harness();nodes['#inquiry'].value=text.replace('20箱',token);await context.run('extract');
   const c=context.getCase();assert.equal(c.fields.boxes,'',token);assert(core.missing(c.fields).includes('boxes'));
   assert(c.evidence.boxes.includes(token),c.evidence.boxes);nodes['#fields-form'].values={...c.fields};
@@ -40,4 +40,15 @@ test('UI-02 normal integer with punctuation remains valid and yields 1260 CNY',a
  for(const token of ['20箱',' 20 箱','20 cartons']){
   const {context,nodes}=harness();nodes['#inquiry'].value=text.replace('20箱',token);await context.run('extract');const c=context.getCase();assert.equal(c.fields.boxes,'20');nodes['#fields-form'].values={...c.fields};await context.run('confirm-class');await context.run('request');await context.run('approve');assert.equal(c.snapshot.row.total,1260);
  }
+});
+
+test('UI-02 manual box entries enforce the same positive safe decimal integer rule',async()=>{
+ for(const value of ['9007199254740993','9007199254740992','1e3','1/2','0x20','1.0','-2','0']){
+  const {context,nodes}=harness();nodes['#fields-form'].values.boxes=value;
+  await context.run('save-fields');await context.run('confirm-class');
+  assert(core.missing(context.getCase().fields).includes('boxes'),value);
+  await assert.rejects(context.run('request'),/不能直接计算/);
+  assert.equal(context.getCase().snapshot,undefined);assert.equal(context.getCase().locked,false);
+ }
+ for(const value of ['1','20','9007199254740991'])assert.equal(core.validBoxes(value),true);
 });

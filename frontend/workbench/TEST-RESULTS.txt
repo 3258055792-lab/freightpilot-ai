@@ -2,25 +2,26 @@
 > test
 > node --test tests/*.test.mjs
 
-✔ UI-01 all visible fields, name and raw inquiry block stale approval without erasing edits (6.919ms)
-✔ UI-01 saving requires reclassification and then snapshots the new weight (0.849292ms)
-✔ UI-02 invalid original box tokens retain evidence and block extracted-form approval (3.701417ms)
-✔ UI-02 normal integer with punctuation remains valid and yields 1260 CNY (1.205792ms)
-✔ missing fields remain blank and ambiguous quantities are not guessed (0.915958ms)
-✔ all explicit fields extracted; invalid positive quantities block (0.124334ms)
-✔ service, dimensions, transit and verification all participate in matching (0.292834ms)
-✔ request needs human classification, and does not itself approve or calculate (1.987167ms)
-✔ reject is terminal across edit, approve, retry and order paths (0.179ms)
-✔ snapshot survives source changes; approval and customer order are each once (0.153791ms)
-✔ weight billing honors volumetric factor and per-currency charges (0.062833ms)
-✔ restart retains locked workflow and duplicate protection (0.086125ms)
-✔ invalid source definitions are refused (0.142583ms)
-✔ ranges, thousands separators and per-box quantities require a human (0.100709ms)
-ℹ tests 14
+✔ UI-01 all visible fields, name and raw inquiry block stale approval without erasing edits (9.230209ms)
+✔ UI-01 saving requires reclassification and then snapshots the new weight (0.828375ms)
+✔ UI-02 invalid original box tokens retain evidence and block extracted-form approval (5.821833ms)
+✔ UI-02 normal integer with punctuation remains valid and yields 1260 CNY (1.601041ms)
+✔ UI-02 manual box entries enforce the same positive safe decimal integer rule (2.481708ms)
+✔ missing fields remain blank and ambiguous quantities are not guessed (1.768458ms)
+✔ all explicit fields extracted; invalid positive quantities block (0.21225ms)
+✔ service, dimensions, transit and verification all participate in matching (0.370875ms)
+✔ request needs classification and locks a precomputed amount without approving or displaying it (2.722375ms)
+✔ reject is terminal across edit, approve, retry and order paths (0.172708ms)
+✔ snapshot survives source changes; approval and customer order are each once (0.164042ms)
+✔ weight billing honors volumetric factor and per-currency charges (0.060959ms)
+✔ restart retains locked workflow and duplicate protection (0.095458ms)
+✔ invalid source definitions are refused (0.146791ms)
+✔ ranges, thousands separators and per-box quantities require a human (0.104084ms)
+ℹ tests 15
 ℹ suites 0
-ℹ pass 14
+ℹ pass 15
 ℹ fail 0
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 45.597458
+ℹ duration_ms 61.994583

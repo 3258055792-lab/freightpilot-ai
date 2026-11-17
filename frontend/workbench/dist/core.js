@@ -1,13 +1,14 @@
 export const CHANNELS=['海运','空运','国际快递','专线','空派','海派'];
 export const FIELDS={country:'目的国',goods:'货物名称',category:'货物类别',volume:'体积（m³）',weight:'重量（kg）',boxes:'箱数',days:'时效（天）',delivery:'派送需求',customs:'清关需求',tax:'税费需求'};
 export const emptyFields=()=>Object.fromEntries(Object.keys(FIELDS).map(k=>[k,'']));
+export const validBoxes=value=>typeof value==='string'&&/^\d+$/.test(value.trim())&&Number.isSafeInteger(Number(value))&&Number(value)>0;
 export function extract(text){
  const f=emptyFields(), evidence={};
- const patterns={country:/(?:目的国|国家)\s*[:：]\s*([^\n，,；;]+)/,goods:/(?:货物名称|货名)\s*[:：]\s*([^\n，,；;]+)/,category:/货物类别\s*[:：]\s*(普货|敏感货|危险品|待核验)/,volume:/(\d+(?:\.\d+)?)\s*(?:m³|m3|立方米|CBM|方)/i,weight:/(\d+(?:\.\d+)?)\s*(?:kg|公斤|千克)/i,boxes:/([+＋\-−]?\s*(?:[.．]\d+|\d+(?:[.,，．]\s*\d+)*))\s*(?:箱|cartons)/i,days:/(\d+)\s*天/,delivery:/派送需求\s*[:：]\s*(到门|自提)/,customs:/清关需求\s*[:：]\s*(代理清关|自行清关)/,tax:/税费需求\s*[:：]\s*(DDP|DAP|双清包税|待核验)/i};
- for(const[k,re]of Object.entries(patterns)){const matches=[...text.matchAll(new RegExp(re.source,re.flags+'g'))];if(matches.length===1){const m=matches[0],numeric=['weight','volume','boxes','days'].includes(k),ambiguous=numeric&&(/(?:\d[,，]\s*|\d\s*[-~～至到]\s*|[-−]\s*)$/.test(text.slice(0,m.index))||/每箱|单箱|每件|单件/.test(text));if(k==='boxes'&&(!/^\d+$/.test(m[1].trim())||!Number.isSafeInteger(Number(m[1]))||Number(m[1])<=0)){evidence[k]='无效箱数，须人工确认正整数：'+text}else if(ambiguous){evidence[k]='数量范围、分隔符或单件数据，须人工确认总量：'+text}else{f[k]=m[1].trim();evidence[k]=m[0]}}else if(matches.length>1){evidence[k]='多处数值或描述，需要人工确认：'+(k==='boxes'?text:matches.map(m=>m[0]).join(' / '))}}
+ const patterns={country:/(?:目的国|国家)\s*[:：]\s*([^\n，,；;]+)/,goods:/(?:货物名称|货名)\s*[:：]\s*([^\n，,；;]+)/,category:/货物类别\s*[:：]\s*(普货|敏感货|危险品|待核验)/,volume:/(\d+(?:\.\d+)?)\s*(?:m³|m3|立方米|CBM|方)/i,weight:/(\d+(?:\.\d+)?)\s*(?:kg|公斤|千克)/i,boxes:/([+＋\-−]?\s*(?:[.．]\d+|\d+)(?:(?:[.,，．/／⁄~～至到×*^]|[eE]\s*[+＋\-−]?)\s*\d+)*)\s*(?:箱|cartons)/i,days:/(\d+)\s*天/,delivery:/派送需求\s*[:：]\s*(到门|自提)/,customs:/清关需求\s*[:：]\s*(代理清关|自行清关)/,tax:/税费需求\s*[:：]\s*(DDP|DAP|双清包税|待核验)/i};
+ for(const[k,re]of Object.entries(patterns)){const matches=[...text.matchAll(new RegExp(re.source,re.flags+'g'))];if(matches.length===1){const m=matches[0],numeric=['weight','volume','boxes','days'].includes(k),ambiguous=numeric&&(/(?:\d[,，]\s*|\d\s*[-~～至到]\s*|[-−]\s*)$/.test(text.slice(0,m.index))||/每箱|单箱|每件|单件/.test(text));if(k==='boxes'&&(!validBoxes(m[1])||/[A-Za-z0-9/／⁄.^+＋\-−]\s*$/.test(text.slice(0,m.index)))){evidence[k]='无效箱数，须人工确认正整数：'+text}else if(ambiguous){evidence[k]='数量范围、分隔符或单件数据，须人工确认总量：'+text}else{f[k]=m[1].trim();evidence[k]=m[0]}}else if(matches.length>1){evidence[k]='多处数值或描述，需要人工确认：'+(k==='boxes'?text:matches.map(m=>m[0]).join(' / '))}}
  return {fields:f,evidence};
 }
-export function missing(f){return Object.keys(FIELDS).filter(k=>!String(f[k]??'').trim() || f[k]==='待核验' || ['volume','weight','boxes','days'].includes(k)&&(!Number.isFinite(+f[k])||+f[k]<=0) || k==='boxes'&&!Number.isInteger(+f[k]));}
+export function missing(f){return Object.keys(FIELDS).filter(k=>!String(f[k]??'').trim() || f[k]==='待核验' || ['volume','weight','boxes','days'].includes(k)&&(!Number.isFinite(+f[k])||+f[k]<=0) || k==='boxes'&&!validBoxes(f[k]));}
 export function validateRule(r){
  const required=['id','country','category','channel','delivery','customs','tax','currency','basis','version','sheet','cell'];
  if(required.some(k=>!String(r[k]??'').trim()))throw Error('规则缺少标识、适用条件或来源字段');
