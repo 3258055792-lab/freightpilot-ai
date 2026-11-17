@@ -4,7 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test prototype/harness/freight-plugin.test.mjs"
+    "test": "node --test prototype/harness/freight-plugin.test.mjs prototype/agent/run.test.mjs",
+    "agent": "node prototype/agent/run.mjs"
   },
   "engines": {
     "node": ">=22"

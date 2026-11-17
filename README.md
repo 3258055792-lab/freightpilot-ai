@@ -76,3 +76,7 @@ printf '%s' '{"product_name":"塑料收纳盒"}' | .venv/bin/python prototype/fr
 使用独立浏览器配置、单标签、合成数据。德国 3CBM/400kg 示例为 1260 CNY，不是 Python 示例的 2460 USD。审批是浏览器本地模拟，没有服务端鉴权或持久化幂等；CSS 使用 Google Fonts 外部字体。
 
 固定版本、哈希与独立复测证据见 [候选说明](docs/FP01-UI-FIX.md)。尚未合并或发布，验收通过仅限已测模拟路径。
+
+## 本地真实模型工具调用
+
+新增命令行适配器见 [运行与权限边界](prototype/agent/README.md)。已支持本机模型调用Python分类/查询并回传证据。计算在缺少独立人类确认通道时停止；前端与后端审批尚未接通。

@@ -11,4 +11,4 @@ subprocess.run([sys.executable, '-m', 'unittest', 'discover', '-s', 'prototype/t
 node = shutil.which('node')
 if not node:
     raise SystemExit('Install Node.js 22+ to run Harness tests.')
-subprocess.run([node, '--test', 'prototype/harness/freight-plugin.test.mjs'], cwd=root, env=env, check=True)
+subprocess.run([node, '--test', 'prototype/harness/freight-plugin.test.mjs', 'prototype/agent/run.test.mjs'], cwd=root, env=env, check=True)
