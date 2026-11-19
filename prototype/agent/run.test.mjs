@@ -27,3 +27,16 @@ test('bounded model loop and no-tool reply are not reported as tool execution',a
 test('external endpoint is refused before sending inquiry',async()=>{
  await assert.rejects(runAgent({prompt:'测试',baseUrl:'https://example.com/v1',fetchImpl:()=>assert.fail()}),/local model/);
 });
+
+test('local model redirect stops before a second request or tool execution', async () => {
+ const events = [];
+ let requests = 0;
+ const fetchImpl = async (_url, options) => {
+  requests++;
+  assert.equal(options.redirect, 'error');
+  throw new TypeError('Redirect rejected');
+ };
+ await assert.rejects(runAgent({prompt:'合成询价', fetchImpl, onEvent:event=>events.push(event)}), /Redirect rejected/);
+ assert.equal(requests, 1);
+ assert.deepEqual(events, []);
+});

@@ -18,7 +18,7 @@ export async function runAgent({prompt,model='qwen3.5-9b-mlx',baseUrl='http://12
  const emit=event=>{events.push(event);onEvent(event)};
  for(let round=0;round<maxRounds;round++){
   const response=await fetchImpl(new URL('chat/completions',baseUrl.replace(/\/?$/,'/')),{
-   method:'POST',headers:{'Content-Type':'application/json'},signal:AbortSignal.timeout(90000),
+   method:'POST',redirect:'error',headers:{'Content-Type':'application/json'},signal:AbortSignal.timeout(90000),
    body:JSON.stringify({model,messages,tools:schema,tool_choice:'auto',temperature:0,max_tokens:1200,stream:false})});
   if(!response.ok)throw Error(`Local model HTTP ${response.status}`);
   const data=await response.json();const answer=data.choices?.[0]?.message;
