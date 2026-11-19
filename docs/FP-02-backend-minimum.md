@@ -13,17 +13,29 @@
 
 ## 启动与停止（Windows PowerShell）
 
-Python 3.9+ 即可。为本地演示生成四个随机测试凭据，再启动服务。凭据只存在当前 PowerShell 和其子进程环境中；不要把它们写进仓库或提交到 Git。
+在仓库根目录打开 Windows PowerShell，使用 Python 3.9+。在这一个窗口生成四个随机测试凭据，再把服务启动为子进程。后续请求也在同一窗口运行，这样客户端和服务可使用同一组凭据。凭据只保留在进程环境中。
 
 ```powershell
-$env:FP_APPROVAL_MODEL_TOKEN = [Convert]::ToBase64String([Security.Cryptography.RandomNumberGenerator]::GetBytes(32))
-$env:FP_APPROVAL_HUMAN_TOKEN = [Convert]::ToBase64String([Security.Cryptography.RandomNumberGenerator]::GetBytes(32))
-$env:FP_APPROVAL_EXECUTOR_TOKEN = [Convert]::ToBase64String([Security.Cryptography.RandomNumberGenerator]::GetBytes(32))
-$env:FP_APPROVAL_VIEWER_TOKEN = [Convert]::ToBase64String([Security.Cryptography.RandomNumberGenerator]::GetBytes(32))
-py -3 prototype\approval_service.py serve --db prototype\output\approval-demo.db
+$rng = [Security.Cryptography.RandomNumberGenerator]::Create()
+try {
+    $bytes = New-Object 'byte[]' 32
+    foreach ($role in @('MODEL', 'HUMAN', 'EXECUTOR', 'VIEWER')) {
+        $rng.GetBytes($bytes)
+        [Environment]::SetEnvironmentVariable("FP_APPROVAL_" + $role + "_TOKEN", [Convert]::ToBase64String($bytes), 'Process')
+    }
+    [Array]::Clear($bytes, 0, $bytes.Length)
+} finally {
+    $rng.Dispose()
+}
+
+$python = & py -3 -c 'import sys; print(sys.executable)'
+$serviceArgs = @('prototype\approval_service.py', 'serve', '--db', 'prototype\output\approval-demo.db')
+$approvalProcess = Start-Process -FilePath $python -ArgumentList $serviceArgs -WorkingDirectory (Get-Location).Path -WindowStyle Hidden -PassThru
 ```
 
-服务自动创建 `prototype/output/approval-demo.db` 和一个合成来源/case。使用 `Ctrl+C` 停止；再次运行同一命令会继续使用原数据库。该目录已被仓库忽略。若只要初始化数据库而不启动服务：
+服务使用 `127.0.0.1:8765`，请先确保端口空闲。启动时会创建 `prototype/output/approval-demo.db` 和一个合成来源与案例。数据库在 Git 忽略目录中。准备好后，可用 `Invoke-RestMethod 'http://127.0.0.1:8765/health'` 确认服务返回 `environment: synthetic-local`。
+
+使用 `Stop-Process -InputObject $approvalProcess` 停止。要核对重启后记录仍可查询，在同一窗口重复运行 `$approvalProcess = Start-Process ...` 那一行，继续用原数据库和原测试凭据，再运行下面的 GET 请求。若只要初始化数据库：
 
 ```powershell
 py -3 prototype\approval_service.py init-demo --db prototype\output\approval-demo.db
@@ -31,45 +43,54 @@ py -3 prototype\approval_service.py init-demo --db prototype\output\approval-dem
 
 ## 最小流程
 
-假设上述命令仍在运行的另一个终端里执行以下 PowerShell。模型身份只能请求审批；决定必须来自另一个人类测试身份；执行只能由独立 executor 身份调用。
+在启动服务的同一窗口执行以下命令。模型身份请求审批，人类测试身份作决定，执行器身份执行，查看者身份读取记录。每次从头演示使用新的操作编号。
 
 ```powershell
 $base = 'http://127.0.0.1:8765'
 $model = @{ Authorization = "Bearer $env:FP_APPROVAL_MODEL_TOKEN" }
 $human = @{ Authorization = "Bearer $env:FP_APPROVAL_HUMAN_TOKEN" }
 $executor = @{ Authorization = "Bearer $env:FP_APPROVAL_EXECUTOR_TOKEN" }
+$viewer = @{ Authorization = "Bearer $env:FP_APPROVAL_VIEWER_TOKEN" }
+$demoId = [Guid]::NewGuid().ToString('N')
+$jsonContentType = 'application/json; charset=utf-8'
 
 $create = @{
-  idempotency_key = 'create-demo-0001'
+  idempotency_key = "create-$demoId"
   case = @{ id = 'case-synthetic-001'; version = 1 }
   scope = 'classification_trial'
   source_ref = 'synthetic-source-1'
   source_version = 'v1'
   input = @{ product_name = '合成塑料收纳盒' }
 } | ConvertTo-Json -Depth 5
-$created = Invoke-RestMethod -Method Post -Uri "$base/approvals" -Headers $model -ContentType 'application/json' -Body $create
+$created = Invoke-RestMethod -Method Post -Uri "$base/approvals" -Headers $model -ContentType $jsonContentType -Body ([Text.Encoding]::UTF8.GetBytes($create))
 $approval = $created.approval
 
 $decision = @{
-  idempotency_key = 'decision-demo-0001'
+  idempotency_key = "decision-$demoId"
   expected_revision = $approval.revision
   snapshot_hash = $approval.snapshot_hash
   decision = 'APPROVE'
   reason = '本地合成演示'
 } | ConvertTo-Json
-$decided = Invoke-RestMethod -Method Post -Uri "$base/approvals/$($approval.approval_id)/decisions" -Headers $human -ContentType 'application/json' -Body $decision
+$decided = Invoke-RestMethod -Method Post -Uri "$base/approvals/$($approval.approval_id)/decisions" -Headers $human -ContentType $jsonContentType -Body ([Text.Encoding]::UTF8.GetBytes($decision))
 
+$operationId = "operation-$demoId"
 $operation = @{
-  operation_id = 'operation-demo-0001'
+  operation_id = $operationId
   approval_id = $approval.approval_id
   expected_approval_revision = $decided.approval.revision
   case = $approval.case
   snapshot_hash = $approval.snapshot_hash
   action = 'simulate_classification_trial'
 } | ConvertTo-Json -Depth 5
-$result = Invoke-RestMethod -Method Post -Uri "$base/operations" -Headers $executor -ContentType 'application/json' -Body $operation
-$result
-Invoke-RestMethod -Method Get -Uri "$base/operations/operation-demo-0001" -Headers $human
+$null = Invoke-RestMethod -Method Post -Uri "$base/operations" -Headers $executor -ContentType $jsonContentType -Body ([Text.Encoding]::UTF8.GetBytes($operation))
+```
+
+通过下面两个请求读取服务端持久记录。审批应为 `CONSUMED`，并含 `decision_record`。操作应关联单一效果和合成结果，结果包含 `result_hash`。重启服务后使用相同的 ID 查询，记录应一致。
+
+```powershell
+Invoke-RestMethod -Uri "$base/approvals/$($approval.approval_id)" -Headers $viewer | ConvertTo-Json -Depth 10
+Invoke-RestMethod -Uri "$base/operations/$operationId" -Headers $viewer | ConvertTo-Json -Depth 10
 ```
 
 Use the same create key and body after a lost response to get the same approval; changing that body with the same key returns `409 IDEMPOTENCY_KEY_REUSED`. Repeating the same operation ID and body returns the saved effect/result; a changed body returns `409 OPERATION_ID_REUSED`; a new operation cannot reuse the consumed approval. After restarting the process, query the same approval/operation IDs to read the same database records.
