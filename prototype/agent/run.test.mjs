@@ -40,3 +40,16 @@ test('local model redirect stops before a second request or tool execution', asy
  assert.equal(requests, 1);
  assert.deepEqual(events, []);
 });
+
+test('customer inquiry returns the authoritative calculation immediately after a simulated one-use review', async () => {
+  const registry = toolRegistry({request: async ({reason}) => {
+    assert.match(reason, /塑料收纳盒/);
+    assert.match(reason, /400 KG/);
+    return 'allowed-once';
+  }});
+  const args = {product_name:'塑料收纳盒', category:'普货一类', volume_cbm:'3', weight_kg:'400'};
+  const reply = await runAgent({prompt:'合成询价', customerInquiry:true, registry, ...model(call('freight_calculate', args))});
+  assert.equal(reply.estimate.base_freight_usd, '2460.00');
+  assert.equal(reply.estimate.total_payable, null);
+  assert.equal(reply.estimate.source.price_cell, 'E5');
+});
