@@ -6,7 +6,8 @@
   "scripts": {
     "test": "node --test prototype/harness/freight-plugin.test.mjs prototype/agent/run.test.mjs",
     "agent": "node prototype/agent/run.mjs",
-    "inquiry": "node prototype/agent/inquiry.mjs"
+    "inquiry": "node prototype/agent/inquiry.mjs",
+    "workbench": "node prototype/agent/workbench.mjs"
   },
   "engines": {
     "node": ">=22"
