@@ -1,0 +1,3 @@
+# Preserve reviewed candidate bytes and SHA manifests on Windows checkouts.
+frontend/workbench/** text eol=lf
+docs/handoffs/fp01-ui-fix-20261117/** text eol=lf

@@ -24,6 +24,7 @@ prototype/
   tests/                  # Python 回归测试
   harness/                # Harness 适配器及 Node 测试
   source/, output/        # 本机生成，不提交 Git
+frontend/workbench/       # 独立浏览器模拟工作台及 15 项测试
 scripts/                  # 跨平台测试入口
 docs/                    # 项目边界、迁移与协作说明
 .github/workflows/        # Mac / Windows 自动测试配置
@@ -66,4 +67,12 @@ printf '%s' '{"product_name":"塑料收纳盒"}' | .venv/bin/python prototype/fr
 ## 后续 MVP
 
 询价 → 报价草稿 → 独立人工审批和客户确认 → 订单 → 模拟订舱/运输 → 延误 → 通知草稿 → 归档。
-订单、工作流调度、持久化审批、追踪与前端尚未实现。计划详见 [协作说明](docs/TEAM.md) 与 [迁移记录](docs/MIGRATION.md)。
+浏览器模拟前端已加入，但尚未连接 Python 原型；真实订单、工作流调度、服务端持久化审批与追踪尚未实现。计划详见 [协作说明](docs/TEAM.md) 与 [迁移记录](docs/MIGRATION.md)。
+
+## 浏览器模拟工作台（FP-01 修复候选）
+
+源码位于 `frontend/workbench`，与 Python 原型是两套独立合成数据。此候选修复 UI-01 未保存输入被旧值覆盖及 UI-02 小数箱数误提取。进入该目录运行 `npm test`；Mac 用 `python3 -m http.server 4173 --bind 127.0.0.1 --directory dist`，Windows 用 `py -m http.server 4173 --bind 127.0.0.1 --directory dist`，浏览器打开 http://127.0.0.1:4173 。无需安装 npm 依赖。
+
+使用独立浏览器配置、单标签、合成数据。德国 3CBM/400kg 示例为 1260 CNY，不是 Python 示例的 2460 USD。审批是浏览器本地模拟，没有服务端鉴权或持久化幂等；CSS 使用 Google Fonts 外部字体。
+
+固定版本、哈希与独立复测证据见 [候选说明](docs/FP01-UI-FIX.md)。尚未合并或发布，验收通过仅限已测模拟路径。

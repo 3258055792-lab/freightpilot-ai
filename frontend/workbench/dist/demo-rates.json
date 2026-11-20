@@ -1,0 +1,181 @@
+{
+  "notice": "仅演示，不是真实运价或承运承诺",
+  "rules": [
+    {
+      "id": "DEMO-1",
+      "country": "德国",
+      "category": "普货",
+      "channel": "海运",
+      "delivery": "到门",
+      "customs": "代理清关",
+      "tax": "DAP",
+      "currency": "CNY",
+      "basis": "m3",
+      "rate": 380,
+      "min": 500,
+      "maxWeight": 5000,
+      "maxVolume": 30,
+      "transitDays": 35,
+      "volumetricFactor": 1,
+      "surcharges": [
+        {
+          "name": "演示操作费",
+          "amount": 120
+        }
+      ],
+      "pending": [],
+      "version": "DEMO-2026.11-v1",
+      "sheet": "德国普货演示",
+      "cell": "A2:P2",
+      "verified": true,
+      "demo": true
+    },
+    {
+      "id": "DEMO-2",
+      "country": "德国",
+      "category": "普货",
+      "channel": "空运",
+      "delivery": "到门",
+      "customs": "代理清关",
+      "tax": "DAP",
+      "currency": "CNY",
+      "basis": "kg",
+      "rate": 29,
+      "min": 500,
+      "maxWeight": 5000,
+      "maxVolume": 30,
+      "transitDays": 7,
+      "volumetricFactor": 167,
+      "surcharges": [
+        {
+          "name": "演示操作费",
+          "amount": 120
+        }
+      ],
+      "pending": [],
+      "version": "DEMO-2026.11-v1",
+      "sheet": "德国普货演示",
+      "cell": "A3:P3",
+      "verified": true,
+      "demo": true
+    },
+    {
+      "id": "DEMO-3",
+      "country": "德国",
+      "category": "普货",
+      "channel": "国际快递",
+      "delivery": "到门",
+      "customs": "代理清关",
+      "tax": "DAP",
+      "currency": "CNY",
+      "basis": "kg",
+      "rate": 42,
+      "min": 500,
+      "maxWeight": 5000,
+      "maxVolume": 30,
+      "transitDays": 5,
+      "volumetricFactor": 167,
+      "surcharges": [
+        {
+          "name": "演示操作费",
+          "amount": 120
+        }
+      ],
+      "pending": [],
+      "version": "DEMO-2026.11-v1",
+      "sheet": "德国普货演示",
+      "cell": "A4:P4",
+      "verified": true,
+      "demo": true
+    },
+    {
+      "id": "DEMO-4",
+      "country": "德国",
+      "category": "普货",
+      "channel": "专线",
+      "delivery": "到门",
+      "customs": "代理清关",
+      "tax": "DAP",
+      "currency": "CNY",
+      "basis": "kg",
+      "rate": 23,
+      "min": 500,
+      "maxWeight": 5000,
+      "maxVolume": 30,
+      "transitDays": 12,
+      "volumetricFactor": 167,
+      "surcharges": [
+        {
+          "name": "演示操作费",
+          "amount": 120
+        }
+      ],
+      "pending": [
+        "末端邮编附加费待确认"
+      ],
+      "version": "DEMO-2026.11-v1",
+      "sheet": "德国普货演示",
+      "cell": "A5:P5",
+      "verified": true,
+      "demo": true
+    },
+    {
+      "id": "DEMO-5",
+      "country": "德国",
+      "category": "普货",
+      "channel": "空派",
+      "delivery": "到门",
+      "customs": "代理清关",
+      "tax": "DAP",
+      "currency": "CNY",
+      "basis": "kg",
+      "rate": 33,
+      "min": 500,
+      "maxWeight": 5000,
+      "maxVolume": 30,
+      "transitDays": 9,
+      "volumetricFactor": 167,
+      "surcharges": [
+        {
+          "name": "演示操作费",
+          "amount": 120
+        }
+      ],
+      "pending": [],
+      "version": "DEMO-2026.11-v1",
+      "sheet": "德国普货演示",
+      "cell": "A6:P6",
+      "verified": true,
+      "demo": true
+    },
+    {
+      "id": "DEMO-6",
+      "country": "德国",
+      "category": "普货",
+      "channel": "海派",
+      "delivery": "到门",
+      "customs": "代理清关",
+      "tax": "DAP",
+      "currency": "CNY",
+      "basis": "m3",
+      "rate": 620,
+      "min": 500,
+      "maxWeight": 5000,
+      "maxVolume": 30,
+      "transitDays": 30,
+      "volumetricFactor": 1,
+      "surcharges": [
+        {
+          "name": "演示操作费",
+          "amount": 120
+        }
+      ],
+      "pending": [],
+      "version": "DEMO-2026.11-v1",
+      "sheet": "德国普货演示",
+      "cell": "A7:P7",
+      "verified": true,
+      "demo": true
+    }
+  ]
+}
