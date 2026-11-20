@@ -63,6 +63,31 @@ class ApprovalServiceTests(unittest.TestCase):
             "action": "simulate_classification_trial",
         }
 
+    def test_weight_edit_invalidates_old_approval_and_requires_new_review(self):
+        request = self.create_request()
+        request["input"].update(weight_kg="400", volume_cbm="3")
+        def edit(version, weight):
+            return self.store.revise_case(self.human, SYNTHETIC_CASE, {
+                "expected_version": version, "input": {**request["input"], "weight_kg": weight}})
+        self.assertEqual(edit(1, "400")["version"], 2)
+        request["case"]["version"] = 2
+        approved = self.approve(self.store.create_approval(self.model, request))
+        self.assertEqual(edit(2, "800")["version"], 3)
+        self.assertFalse(edit(2, "800")["changed"])
+        with self.assertRaises(ServiceError):
+            self.store.execute(self.executor, self.operation_request(approved))
+        self.assertEqual(self.store.get_approval(self.viewer, approved["approval"]["approval_id"])["state"], "INVALIDATED")
+        request["case"]["version"] = 3
+        request["idempotency_key"] = "updated-draft-001"
+        with self.assertRaises(ServiceError) as mismatch:
+            self.store.create_approval(self.model, request)
+        self.assertEqual(mismatch.exception.code, "DRAFT_INPUT_MISMATCH")
+        request["input"]["weight_kg"] = "800"
+        pending = self.store.create_approval(self.model, request)
+        self.assertEqual(pending["approval"]["state"], "PENDING")
+        with self.assertRaises(ServiceError):
+            self.store.execute(self.executor, self.operation_request(pending))
+
     def test_creation_is_idempotent_and_payload_conflict_is_rejected(self):
         first = self.create_pending()
         replay = self.store.create_approval(self.model, self.create_request())
