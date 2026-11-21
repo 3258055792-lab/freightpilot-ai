@@ -1,0 +1,192 @@
+{
+  "date": "2026-11-21",
+  "executed_candidate": "2d1b57b3ea0900258130d10f4345878386bffde2",
+  "equivalent_backend_candidate": "7b0058bdb5ce60c424a7932aba943461884d8dcc",
+  "equal_git_blobs": {
+    "prototype/approval_service.py": "4546357bd95d03bdd42d7434dd7cf30985e27ce0",
+    "prototype/tests/test_approval_service.py": "aaf76e4e840fa1ef3f7163e0d44f099c94fd107a"
+  },
+  "scope": "Synthetic normal draft editing, approval invalidation and persisted records",
+  "observations": [
+    {
+      "method": "GET",
+      "path": "/health",
+      "role": null,
+      "status": 200,
+      "error_code": null
+    },
+    {
+      "method": "POST",
+      "path": "/cases/case-synthetic-001/draft",
+      "role": "HUMAN",
+      "status": 200,
+      "error_code": null
+    },
+    {
+      "method": "POST",
+      "path": "/approvals",
+      "role": "MODEL",
+      "status": 201,
+      "error_code": null
+    },
+    {
+      "method": "POST",
+      "path": "/approvals/approval-a780b07d97784e6aa61480ad5d96c6f9/decisions",
+      "role": "HUMAN",
+      "status": 200,
+      "error_code": null
+    },
+    {
+      "method": "POST",
+      "path": "/cases/case-synthetic-001/draft",
+      "role": "HUMAN",
+      "status": 200,
+      "error_code": null
+    },
+    {
+      "method": "GET",
+      "path": "/approvals/approval-a780b07d97784e6aa61480ad5d96c6f9",
+      "role": "VIEWER",
+      "status": 200,
+      "error_code": null
+    },
+    {
+      "method": "POST",
+      "path": "/operations",
+      "role": "EXECUTOR",
+      "status": 409,
+      "error_code": "APPROVAL_NOT_APPROVED"
+    },
+    {
+      "method": "POST",
+      "path": "/approvals",
+      "role": "MODEL",
+      "status": 201,
+      "error_code": null
+    },
+    {
+      "method": "GET",
+      "path": "/approvals/approval-a457047705e6498e93d11118fd90bef9",
+      "role": "VIEWER",
+      "status": 200,
+      "error_code": null
+    },
+    {
+      "method": "POST",
+      "path": "/operations",
+      "role": "EXECUTOR",
+      "status": 409,
+      "error_code": "APPROVAL_NOT_APPROVED"
+    },
+    {
+      "method": "GET",
+      "path": "/audit/case/case-synthetic-001",
+      "role": "VIEWER",
+      "status": 200,
+      "error_code": null
+    }
+  ],
+  "draft_revisions": [
+    {
+      "weight_kg": "400",
+      "changed": true,
+      "version": 2
+    },
+    {
+      "weight_kg": "800",
+      "changed": true,
+      "version": 3
+    }
+  ],
+  "case_audit": [
+    {
+      "event_type": "DRAFT_REVISED",
+      "actor_principal": "human-test",
+      "payload": {
+        "version": 2
+      }
+    },
+    {
+      "event_type": "DRAFT_REVISED",
+      "actor_principal": "human-test",
+      "payload": {
+        "version": 3
+      }
+    }
+  ],
+  "persisted_drafts": [
+    {
+      "version": 2,
+      "input": {
+        "product_name": "合成塑料收纳盒",
+        "volume_cbm": "3",
+        "weight_kg": "400"
+      }
+    },
+    {
+      "version": 3,
+      "input": {
+        "product_name": "合成塑料收纳盒",
+        "volume_cbm": "3",
+        "weight_kg": "800"
+      }
+    }
+  ],
+  "persisted_approvals": [
+    {
+      "approval_id": "approval-a780b07d97784e6aa61480ad5d96c6f9",
+      "case_version": 2,
+      "state": "INVALIDATED",
+      "revision": 3,
+      "snapshot_hash": "709755a491620c2c1beff9853980249b83fe01de5b0d8d858819a0572e4906d9",
+      "input": {
+        "product_name": "合成塑料收纳盒",
+        "volume_cbm": "3",
+        "weight_kg": "400"
+      }
+    },
+    {
+      "approval_id": "approval-a457047705e6498e93d11118fd90bef9",
+      "case_version": 3,
+      "state": "PENDING",
+      "revision": 1,
+      "snapshot_hash": "0c373a2f3db22b6e79e716fc015bd28013d7a4373b67628d79da3e55c23c8782",
+      "input": {
+        "product_name": "合成塑料收纳盒",
+        "volume_cbm": "3",
+        "weight_kg": "800"
+      }
+    }
+  ],
+  "counts": {
+    "case_drafts": 2,
+    "approvals": 2,
+    "decisions": 1,
+    "operations": 0,
+    "effects": 0,
+    "results": 0
+  },
+  "normal_business_result": "PASS",
+  "service_stopped": true,
+  "implementation_sha256": {
+    "prototype/approval_service.py": "5fccfd1a866a3603a1712dfb35a0d0a4852d8b368f6f5775a7fdd45369c234dc",
+    "prototype/tests/test_approval_service.py": "4f92a846d05b30fedee1e8a0b42156d4ed254cdbaf8652ec7f1e15a6583af8c3"
+  },
+  "upstream_suite": {
+    "command": "python -B -m unittest discover -s prototype/tests -p test_approval_service.py -v",
+    "tests": 11,
+    "passed": 11,
+    "duration_seconds": 26.339,
+    "exit_code": 0,
+    "resource_warnings": 4,
+    "review": "Existing synthetic defensive regressions for role checks, state persistence, idempotency and normal draft editing. No additional vulnerability reproduction."
+  },
+  "normal_business_exit_code": 0,
+  "limitations": [
+    "No browser or workbench frontend/backend integration validation",
+    "Simulation identities only; no real identity provider, model or external business",
+    "No security vulnerability reproduction",
+    "New draft endpoint is present in code; minimal backend document still omits it",
+    "One backend implementation executed because the two specified implementation and test files have identical Git blobs"
+  ]
+}
