@@ -1,0 +1,52 @@
+{
+  "candidate": "2d1b57b3ea0900258130d10f4345878386bffde2",
+  "scenario": "Windows Edge, synthetic case, read-only SQLite observation after reapplication",
+  "drafts": [
+    {
+      "case_id": "1f058e64-78ac-4b68-83ff-74b4b9a7ea09",
+      "version": 2,
+      "input": {
+        "product_name": "塑料收纳盒",
+        "volume_cbm": "3",
+        "weight_kg": "400"
+      }
+    },
+    {
+      "case_id": "1f058e64-78ac-4b68-83ff-74b4b9a7ea09",
+      "version": 3,
+      "input": {
+        "product_name": "塑料收纳盒",
+        "volume_cbm": "3",
+        "weight_kg": "800"
+      }
+    }
+  ],
+  "approvals": [
+    {
+      "approval_id": "approval-08a615ccdc2e427bb262fdc478be9af3",
+      "case_id": "1f058e64-78ac-4b68-83ff-74b4b9a7ea09",
+      "case_version": 2,
+      "state": "INVALIDATED",
+      "scope": "classification_trial",
+      "source_ref": "synthetic-source-1",
+      "source_version": "v1",
+      "snapshot_hash": "266061672bd532a8bddaff12836b2a321463b37ab8b3e6ae4a94bf57eee60e1e"
+    },
+    {
+      "approval_id": "approval-def997135d9a40efb043b9fa0059922f",
+      "case_id": "1f058e64-78ac-4b68-83ff-74b4b9a7ea09",
+      "case_version": 3,
+      "state": "PENDING",
+      "scope": "classification_trial",
+      "source_ref": "synthetic-source-1",
+      "source_version": "v1",
+      "snapshot_hash": "5b618511add3775085ee290d48d15c456ad2060dfe9e91cc67150c5c6e3df9d3"
+    }
+  ],
+  "counts": {
+    "decisions": 1,
+    "effects": 0,
+    "results": 0,
+    "operations": 0
+  }
+}

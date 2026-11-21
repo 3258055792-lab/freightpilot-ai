@@ -1,0 +1,214 @@
+- complementary:
+  - generic: ↗
+  - strong: FreightPilot
+  - generic: AGENT WORKSPACE
+  - generic: WORKSPACE
+  - navigation:
+    - button "◫ 工作台概览":
+      - generic: ◫
+      - text: 工作台概览
+    - button "▤ 询价与案例":
+      - generic: ▤
+      - text: 询价与案例
+    - button "▦ 报价来源库":
+      - generic: ▦
+      - text: 报价来源库
+    - button "⇢ 订单与物流":
+      - generic: ⇢
+      - text: 订单与物流
+    - button "▷ 比赛演示":
+      - generic: ▷
+      - text: 比赛演示
+    - button "◇ 销售训练":
+      - generic: ◇
+      - text: 销售训练
+  - text: 本机工作台
+  - text: 可解释 · 可追溯 · 人工可控
+  - generic: VERSION 1.0 / DEMO READY
+- main:
+  - generic: 工作空间 / 案例详情
+  - generic: 仅本地存储 · 未连接实盘
+  - generic: 本机操作员
+  - generic: FP
+  - generic: FREIGHT AGENT WORKSPACE
+  - heading "北辰家居 · 德国普货演示" [level=1]
+  - paragraph: 演示案例 · 00a5ec97 · v4 · 可编辑
+  - button "← 案例库"
+  - button "复制新案例"
+  - button "导出材料"
+  - generic: "1"
+  - text: 客户询价
+  - generic: "2"
+  - text: 需求识别
+  - generic: "3"
+  - text: 渠道推荐
+  - generic: "4"
+  - text: 报价审批
+  - generic: "5"
+  - text: 生成试算
+  - generic: "6"
+  - text: 客户下单
+  - generic: "7"
+  - text: 物流跟踪
+  - generic: 分类状态
+  - generic: 候选分类
+  - generic: 试算状态
+  - generic: 未生成
+  - generic: 报价状态
+  - generic: 草稿
+  - generic: 订单状态
+  - generic: 未下单
+  - generic: 异常状态
+  - generic: 无异常
+  - heading "01 / 客户询价" [level=2]
+  - text: 客户 / 案例名称
+  - textbox "客户 / 案例名称": 北辰家居 · 德国普货演示
+  - text: 粘贴客户询价
+  - textbox "粘贴客户询价":
+    - /placeholder: 例如：目的国：德国，货名：收纳盒，货物类别：普货，2方，320kg，20箱，40天，派送需求：到门，清关需求：代理清关，税费需求：DAP
+    - text: 目的国：德国，货名：塑料收纳盒，货物类别：普货，3CBM，400kg，1.5箱，40天，派送需求：到门，清关需求：代理清关，税费需求：DAP
+  - button "提取需求"
+  - generic: 规则提取 · 未明确表达的字段保留待补充
+  - heading "02 / 需求识别与人工确认" [level=2]
+  - generic: 待补充 / 待核验：箱数
+  - text: 目的国
+  - textbox "目的国 原文：目的国：德国":
+    - /placeholder: 待补充
+    - text: 德国
+  - generic: 原文：目的国：德国
+  - text: 货物名称
+  - textbox "货物名称 原文：货名：塑料收纳盒":
+    - /placeholder: 待补充
+    - text: 塑料收纳盒
+  - generic: 原文：货名：塑料收纳盒
+  - text: 货物类别
+  - combobox "货物类别 原文：货物类别：普货":
+    - option "待补充"
+    - option "普货" [selected]
+    - option "敏感货"
+    - option "危险品"
+    - option "待核验"
+  - generic: 原文：货物类别：普货
+  - text: 体积（m³）
+  - spinbutton "体积（m³） 原文：3CBM": "3"
+  - generic: 原文：3CBM
+  - text: 重量（kg）
+  - spinbutton "重量（kg） 原文：400kg": "400"
+  - generic: 原文：400kg
+  - text: 箱数
+  - spinbutton "箱数 原文：无效箱数，须人工确认正整数：目的国：德国，货名：塑料收纳盒，货物类别：普货，3CBM，400kg，1.5箱，40天，派送需求：到门，清关需求：代理清关，税费需求：DAP"
+  - generic: 原文：无效箱数，须人工确认正整数：目的国：德国，货名：塑料收纳盒，货物类别：普货，3CBM，400kg，1.5箱，40天，派送需求：到门，清关需求：代理清关，税费需求：DAP
+  - text: 时效（天）
+  - spinbutton "时效（天） 原文：40天": "40"
+  - generic: 原文：40天
+  - text: 派送需求
+  - combobox "派送需求 原文：派送需求：到门":
+    - option "待补充"
+    - option "到门" [selected]
+    - option "自提"
+  - generic: 原文：派送需求：到门
+  - text: 清关需求
+  - combobox "清关需求 原文：清关需求：代理清关":
+    - option "待补充"
+    - option "代理清关" [selected]
+    - option "自行清关"
+  - generic: 原文：清关需求：代理清关
+  - text: 税费需求
+  - combobox "税费需求 原文：税费需求：DAP":
+    - option "待补充"
+    - option "DAP" [selected]
+    - option "DDP"
+    - option "双清包税"
+    - option "待核验"
+  - generic: 原文：税费需求：DAP
+  - button "保存人工修改"
+  - button "确认分类"
+  - heading "03 / 渠道匹配" [level=2]
+  - generic: 待选择
+  - table:
+    - rowgroup:
+      - row "渠道 可计算性 规则覆盖 / 说明 选择":
+        - columnheader "渠道"
+        - columnheader "可计算性"
+        - columnheader "规则覆盖 / 说明"
+        - columnheader "选择"
+    - rowgroup:
+      - row "海运 需人工询价 待补充 / 待核验：箱数 选择海运":
+        - cell "海运"
+        - cell "需人工询价":
+          - generic: 需人工询价
+        - cell "待补充 / 待核验：箱数"
+        - cell "选择海运":
+          - radio "选择海运" [disabled]
+      - row "空运 需人工询价 待补充 / 待核验：箱数 选择空运":
+        - cell "空运"
+        - cell "需人工询价":
+          - generic: 需人工询价
+        - cell "待补充 / 待核验：箱数"
+        - cell "选择空运":
+          - radio "选择空运" [disabled]
+      - row "国际快递 需人工询价 待补充 / 待核验：箱数 选择国际快递":
+        - cell "国际快递"
+        - cell "需人工询价":
+          - generic: 需人工询价
+        - cell "待补充 / 待核验：箱数"
+        - cell "选择国际快递":
+          - radio "选择国际快递" [disabled]
+      - row "专线 需人工询价 待补充 / 待核验：箱数 选择专线":
+        - cell "专线"
+        - cell "需人工询价":
+          - generic: 需人工询价
+        - cell "待补充 / 待核验：箱数"
+        - cell "选择专线":
+          - radio "选择专线" [disabled]
+      - row "空派 需人工询价 待补充 / 待核验：箱数 选择空派":
+        - cell "空派"
+        - cell "需人工询价":
+          - generic: 需人工询价
+        - cell "待补充 / 待核验：箱数"
+        - cell "选择空派":
+          - radio "选择空派" [disabled]
+      - row "海派 需人工询价 待补充 / 待核验：箱数 选择海派":
+        - cell "海派"
+        - cell "需人工询价":
+          - generic: 需人工询价
+        - cell "待补充 / 待核验：箱数"
+        - cell "选择海派":
+          - radio "选择海派" [disabled]
+  - paragraph: 比较目的国、货类、体积、重量、时效及派送/清关/税费需求。无法匹配时交由人工询价；不同币种不做未声明汇率的排名。
+  - heading "04 / 一次审批与试算" [level=2]
+  - paragraph: 分类确认后，锁定选定渠道、全部输入和来源规则。批准将生成试算；拒绝立即结束当前流程。
+  - button "锁定版本并申请审批" [disabled]
+  - generic: 未申请
+  - heading "版本与审批控制" [level=2]
+  - text: 操作人（本地记录，非认证身份）
+  - textbox "操作人（本地记录，非认证身份）": 本机操作员
+  - paragraph: 修改已锁定输入不会覆盖原报价。每次审批绑定一个不可在界面编辑的快照；复制后重新确认。
+  - generic: 版本可编辑
+  - generic: 单次审批
+  - heading "来源追踪" [level=2]
+  - generic: 申请审批后，输入、来源与计算规则会锁定到当前版本。
+  - heading "人工修改与审批日志" [level=2]
+  - strong: 提取需求
+  - generic: 规则提取器 · v4 · 2026/11/20 22:34:02
+  - generic "详情"
+  - strong: 人工修改
+  - generic: 本机操作员 · v4 · 2026/11/20 22:34:02
+  - generic "详情"
+  - strong: 提取需求
+  - generic: 规则提取器 · v3 · 2026/11/20 22:34:02
+  - generic "详情"
+  - strong: 人工修改
+  - generic: 本机操作员 · v3 · 2026/11/20 22:34:02
+  - generic "详情"
+  - strong: 提取需求
+  - generic: 规则提取器 · v2 · 2026/11/20 22:34:01
+  - generic "详情"
+  - strong: 人工修改
+  - generic: 本机操作员 · v2 · 2026/11/20 22:34:01
+  - generic "详情"
+  - strong: 载入演示询价
+  - generic: 系统 · v1 · 2026/11/20 22:33:44
+  - generic "详情"
+  - generic: FREIGHTPILOT · 货代 Agent 参赛与报价工作台
+  - generic: 所有自动化，都有清晰的人类控制点。

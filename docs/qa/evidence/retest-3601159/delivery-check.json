@@ -1,0 +1,25 @@
+{
+  "commit": "36011592155b899b87168906588d8ea83791faec",
+  "manifest_entries": 12,
+  "mismatches": [
+    {
+      "path": "dist/app.js",
+      "declared": "c82f49b7c330a3ed756e1e4dfe46b6895facc46a79a64ba043bde5d5b204cb44",
+      "actual": "e56bc20d271883774d098dd76e0b2ede630a9156c96d6993d60ed44a4f4bc134"
+    },
+    {
+      "path": "dist/core.js",
+      "declared": "edec759b24dc6ed2188e0421024602eb9473c3f9f063ce85e6a65b6e6fa5d6f7",
+      "actual": "a247181a34c81da3aa0016d1edcad2c5543724491b06473002adc46940ce7e77"
+    },
+    {
+      "path": "tests/workflow.test.mjs",
+      "declared": "ca6776e599c89145465e16da60f3cf712392b46f25bd88e2d2e9ed8d96e3fe7e",
+      "actual": "bd526865cf0ea1794768597f5a94d6acbb80395bc573d116ead6524144b64162"
+    }
+  ],
+  "served_equals_fixed_git_bytes": {
+    "core.js": "a247181a34c81da3aa0016d1edcad2c5543724491b06473002adc46940ce7e77",
+    "app.js": "e56bc20d271883774d098dd76e0b2ede630a9156c96d6993d60ed44a4f4bc134"
+  }
+}

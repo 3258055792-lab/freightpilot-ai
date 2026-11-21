@@ -1,0 +1,332 @@
+{
+  "commit": "50cc37e6336a2b1c635bfd7e4addc3e8d4eb04b3",
+  "files": {
+    "rate-A-v1.xlsx": {
+      "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+      "bytes": 4106,
+      "sheet": "巴西海运双清包税",
+      "cells": {
+        "A1": "合成验收运价 A · v1",
+        "A3": "仅供比赛测试，无商业有效期",
+        "A5": "普货一类",
+        "B5": "塑料收纳盒",
+        "E4": "1-5CBM USD/CBM",
+        "E5": "820",
+        "H5": "1CBM:300KG",
+        "B19": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。",
+        "B20": null,
+        "B22": null,
+        "B23": null,
+        "B24": null
+      }
+    },
+    "rate-B-v1.xlsx": {
+      "sha256": "b17fb83927e41102509dd93fbecc1cdf3492ce66dd3800196b8dad8205a6c8a0",
+      "bytes": 4105,
+      "sheet": "巴西海运双清包税",
+      "cells": {
+        "A1": "合成验收运价 B · v1",
+        "A3": "仅供比赛测试，无商业有效期",
+        "A5": "普货一类",
+        "B5": "塑料收纳盒",
+        "E4": "1-5CBM USD/CBM",
+        "E5": "760",
+        "H5": "1CBM:300KG",
+        "B19": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。",
+        "B20": null,
+        "B22": null,
+        "B23": null,
+        "B24": null
+      }
+    },
+    "SOP-01-v1.md": {
+      "sha256": "8cb172b47d33620c0fd973ebd60fa742ba38fbd70576bb824dbad41c653652f8",
+      "bytes": 311,
+      "section": "§1",
+      "requires_volume": true,
+      "free_storage_clause_present": false
+    }
+  },
+  "runs": [
+    {
+      "selected": "A",
+      "classification_source": {
+        "file": "rate-A-v1.xlsx",
+        "sheet": "巴西海运双清包税",
+        "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+      },
+      "category": {
+        "category": "普货一类",
+        "matched_product": [
+          "塑料收纳盒"
+        ],
+        "category_cell": "A5",
+        "evidence_cell": "B5",
+        "evidence_text": "塑料收纳盒",
+        "match_method": "exact_list_item"
+      },
+      "source": {
+        "file": "rate-A-v1.xlsx",
+        "sheet": "巴西海运双清包税",
+        "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+        "category_cell": "A5",
+        "weight_rule_cell": "H5",
+        "effective_cell": "A3",
+        "effective_raw": "仅供比赛测试，无商业有效期",
+        "confirmed_rules": {
+          "cbm_boundary_assignment": {
+            "5": "1-5CBM",
+            "10": "5-10CBM"
+          },
+          "minimum_billable_cbm": 1,
+          "pricing_method": "whole_shipment"
+        },
+        "price_cell": "E5",
+        "band_cell": "E4",
+        "minimum_charge_cell": "B19"
+      },
+      "input": {
+        "actual_volume_cbm": "3",
+        "actual_weight_kg": "400"
+      },
+      "formula": "3 CBM × 820 USD/CBM = 2460.00 USD",
+      "base_usd": "2460.00",
+      "total_payable": null,
+      "usable_for_quote": false,
+      "selected_fees": [],
+      "unresolved": [
+        "运价仍未审核，未确认当前有效期。",
+        "未评估所有附加费，试算不代表最终应付总价。",
+        "B19对公转账3%：计费基数未明确，未计入。",
+        "B19/B24超品名费20USD与50USD的适用场景未确认，未计入。",
+        "B20/B22单件超重、大件及超长费需箱件重量尺寸与规则确认，未计入。",
+        "SKU合箱、派送、报关、保险及其他条件性费用未完整评估；未选择的服务费不等于免费。",
+        "B23打木箱400CNY/万原文单位有歧义，未计入。"
+      ]
+    },
+    {
+      "selected": "B",
+      "classification_source": {
+        "file": "rate-B-v1.xlsx",
+        "sheet": "巴西海运双清包税",
+        "sha256": "b17fb83927e41102509dd93fbecc1cdf3492ce66dd3800196b8dad8205a6c8a0"
+      },
+      "category": {
+        "category": "普货一类",
+        "matched_product": [
+          "塑料收纳盒"
+        ],
+        "category_cell": "A5",
+        "evidence_cell": "B5",
+        "evidence_text": "塑料收纳盒",
+        "match_method": "exact_list_item"
+      },
+      "source": {
+        "file": "rate-B-v1.xlsx",
+        "sheet": "巴西海运双清包税",
+        "sha256": "b17fb83927e41102509dd93fbecc1cdf3492ce66dd3800196b8dad8205a6c8a0",
+        "category_cell": "A5",
+        "weight_rule_cell": "H5",
+        "effective_cell": "A3",
+        "effective_raw": "仅供比赛测试，无商业有效期",
+        "confirmed_rules": {
+          "cbm_boundary_assignment": {
+            "5": "1-5CBM",
+            "10": "5-10CBM"
+          },
+          "minimum_billable_cbm": 1,
+          "pricing_method": "whole_shipment"
+        },
+        "price_cell": "E5",
+        "band_cell": "E4",
+        "minimum_charge_cell": "B19"
+      },
+      "input": {
+        "actual_volume_cbm": "3",
+        "actual_weight_kg": "400"
+      },
+      "formula": "3 CBM × 760 USD/CBM = 2280.00 USD",
+      "base_usd": "2280.00",
+      "total_payable": null,
+      "usable_for_quote": false,
+      "selected_fees": [],
+      "unresolved": [
+        "运价仍未审核，未确认当前有效期。",
+        "未评估所有附加费，试算不代表最终应付总价。",
+        "B19对公转账3%：计费基数未明确，未计入。",
+        "B19/B24超品名费20USD与50USD的适用场景未确认，未计入。",
+        "B20/B22单件超重、大件及超长费需箱件重量尺寸与规则确认，未计入。",
+        "SKU合箱、派送、报关、保险及其他条件性费用未完整评估；未选择的服务费不等于免费。",
+        "B23打木箱400CNY/万原文单位有歧义，未计入。"
+      ]
+    },
+    {
+      "selected": "A",
+      "classification_source": {
+        "file": "rate-A-v1.xlsx",
+        "sheet": "巴西海运双清包税",
+        "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+      },
+      "category": {
+        "category": "普货一类",
+        "matched_product": [
+          "塑料收纳盒"
+        ],
+        "category_cell": "A5",
+        "evidence_cell": "B5",
+        "evidence_text": "塑料收纳盒",
+        "match_method": "exact_list_item"
+      },
+      "source": {
+        "file": "rate-A-v1.xlsx",
+        "sheet": "巴西海运双清包税",
+        "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+        "category_cell": "A5",
+        "weight_rule_cell": "H5",
+        "effective_cell": "A3",
+        "effective_raw": "仅供比赛测试，无商业有效期",
+        "confirmed_rules": {
+          "cbm_boundary_assignment": {
+            "5": "1-5CBM",
+            "10": "5-10CBM"
+          },
+          "minimum_billable_cbm": 1,
+          "pricing_method": "whole_shipment"
+        },
+        "price_cell": "E5",
+        "band_cell": "E4",
+        "minimum_charge_cell": "B19"
+      },
+      "input": {
+        "actual_volume_cbm": "3",
+        "actual_weight_kg": "400"
+      },
+      "formula": "3 CBM × 820 USD/CBM = 2460.00 USD",
+      "base_usd": "2460.00",
+      "total_payable": null,
+      "usable_for_quote": false,
+      "selected_fees": [],
+      "unresolved": [
+        "运价仍未审核，未确认当前有效期。",
+        "未评估所有附加费，试算不代表最终应付总价。",
+        "B19对公转账3%：计费基数未明确，未计入。",
+        "B19/B24超品名费20USD与50USD的适用场景未确认，未计入。",
+        "B20/B22单件超重、大件及超长费需箱件重量尺寸与规则确认，未计入。",
+        "SKU合箱、派送、报关、保险及其他条件性费用未完整评估；未选择的服务费不等于免费。",
+        "B23打木箱400CNY/万原文单位有歧义，未计入。"
+      ]
+    }
+  ],
+  "base_freight_checks": "PASS",
+  "fee_attribution": {
+    "status": "FAIL",
+    "expected": "Each cited cell must have a value; each quoted USD, CNY or percentage amount must appear in the cited cells of the selected workbook.",
+    "findings": [
+      {
+        "file": "rate-A-v1.xlsx",
+        "note": "B19对公转账3%：计费基数未明确，未计入。",
+        "cited_cells": {
+          "B19": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。"
+        },
+        "empty_cells": [],
+        "unsupported_amounts": [
+          "3%"
+        ]
+      },
+      {
+        "file": "rate-A-v1.xlsx",
+        "note": "B19/B24超品名费20USD与50USD的适用场景未确认，未计入。",
+        "cited_cells": {
+          "B19": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。",
+          "B24": null
+        },
+        "empty_cells": [
+          "B24"
+        ],
+        "unsupported_amounts": [
+          "20USD",
+          "50USD"
+        ]
+      },
+      {
+        "file": "rate-A-v1.xlsx",
+        "note": "B20/B22单件超重、大件及超长费需箱件重量尺寸与规则确认，未计入。",
+        "cited_cells": {
+          "B20": null,
+          "B22": null
+        },
+        "empty_cells": [
+          "B20",
+          "B22"
+        ],
+        "unsupported_amounts": []
+      },
+      {
+        "file": "rate-A-v1.xlsx",
+        "note": "B23打木箱400CNY/万原文单位有歧义，未计入。",
+        "cited_cells": {
+          "B23": null
+        },
+        "empty_cells": [
+          "B23"
+        ],
+        "unsupported_amounts": [
+          "400CNY/万"
+        ]
+      },
+      {
+        "file": "rate-B-v1.xlsx",
+        "note": "B19对公转账3%：计费基数未明确，未计入。",
+        "cited_cells": {
+          "B19": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。"
+        },
+        "empty_cells": [],
+        "unsupported_amounts": [
+          "3%"
+        ]
+      },
+      {
+        "file": "rate-B-v1.xlsx",
+        "note": "B19/B24超品名费20USD与50USD的适用场景未确认，未计入。",
+        "cited_cells": {
+          "B19": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。",
+          "B24": null
+        },
+        "empty_cells": [
+          "B24"
+        ],
+        "unsupported_amounts": [
+          "20USD",
+          "50USD"
+        ]
+      },
+      {
+        "file": "rate-B-v1.xlsx",
+        "note": "B20/B22单件超重、大件及超长费需箱件重量尺寸与规则确认，未计入。",
+        "cited_cells": {
+          "B20": null,
+          "B22": null
+        },
+        "empty_cells": [
+          "B20",
+          "B22"
+        ],
+        "unsupported_amounts": []
+      },
+      {
+        "file": "rate-B-v1.xlsx",
+        "note": "B23打木箱400CNY/万原文单位有歧义，未计入。",
+        "cited_cells": {
+          "B23": null
+        },
+        "empty_cells": [
+          "B23"
+        ],
+        "unsupported_amounts": [
+          "400CNY/万"
+        ]
+      }
+    ],
+    "scope": "Freight calculation tool output. Display of these notes in UI, approval invalidation on source change, and SOP retrieval not tested."
+  }
+}

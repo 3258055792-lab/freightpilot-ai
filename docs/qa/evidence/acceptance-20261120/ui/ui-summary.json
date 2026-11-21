@@ -1,0 +1,118 @@
+{
+  "candidate": "9d4f034 + quantity patch sha256 7bc21785cebdb287e6168430db8a264b96fa971d6eb6ff6870df6248ffa19dd7",
+  "invalidInputs": [
+    {
+      "input": "1/2箱",
+      "fields": {
+        "boxes": "",
+        "country": "德国",
+        "days": "40",
+        "goods": "塑料收纳盒",
+        "volume": "3",
+        "weight": "400"
+      },
+      "requestDisabled": true,
+      "seaDisabled": true
+    },
+    {
+      "input": "1e3箱",
+      "fields": {
+        "boxes": "",
+        "country": "德国",
+        "days": "40",
+        "goods": "塑料收纳盒",
+        "volume": "3",
+        "weight": "400"
+      },
+      "requestDisabled": true,
+      "seaDisabled": true
+    },
+    {
+      "input": "1.5箱",
+      "fields": {
+        "boxes": "",
+        "country": "德国",
+        "days": "40",
+        "goods": "塑料收纳盒",
+        "volume": "3",
+        "weight": "400"
+      },
+      "requestDisabled": true,
+      "seaDisabled": true
+    },
+    {
+      "input": "1/2kg",
+      "fields": {
+        "boxes": "20",
+        "country": "德国",
+        "days": "40",
+        "goods": "塑料收纳盒",
+        "volume": "3",
+        "weight": ""
+      },
+      "requestDisabled": true,
+      "seaDisabled": true
+    },
+    {
+      "input": "1e3CBM",
+      "fields": {
+        "boxes": "20",
+        "country": "德国",
+        "days": "40",
+        "goods": "塑料收纳盒",
+        "volume": "",
+        "weight": "400"
+      },
+      "requestDisabled": true,
+      "seaDisabled": true
+    },
+    {
+      "input": "1.5天",
+      "fields": {
+        "boxes": "20",
+        "country": "德国",
+        "days": "",
+        "goods": "塑料收纳盒",
+        "volume": "3",
+        "weight": "400"
+      },
+      "requestDisabled": true,
+      "seaDisabled": true
+    }
+  ],
+  "normal": {
+    "caseId": "00a5ec97",
+    "version": 10,
+    "amount": 1260,
+    "currency": "CNY",
+    "classificationLogs": 1,
+    "approvalLogs": 1,
+    "refreshRetained": true
+  },
+  "reject": {
+    "sameCase": true,
+    "rejected": true,
+    "stopped": true,
+    "requestDisabled": true,
+    "approveCount": 0,
+    "orderCount": 0,
+    "rejectionLogs": 1,
+    "amountShown": false
+  },
+  "manualUnsafeBoxes": {
+    "input": "9007199254740993",
+    "retained": true,
+    "requestDisabled": true,
+    "seaDisabled": true
+  },
+  "unsavedWeight": {
+    "input": "800",
+    "retained": true,
+    "approval": "not requested"
+  },
+  "validDecimals": {
+    "weight": "320.5",
+    "volume": "2.75",
+    "seaEnabled": true
+  }
+}

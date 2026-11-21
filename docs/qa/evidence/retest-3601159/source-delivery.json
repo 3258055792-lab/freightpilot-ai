@@ -1,0 +1,62 @@
+{
+  "repository": "https://github.com/3258055792-lab/freightpilot-ai",
+  "ref": "refs/heads/codex/local-customer-inquiry",
+  "commit": "36011592155b899b87168906588d8ea83791faec",
+  "version": "v1",
+  "runtime_source": "Fresh Windows GitHub clone with core.autocrlf=true. All runtime bytes match git cat-file --filters from pinned HEAD. SHA-256 and byte counts denote checkout bytes; git_blob and git_raw_sha256 denote committed bytes.",
+  "inputs": {
+    "A": "data/sample/fp01/rate-A-v1.xlsx",
+    "B": "data/sample/fp01/rate-B-v1.xlsx",
+    "SOP": "data/sample/fp01/SOP-01-v1.md"
+  },
+  "files": {
+    ".gitattributes": {
+      "git_blob": "32927f76d6ce33ef5e98e9b91b4cb2fcdaa08ba4",
+      "git_raw_sha256": "48edda1f12960c302b054282a03ba9169b29af8c630dfd5ff8e34405d66ca8ba",
+      "sha256": "8770db4a2201e28e476b8a03ca3db316c4c6bb99f3b3c1721b4c572e21941665",
+      "bytes": 271
+    },
+    "prototype/freight_tools.py": {
+      "git_blob": "64654d32afaa2484a47868e1adc5817a4a44a38c",
+      "git_raw_sha256": "75066ac9d40b78e5fa607b70e0c4d5726d68e4b5891aafc3651182c69726be3b",
+      "sha256": "066170c807899bf956b923067e4bf443ca627d2beb1f70253c867199bdf2c550",
+      "bytes": 16772
+    },
+    "prototype/import_workbook.py": {
+      "git_blob": "b6e523a89caa7595253f4958a27d72acd08a4614",
+      "git_raw_sha256": "f34ebfd9fe4f8e2c3cca9fb8e9f9c663b94ba3bd1912d589dc1850b2ad61ba03",
+      "sha256": "8dc1a7d84ea471493c665ee864a7d246425689518743ff48a61b3697346070fa",
+      "bytes": 6627
+    },
+    "data/sample/fp01/verify.py": {
+      "git_blob": "f888842b1b02c71ac5ece5562a4a79fae260d317",
+      "git_raw_sha256": "9e08cc9de13a99bb503cea6c715503e33ad080555fcd305cb826135c20afdcc1",
+      "sha256": "2608035646f0375bca593e0aa733b58d33c393e28463c56a9ccd067b73f77038",
+      "bytes": 2936
+    },
+    "data/sample/fp01/SHA256SUMS": {
+      "git_blob": "dfa520e107cd0fb5f39ff5595db1311fe6dee294",
+      "git_raw_sha256": "c7f350314283645cbd7d7053009ec090f1cbe8fb0eec6c22ddca51dfa41598b5",
+      "sha256": "c7f350314283645cbd7d7053009ec090f1cbe8fb0eec6c22ddca51dfa41598b5",
+      "bytes": 241
+    },
+    "data/sample/fp01/rate-A-v1.xlsx": {
+      "git_blob": "2cc1cfbefdaf214c87f597fec66dbc7a9f38286e",
+      "git_raw_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+      "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+      "bytes": 4106
+    },
+    "data/sample/fp01/rate-B-v1.xlsx": {
+      "git_blob": "d65c6ce58cce21cdf2f8b4df526f499931c876cc",
+      "git_raw_sha256": "b17fb83927e41102509dd93fbecc1cdf3492ce66dd3800196b8dad8205a6c8a0",
+      "sha256": "b17fb83927e41102509dd93fbecc1cdf3492ce66dd3800196b8dad8205a6c8a0",
+      "bytes": 4105
+    },
+    "data/sample/fp01/SOP-01-v1.md": {
+      "git_blob": "9755e12e4077a9d108dcfa84490792fd145a837d",
+      "git_raw_sha256": "8cb172b47d33620c0fd973ebd60fa742ba38fbd70576bb824dbad41c653652f8",
+      "sha256": "8cb172b47d33620c0fd973ebd60fa742ba38fbd70576bb824dbad41c653652f8",
+      "bytes": 311
+    }
+  }
+}

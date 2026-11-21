@@ -1,0 +1,103 @@
+{"coreSha256":"ee325264d8f52d94da15c9e947c83868689b205d82e049e68bb636ce7975c502","sourceSha256":"b88c43e080e9a6595cf8836be75de805bcd88d400f6c16e32f88e058bda70951"}
+✔ 正常20箱可申请，1260仅为已锁定的预计算金额 (6.2951ms)
+✖ 1/2箱不能截取尾数形成可审批输入 (1.8569ms)
+ℹ {"input":"1/2箱","boxes":"2","evidence":"2箱","missing":[],"approval":"待审批","snapshotBoxes":"2","error":null}
+✖ 1e3箱不能截取尾数形成可审批输入 (0.4283ms)
+ℹ {"input":"1e3箱","boxes":"3","evidence":"3箱","missing":[],"approval":"待审批","snapshotBoxes":"3","error":null}
+✖ 手工箱数超安全整数必须在申请前被拒绝 (0.4738ms)
+ℹ {"boxes":"9007199254740993","numericValue":9007199254740992,"missing":[],"approval":"待审批","snapshotBoxes":"9007199254740993","error":null}
+ℹ tests 4
+ℹ suites 0
+ℹ pass 1
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 133.7743
+
+✖ failing tests:
+
+test at scripts\qa\numeric-boundary-regression.mjs:39:3
+✖ 1/2箱不能截取尾数形成可审批输入 (1.8569ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+    {
+  +   blocked: false,
+  +   boxes: '2',
+  +   invalid: false
+  -   blocked: true,
+  -   boxes: '',
+  -   invalid: true
+    }
+
+      at TestContext.<anonymous> (file:///D:/Codex/%E8%B4%A7%E4%BB%A3agent/fp03-windows-acceptance/scripts/qa/numeric-boundary-regression.mjs:45:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { boxes: '2', invalid: false, blocked: false },
+    expected: { boxes: '', invalid: true, blocked: true },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at scripts\qa\numeric-boundary-regression.mjs:39:3
+✖ 1e3箱不能截取尾数形成可审批输入 (0.4283ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+    {
+  +   blocked: false,
+  +   boxes: '3',
+  +   invalid: false
+  -   blocked: true,
+  -   boxes: '',
+  -   invalid: true
+    }
+
+      at TestContext.<anonymous> (file:///D:/Codex/%E8%B4%A7%E4%BB%A3agent/fp03-windows-acceptance/scripts/qa/numeric-boundary-regression.mjs:45:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { boxes: '3', invalid: false, blocked: false },
+    expected: { boxes: '', invalid: true, blocked: true },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at scripts\qa\numeric-boundary-regression.mjs:51:1
+✖ 手工箱数超安全整数必须在申请前被拒绝 (0.4738ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+    {
+  +   blocked: false,
+  +   invalid: false
+  -   blocked: true,
+  -   invalid: true
+    }
+
+      at TestContext.<anonymous> (file:///D:/Codex/%E8%B4%A7%E4%BB%A3agent/fp03-windows-acceptance/scripts/qa/numeric-boundary-regression.mjs:57:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { invalid: false, blocked: false },
+    expected: { invalid: true, blocked: true },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,74 @@
+[
+  {
+    "test": "weight-400-to-800",
+    "preserved": true,
+    "approvalLogs": 0,
+    "approveButtons": 0
+  },
+  {
+    "test": "时效（天） 原文：40天",
+    "preserved": true,
+    "blocked": true,
+    "approvalLogs": 0
+  },
+  {
+    "test": "体积（m³） 原文：3CBM",
+    "preserved": true,
+    "blocked": true,
+    "approvalLogs": 0
+  },
+  {
+    "test": "箱数 原文：20箱",
+    "preserved": true,
+    "blocked": true,
+    "approvalLogs": 0
+  },
+  {
+    "test": "目的国 原文：目的国：德国",
+    "preserved": true,
+    "blocked": true,
+    "approvalLogs": 0
+  },
+  {
+    "test": "货物名称 原文：货名：塑料收纳盒",
+    "preserved": true,
+    "blocked": true,
+    "approvalLogs": 0
+  },
+  {
+    "test": "货物类别 原文：货物类别：普货",
+    "preserved": true,
+    "blocked": true,
+    "approvalLogs": 0
+  },
+  {
+    "test": "派送需求 原文：派送需求：到门",
+    "preserved": true,
+    "blocked": true,
+    "approvalLogs": 0
+  },
+  {
+    "test": "清关需求 原文：清关需求：代理清关",
+    "preserved": true,
+    "blocked": true,
+    "approvalLogs": 0
+  },
+  {
+    "test": "税费需求 原文：税费需求：DAP",
+    "preserved": true,
+    "blocked": true,
+    "approvalLogs": 0
+  },
+  {
+    "test": "客户 / 案例名称",
+    "preserved": true,
+    "blocked": true,
+    "approvalLogs": 0
+  },
+  {
+    "test": "粘贴客户询价",
+    "preserved": true,
+    "blocked": true,
+    "approvalLogs": 0
+  }
+]

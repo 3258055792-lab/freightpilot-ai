@@ -1,0 +1,10 @@
+{
+  "groupSeq": 153,
+  "sourceBundleSha256": "023105b4abe584059d3c4bade78fb930245320bfe882859fc11d97ced0f77e04",
+  "origin": "http://127.0.0.1:50646/",
+  "candidate": "FP01-UI-FIX-20261117",
+  "scope": "single-tab synthetic local UI",
+  "browser": "Windows Edge extension tab interface",
+  "date": "2026-11-17",
+  "timezone": "Asia/Shanghai"
+}

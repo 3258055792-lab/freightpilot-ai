@@ -1,0 +1,92 @@
+[
+  {
+    "path": "backend-summary.json",
+    "bytes": 29014,
+    "sha256": "b610e09861831cd6f467dc71d86d3e780e1011cd7e5eb5ce439e1bd4cc5ff0a7"
+  },
+  {
+    "path": "candidate.json",
+    "bytes": 2087,
+    "sha256": "4fcc7f3f8798305d2f2ec021df1ba10520a60e6f151cb8234d3269d50702ec72"
+  },
+  {
+    "path": "ui/boxes-0.txt",
+    "bytes": 8227,
+    "sha256": "ff9242f77555174482b07a64d91a2de10ab0c8ce0735fc3adbff2769981df622"
+  },
+  {
+    "path": "ui/boxes-1.txt",
+    "bytes": 8435,
+    "sha256": "40e6cc741328512a0df5cbdc2a99e01bf331565021120cf5f141dd26ad736448"
+  },
+  {
+    "path": "ui/boxes-2.txt",
+    "bytes": 8643,
+    "sha256": "d3b06cd27da96e96b7d84f58473e34e220cf363cd93163a25638f01294564f2c"
+  },
+  {
+    "path": "ui/manual-unsafe-boxes.txt",
+    "bytes": 9231,
+    "sha256": "f0fcffab3e126bcd07590cbcb3aac2e12dac537bde9e34fd742fcd814ca09843"
+  },
+  {
+    "path": "ui/normal-after-refresh.txt",
+    "bytes": 12666,
+    "sha256": "050a2b526772931fb235f92fd36b44a1af7dbe5e964b8b6bd4edada577c703ee"
+  },
+  {
+    "path": "ui/normal-approved.png",
+    "bytes": 52118,
+    "sha256": "45917b9b082dcfccf4c3c8140a307922e27213ba8996c6cad6f157d9574564be"
+  },
+  {
+    "path": "ui/normal-approved.txt",
+    "bytes": 12666,
+    "sha256": "050a2b526772931fb235f92fd36b44a1af7dbe5e964b8b6bd4edada577c703ee"
+  },
+  {
+    "path": "ui/normal-pending.txt",
+    "bytes": 12412,
+    "sha256": "1764178b817441761c101a5b6f5facb6a8633e9e65434e4b783ee6bec18f1867"
+  },
+  {
+    "path": "ui/quantity-days.txt",
+    "bytes": 9432,
+    "sha256": "e1954a625c8f57801fb02fffedc2e761ac079eb9920b91dd313b43c7a3efcd8a"
+  },
+  {
+    "path": "ui/quantity-volume.txt",
+    "bytes": 9230,
+    "sha256": "0e19397d53afc145aa6419dccbcbfacf738dd2179aa2af358732757e237ffcfb"
+  },
+  {
+    "path": "ui/quantity-weight.txt",
+    "bytes": 8999,
+    "sha256": "ee94caabe88cd17131b396a9bbb6cdda10a2ea04ad626dbc8895b2aee7d3795d"
+  },
+  {
+    "path": "ui/rejected-after-refresh.txt",
+    "bytes": 10685,
+    "sha256": "a9d3427a18a47da03a90e3efa4680b088006d753be6e5ef1033af8cd867d7ad0"
+  },
+  {
+    "path": "ui/rejected.txt",
+    "bytes": 10685,
+    "sha256": "a9d3427a18a47da03a90e3efa4680b088006d753be6e5ef1033af8cd867d7ad0"
+  },
+  {
+    "path": "ui/ui-summary.json",
+    "bytes": 2529,
+    "sha256": "eaf3493264e9adefba9f30d8ed926e756c899edc85b07a1c63a80986fcc51f3a"
+  },
+  {
+    "path": "ui/unsaved-weight.txt",
+    "bytes": 11363,
+    "sha256": "af554f139f91f5bf4bb016b61eff2977eb3e26013504e806b9af8103536cc352"
+  },
+  {
+    "path": "ui/valid-decimal-quantity.txt",
+    "bytes": 9632,
+    "sha256": "0318fd81cb4f09d0c0379fc0109594686833ec6e9584441e71dc68c81b9fb50f"
+  }
+]

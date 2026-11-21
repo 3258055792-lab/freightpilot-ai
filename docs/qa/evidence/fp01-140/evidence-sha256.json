@@ -1,0 +1,112 @@
+[
+  {
+    "file": "01-missing-weight.jpg",
+    "bytes": 187622,
+    "sha256": "b78e891e49b2ca880d7b5505d430d1425bed2c82ee6fc600bdf1705bc18c436e"
+  },
+  {
+    "file": "01-missing-weight.txt",
+    "bytes": 8007,
+    "sha256": "bd0e995d13da258761107a9c2772f32feb5660b68424cae3e7d6d293e881d5ef"
+  },
+  {
+    "file": "02-locked-source.jpg",
+    "bytes": 224361,
+    "sha256": "d746cce8048b683d85060acba0fbcf5d4ba37400919118835503db30d643a93f"
+  },
+  {
+    "file": "02-locked-source.txt",
+    "bytes": 10841,
+    "sha256": "8eb978e4096215a154d8f4b96633709ca3d67055135ba8f7daf287de9fd7781f"
+  },
+  {
+    "file": "03-approved.jpg",
+    "bytes": 232297,
+    "sha256": "119265bdb48fc0174d38d471eb2e09c16c320fc623bce2fb9110e15b050c4ef0"
+  },
+  {
+    "file": "03-approved.txt",
+    "bytes": 11094,
+    "sha256": "82efd21096b5315bbc5f5459880bcc6989938044e3faa33f8f8da6a56c162cfa"
+  },
+  {
+    "file": "04-approved-after-refresh.txt",
+    "bytes": 11094,
+    "sha256": "82efd21096b5315bbc5f5459880bcc6989938044e3faa33f8f8da6a56c162cfa"
+  },
+  {
+    "file": "05-unsupported.jpg",
+    "bytes": 185461,
+    "sha256": "91f4a66c70a12ac41180837330e4e3921e0a84e0c6c351f997bb2e5f488fe357"
+  },
+  {
+    "file": "05-unsupported.txt",
+    "bytes": 7900,
+    "sha256": "fa95d1c48109acfb17b18eeed5c121c033ba607a6fed8d271e2999794c805f4c"
+  },
+  {
+    "file": "06-rejected-after-refresh.jpg",
+    "bytes": 219920,
+    "sha256": "91bff8e6ff5c91c3e126000eaab0bf6623a2ba094030d01fd3d79119224b93e6"
+  },
+  {
+    "file": "06-rejected-after-refresh.txt",
+    "bytes": 10847,
+    "sha256": "811d4be22c244baeec8077fde972affd4f56397ab20e872ce307089311129178"
+  },
+  {
+    "file": "07-unsaved-before-lock.jpg",
+    "bytes": 199702,
+    "sha256": "f450d518b0ceb5db136aab9160a24a3e732447036ce3861a700cefcca50c46b4"
+  },
+  {
+    "file": "07-unsaved-before-lock.txt",
+    "bytes": 9621,
+    "sha256": "349226700440fbce90a337bea5cf18e175c9d83bf2640b1ad096a2f216fd9ecf"
+  },
+  {
+    "file": "08-unsaved-after-lock.jpg",
+    "bytes": 227305,
+    "sha256": "cd17aa18f5617153ee5cf12df80a84c9336a21d3726131e6db3aad69dca2d2c7"
+  },
+  {
+    "file": "08-unsaved-after-lock.txt",
+    "bytes": 10975,
+    "sha256": "9f7a3ae7e24ee485bbac18edcd49235b68d572cfb1eb5a7b7f3cbe7bbb0c7d19"
+  },
+  {
+    "file": "09-fractional-boxes.jpg",
+    "bytes": 193629,
+    "sha256": "49a68b3c93f9e7446902f3d623bda12f256b492ba28cf869cbfe0db5a9da907d"
+  },
+  {
+    "file": "09-fractional-boxes.txt",
+    "bytes": 9544,
+    "sha256": "0615e468c7bf0639f901644c1a3620f8890a1b5f5080b080dd27816789bbc931"
+  },
+  {
+    "file": "10-conflicting-weight.txt",
+    "bytes": 7982,
+    "sha256": "81ab0517724e685faeffb3c87a02d3e0b8e03533b9310f008c8b18e5d711209f"
+  },
+  {
+    "file": "11-source-library.jpg",
+    "bytes": 133430,
+    "sha256": "4655199703054756b8ecc405b63fd696d56eef79d5919a6899f8569893f90c48"
+  },
+  {
+    "file": "11-source-library.txt",
+    "bytes": 6420,
+    "sha256": "9269ec1913da398bce7dc4936326b141dcd4ad80591128829b803390d79669db"
+  },
+  {
+    "file": "12-defect-visible.jpg",
+    "bytes": 87056,
+    "sha256": "66782c7297547d7979a56d7b77992c4fec6bb1adf4f56dbd59915d60d660c625"
+  },
+  {
+    "file": "candidate-files.json",
+    "bytes": 882,
+    "sha256": "6a3c04b8e997e221f309edb1e20345a833f6f61f0c1840becf94896e4e3f0be4"
+  }
+]
