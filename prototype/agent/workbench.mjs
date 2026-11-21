@@ -1,3 +1,5 @@
+import {execFile} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
 import {createServer} from 'node:http';
 import {randomUUID} from 'node:crypto';
 import {readFile} from 'node:fs/promises';
@@ -46,6 +48,18 @@ createServer(async(req,res)=>{
   try {
     if(req.headers.host!=='127.0.0.1:'+port)return json(403,{error:'仅本机使用'});
     const path=new URL(req.url,origin).pathname;
+    if(req.method==='POST' && path==='/drafts'){
+      const input=await payload(req);
+      const result=await new Promise((resolve,reject)=>{
+        const child=execFile(process.env.FREIGHT_PYTHON || (process.platform==='win32'?'python':'python3'),
+          [fileURLToPath(new URL('../workbench_draft.py',import.meta.url))],{timeout:15000},
+          (err,out)=>err?reject(Error('审批服务暂不可用')):resolve(out));
+        child.stdin.on('error',()=>{});
+        child.stdin.end(JSON.stringify(input));
+      });
+      const data=JSON.parse(result);
+      return json(data.status || 200,data);
+    }
     if(req.method==='POST' && path==='/inquiries'){
       const {prompt}=await payload(req);
       if(typeof prompt!=='string'||!prompt.trim()||prompt.length>8000)return json(400,{error:'请输入有效询价'});
