@@ -15,3 +15,21 @@ test('weight billing honors volumetric factor and per-currency charges',()=>{con
 test('restart retains locked workflow and duplicate protection',()=>{const c=ready();requestApproval(c,rules,'人');decide(c,true,'人');const restored=JSON.parse(JSON.stringify(c));assert.equal(restored.locked,true);assert.throws(()=>decide(restored,true,'人'));assert.throws(()=>edit(restored,restored.fields,'人'))});
 test('invalid source definitions are refused',()=>{rules.forEach(validateRule);assert.throws(()=>validateRule({...rules[0],rate:-1}));assert.throws(()=>validateRule({...rules[0],cell:''}));assert.throws(()=>validateRule({...rules[0],surcharges:[{name:'bad',amount:NaN}]}))});
 test('ranges, thousands separators and per-box quantities require a human',()=>{for(const t of ['重量 100-200kg','重量 2,320kg','每箱 20kg，共20箱','重量 -20kg'])assert.equal(extract(t).fields.weight,'');assert.equal(extract('体积 1～2方').fields.volume,'')});
+
+test('incomplete quantity tokens retain evidence and prevent approval',()=>{
+ for(const [key,original,invalid] of [
+  ['weight','320kg','1/2kg'],['volume','2方','1e3方'],['days','40天','1.5天'],
+  ['weight','320kg','1 200kg'],['volume','2方','−3方'],['days','40天','1～3天']
+ ]){
+  const input=text.replace(original,invalid);
+  const {fields,evidence}=extract(input);
+  assert.equal(fields[key],'',invalid);
+  assert.ok(evidence[key].includes(invalid));
+  assert.ok(missing(fields).includes(key));
+  const c=newCase();c.fields=fields;c.selected='海运';confirmClassification(c,'测试');
+  assert.throws(()=>requestApproval(c,rules,'测试'),/不能直接计算/);
+  assert.equal(c.snapshot,undefined);
+ }
+ const valid=extract(text.replace('320kg','320.5kg').replace('2方','2.75方')).fields;
+ assert.equal(valid.weight,'320.5');assert.equal(valid.volume,'2.75');assert.equal(valid.days,'40');
+});

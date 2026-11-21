@@ -212,7 +212,7 @@ class FreightTools:
                       calculation=f'{billed} CBM × {rate} USD/CBM = {money(base)} USD')
         basis.update(price_cell=col+str(row),band_cell=col+'4',minimum_charge_cell='B19')
         # Amounts are source-derived estimates, never reviewed rates. Confirm each literal still exists.
-        fee_text=values.get('B23','')
+        fee_text=values.get('B23') or ''
         fees=[('fumigation',1 if fumigation else 0,Decimal(800),'800CNY/票'),
               ('hinges',hinge_count,Decimal(100),'100CNY/件'),
               ('pallet_feet',pallet_foot_count,Decimal(60),'60CNY/件')]
@@ -225,12 +225,11 @@ class FreightTools:
                 output['selected_fees'].append({'code':code,'quantity':count,'unit_price':money(unit),'currency':'CNY',
                                                'amount':money(subtotal),'source_cell':'B23','status':'source_reference_pending_review'})
         output['known_subtotals']={'USD':money(base),'CNY':money(cny)}
-        output['unresolved'] += [
-            'B19对公转账3%：计费基数未明确，未计入。',
-            'B19/B24超品名费20USD与50USD的适用场景未确认，未计入。',
-            'B20/B22单件超重、大件及超长费需箱件重量尺寸与规则确认，未计入。',
-            'SKU合箱、派送、报关、保险及其他条件性费用未完整评估；未选择的服务费不等于免费。',
-            'B23打木箱400CNY/万原文单位有歧义，未计入。']
+        output['fee_source_notes'] = [
+            {'source_sha256': v['sha256'], 'sheet': CHANNEL, 'cell': cell, 'raw_text': values[cell]}
+            for cell in ('B19', 'B20', 'B22', 'B23', 'B24') if values.get(cell)
+        ]
+        output['unresolved'].append('付款、品名、单件规格、包装、派送和保险等条件性费用待核定。')
         return output
 
 
