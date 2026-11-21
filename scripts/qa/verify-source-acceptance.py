@@ -13,6 +13,7 @@ from xml.etree import ElementTree
 from zipfile import ZipFile
 
 parser = argparse.ArgumentParser()
+parser.add_argument("manifest", type=Path, help="Independently verified QA delivery JSON")
 parser.add_argument("candidate", type=Path)
 parser.add_argument("output", type=Path)
 args = parser.parse_args()
@@ -22,32 +23,44 @@ if out.exists():
     parser.error("Choose a new output JSON path")
 if not __debug__:
     parser.error("Run without -O so assertions are checked")
-for filename, expected in {
-    "prototype/freight_tools.py": "17629c80d44a52ce7e91f1ed36773f9e0015117d112f0ab8182f68b9bdf1eb39",
-    "prototype/import_workbook.py": "f34ebfd9fe4f8e2c3cca9fb8e9f9c663b94ba3bd1912d589dc1850b2ad61ba03",
-    "data/sample/fp01/verify.py": "08003999234336b94d959fa3d01563d118e85c9725b2a65ee01b59a7faf114a3",
-}.items():
-    if hashlib.sha256((root / filename).read_bytes()).hexdigest() != expected:
-        parser.error(f"Source differs from the fixed commit: {filename}")
+delivery_bytes = args.manifest.read_bytes()
+delivery = json.loads(delivery_bytes)
+inputs = {key: Path(path) for key, path in delivery["inputs"].items()}
+fixture_dir = inputs["SOP"].parent
+files = delivery["files"]
+required = {"prototype/freight_tools.py", "prototype/import_workbook.py",
+            (fixture_dir / "verify.py").as_posix(), (fixture_dir / "SHA256SUMS").as_posix(),
+            *(inputs[key].as_posix() for key in ("A", "B", "SOP"))}
+if not re.fullmatch(r"[0-9a-f]{40}", delivery["commit"]) or not required <= files.keys():
+    parser.error("Incomplete delivery manifest")
+for filename, expected in files.items():
+    source = (root / filename).resolve()
+    if root not in source.parents or not source.is_file():
+        parser.error(f"Missing candidate file: {filename}")
+    raw = source.read_bytes()
+    if len(raw) != expected["bytes"] or hashlib.sha256(raw).hexdigest() != expected["sha256"]:
+        parser.error(f"Input bytes differ from delivery manifest: {filename}")
 sys.path.insert(0, str(root / "prototype"))
 from freight_tools import CHANNEL, dispatch
 from import_workbook import import_workbook
+for module in ("freight_tools", "import_workbook"):
+    if Path(sys.modules[module].__file__).resolve() != root / "prototype" / (module + ".py"):
+        parser.error(f"Unexpected runtime source: {module}")
 
-fixture = root / "data/sample/fp01"
+fixture = root / fixture_dir
 manifest = dict(line.split()[::-1] for line in (fixture / "SHA256SUMS").read_text(encoding="utf-8").splitlines())
-assert manifest == {
-    "rate-A-v1.xlsx": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
-    "rate-B-v1.xlsx": "b17fb83927e41102509dd93fbecc1cdf3492ce66dd3800196b8dad8205a6c8a0",
-    "SOP-01-v1.md": "8cb172b47d33620c0fd973ebd60fa742ba38fbd70576bb824dbad41c653652f8",
-}
-observations = {"commit": "50cc37e6336a2b1c635bfd7e4addc3e8d4eb04b3", "files": {}, "runs": []}
-for name, expected_hash in manifest.items():
-    raw = (fixture / name).read_bytes()
+assert manifest == {path.name: files[path.as_posix()]["sha256"] for path in inputs.values()}
+observations = {"commit": delivery["commit"], "version": delivery["version"],
+                "runtime_source": delivery["runtime_source"], "manifest_sha256": hashlib.sha256(delivery_bytes).hexdigest(),
+                "files": {}, "runs": []}
+for key, path in inputs.items():
+    name = path.name
+    raw = (root / path).read_bytes()
     digest = hashlib.sha256(raw).hexdigest()
-    assert digest == expected_hash
+    assert digest == files[path.as_posix()]["sha256"]
     evidence = {"sha256": digest, "bytes": len(raw)}
     if name.endswith(".xlsx"):
-        with ZipFile(fixture / name) as archive:
+        with ZipFile(root / path) as archive:
             book = ElementTree.fromstring(archive.read("xl/workbook.xml"))
             sheet, = book.findall(".//{*}sheet")
             rel_id = next(value for key, value in sheet.attrib.items() if key.endswith("}id"))
@@ -57,7 +70,7 @@ for name, expected_hash in manifest.items():
             values = {cell.get("r"): cell.findtext("{*}v") for cell in cells.findall(".//{*}c")}
             assert sheet.get("name") == CHANNEL
             assert values["B5"] == "塑料收纳盒" and values["A5"] == "普货一类"
-            assert values["A1"] == f"合成验收运价 {name[5]} · v1"
+            assert values["A1"] == f"合成验收运价 {key} · {delivery['version']}"
             evidence["sheet"] = sheet.get("name")
             evidence["cells"] = {at: values.get(at) for at in ("A1", "A3", "A5", "B5", "E4", "E5", "H5", "B19", "B20", "B22", "B23", "B24")}
     else:
@@ -69,18 +82,18 @@ for name, expected_hash in manifest.items():
 with TemporaryDirectory(dir=out.parent) as isolated:
     db = Path(isolated) / "synthetic.db"
     for key in ("A", "B"):
-        filename = f"rate-{key}-v1.xlsx"
-        result = import_workbook(fixture / filename, db)
+        filename = inputs[key].name
+        result = import_workbook(root / inputs[key], db)
         assert result["source_sha256"] == manifest[filename]
         with closing(sqlite3.connect(db)) as con, con:
             wid, archived = con.execute("SELECT id,original_xlsx FROM workbook_archives WHERE sha256=?", (manifest[filename],)).fetchone()
-            assert archived == (fixture / filename).read_bytes()
+            assert archived == (root / inputs[key]).read_bytes()
             rules = {"minimum_billable_cbm": 1, "pricing_method": "whole_shipment", "cbm_boundary_assignment": {"5": "1-5CBM", "10": "5-10CBM"}}
             for rule, value in rules.items():
                 con.execute("INSERT INTO user_rule_confirmations(workbook_id,scope,rule_key,value_json,original_user_text,confirmation_source) VALUES(?,?,?,?,?,?)",
                             (wid, CHANNEL, rule, json.dumps(value), "synthetic QA", "synthetic_fixture"))
     for key, expected in (("A", "2460.00"), ("B", "2280.00"), ("A", "2460.00")):
-        filename = f"rate-{key}-v1.xlsx"
+        filename = inputs[key].name
         digest = manifest[filename]
         cells = observations["files"][filename]["cells"]
         classified = dispatch("freight_classify", {"product_name": "塑料收纳盒", "source_sha256": digest}, db)

@@ -1,0 +1,49 @@
+{
+  "candidate_commit": "2d1b57b3ea0900258130d10f4345878386bffde2",
+  "groups": [
+    {
+      "group": "baseline-fixture",
+      "exit_code": 0,
+      "python_counts": [],
+      "node_tests": [],
+      "node_pass": [],
+      "node_fail": [],
+      "resource_warnings": 0
+    },
+    {
+      "group": "baseline-repository",
+      "exit_code": 0,
+      "python_counts": [
+        [
+          "45",
+          "19.795"
+        ]
+      ],
+      "node_tests": [
+        "26"
+      ],
+      "node_pass": [
+        "26"
+      ],
+      "node_fail": [
+        "0"
+      ],
+      "resource_warnings": 4
+    },
+    {
+      "group": "baseline-frontend",
+      "exit_code": 0,
+      "python_counts": [],
+      "node_tests": [
+        "15"
+      ],
+      "node_pass": [
+        "15"
+      ],
+      "node_fail": [
+        "0"
+      ],
+      "resource_warnings": 0
+    }
+  ]
+}
