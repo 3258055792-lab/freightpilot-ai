@@ -1,0 +1,73 @@
+{
+  "candidate_commit": "36011592155b899b87168906588d8ea83791faec",
+  "groups": [
+    {
+      "group": "synthetic-fixture",
+      "exit_code": 0,
+      "python_counts": [],
+      "node_tests": [],
+      "node_pass": [],
+      "node_fail": [],
+      "resource_warnings": 0
+    },
+    {
+      "group": "workbench",
+      "exit_code": 0,
+      "python_counts": [],
+      "node_tests": [
+        "16"
+      ],
+      "node_pass": [
+        "16"
+      ],
+      "node_fail": [
+        "0"
+      ],
+      "resource_warnings": 0
+    },
+    {
+      "group": "fixed-numeric",
+      "exit_code": 0,
+      "python_counts": [],
+      "node_tests": [
+        "4"
+      ],
+      "node_pass": [
+        "4"
+      ],
+      "node_fail": [
+        "0"
+      ],
+      "resource_warnings": 0
+    },
+    {
+      "group": "fixed-source-aba",
+      "exit_code": 0,
+      "python_counts": [],
+      "node_tests": [],
+      "node_pass": [],
+      "node_fail": [],
+      "resource_warnings": 0
+    },
+    {
+      "group": "repository",
+      "exit_code": 0,
+      "python_counts": [
+        [
+          "45",
+          "19.640"
+        ]
+      ],
+      "node_tests": [
+        "26"
+      ],
+      "node_pass": [
+        "26"
+      ],
+      "node_fail": [
+        "0"
+      ],
+      "resource_warnings": 4
+    }
+  ]
+}

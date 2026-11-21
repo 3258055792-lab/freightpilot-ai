@@ -1,0 +1,196 @@
+{
+  "source": "Pachat #223; independent Windows QA",
+  "checks": {
+    "base_freight": "PASS",
+    "fee_attribution": "PASS on delivered A/B inputs",
+    "windows_sop_hash": "PASS",
+    "missing_rate_and_fee": "PASS"
+  },
+  "manifest_sha256": "6f9f18d7d68d7b1c852d2f95fd32ecbaeba82b82a02b03266ae4c39aa474a320",
+  "candidate_git": {
+    "HEAD": "36011592155b899b87168906588d8ea83791faec",
+    "core.autocrlf": "true",
+    "clean": true,
+    "sop_sha256": "8cb172b47d33620c0fd973ebd60fa742ba38fbd70576bb824dbad41c653652f8",
+    "sop_bytes": 311,
+    "sop_git_eol": "i/lf    w/lf    attr/text eol=lf"
+  },
+  "prior_git": {
+    "HEAD": "50cc37e6336a2b1c635bfd7e4addc3e8d4eb04b3",
+    "core.autocrlf": "true",
+    "clean": true,
+    "sop_sha256": "b395cc3faee161dfa4347573d7d6e10629514119b28f8578b94139c60fa6af3f",
+    "sop_bytes": 316,
+    "sop_git_eol": "i/lf    w/crlf  attr/"
+  },
+  "sop_verifier": {
+    "old_exit": 1,
+    "old_error": "AssertionError: SOP-01-v1.md",
+    "new_exit": 0,
+    "expected_sha256": "8cb172b47d33620c0fd973ebd60fa742ba38fbd70576bb824dbad41c653652f8"
+  },
+  "legacy_regression": {
+    "input": "3 CBM, 400 kg, 塑料收纳盒",
+    "old_exit": 1,
+    "old_distinct_unsupported": 8,
+    "new_exit": 0,
+    "new_distinct_unsupported": 0
+  },
+  "structured_fee_regression": {
+    "exit": 0,
+    "checked_fields": [
+      "source_sha256",
+      "sheet",
+      "cell",
+      "raw_text"
+    ],
+    "source_runs": [
+      {
+        "selection": "A",
+        "base_usd": "2460.00",
+        "fee_source_notes": [
+          {
+            "source_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+            "sheet": "巴西海运双清包税",
+            "cell": "B19",
+            "raw_text": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。"
+          }
+        ],
+        "total_payable": null,
+        "usable_for_quote": false
+      },
+      {
+        "selection": "B",
+        "base_usd": "2280.00",
+        "fee_source_notes": [
+          {
+            "source_sha256": "b17fb83927e41102509dd93fbecc1cdf3492ce66dd3800196b8dad8205a6c8a0",
+            "sheet": "巴西海运双清包税",
+            "cell": "B19",
+            "raw_text": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。"
+          }
+        ],
+        "total_payable": null,
+        "usable_for_quote": false
+      },
+      {
+        "selection": "A",
+        "base_usd": "2460.00",
+        "fee_source_notes": [
+          {
+            "source_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+            "sheet": "巴西海运双清包税",
+            "cell": "B19",
+            "raw_text": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。"
+          }
+        ],
+        "total_payable": null,
+        "usable_for_quote": false
+      }
+    ],
+    "unresolved_actual_by_workbook": {
+      "A": [
+        "运价仍未审核，未确认当前有效期。",
+        "未评估所有附加费，试算不代表最终应付总价。",
+        "付款、品名、单件规格、包装、派送和保险等条件性费用待核定。"
+      ],
+      "B": [
+        "运价仍未审核，未确认当前有效期。",
+        "未评估所有附加费，试算不代表最终应付总价。",
+        "付款、品名、单件规格、包装、派送和保险等条件性费用待核定。"
+      ]
+    },
+    "adjacent_minimum": {
+      "selected": "B",
+      "volume_cbm": "0.5",
+      "weight_kg": "120",
+      "base_usd": "760.00",
+      "total_payable": null,
+      "usable_for_quote": false
+    },
+    "missing_source_controls": [
+      {
+        "selected": "A",
+        "input_change": {
+          "volume_cbm": "6"
+        },
+        "cell": "F5",
+        "source_value": null,
+        "error": "原表单价必须是正数",
+        "outcome": "blocked; no calculation result returned"
+      },
+      {
+        "selected": "A",
+        "input_change": {
+          "fumigation": true
+        },
+        "cell": "B23",
+        "source_value": null,
+        "error": "来源费用原文已变化，停止计算：fumigation",
+        "outcome": "blocked; no calculation result returned"
+      },
+      {
+        "selected": "B",
+        "input_change": {
+          "volume_cbm": "6"
+        },
+        "cell": "F5",
+        "source_value": null,
+        "error": "原表单价必须是正数",
+        "outcome": "blocked; no calculation result returned"
+      },
+      {
+        "selected": "B",
+        "input_change": {
+          "fumigation": true
+        },
+        "cell": "B23",
+        "source_value": null,
+        "error": "来源费用原文已变化，停止计算：fumigation",
+        "outcome": "blocked; no calculation result returned"
+      }
+    ]
+  },
+  "files": [
+    {
+      "filename": "rate-A-v1.xlsx",
+      "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+      "version_cell": "合成验收运价 A · v1",
+      "sheet": "巴西海运双清包税",
+      "unit_price_cell": "E5",
+      "unit_price": "820",
+      "fee_fields": {
+        "B19": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。",
+        "B20": null,
+        "B22": null,
+        "B23": null,
+        "B24": null
+      }
+    },
+    {
+      "filename": "rate-B-v1.xlsx",
+      "sha256": "b17fb83927e41102509dd93fbecc1cdf3492ce66dd3800196b8dad8205a6c8a0",
+      "version_cell": "合成验收运价 B · v1",
+      "sheet": "巴西海运双清包税",
+      "unit_price_cell": "E5",
+      "unit_price": "760",
+      "fee_fields": {
+        "B19": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。",
+        "B20": null,
+        "B22": null,
+        "B23": null,
+        "B24": null
+      }
+    }
+  ],
+  "commands": {
+    "legacy": "py -3 -B verify-source-acceptance.py <manifest> <verified-candidate> <new-output>",
+    "upstream": "py -3 -B data/sample/fp01/verify.py (from old/new ordinary clone)",
+    "structured": "py -3 -B verify-fee-notes.py source-delivery.json candidate <new-output>"
+  },
+  "qa_script_sha256": {
+    "verify-source-acceptance.py": "b0aa5e8b3bdf9013c3db4e8305a01e750d5b71b570fea0ea7b8142d3e5dcabbd",
+    "verify-fee-notes.py": "5e40429eadd632456c41d4283ef5858960319ba028a9307d9071a38e74c26d5f"
+  },
+  "evidence_scope": "Synthetic selected workbooks and freight calculation output. Source selection UI, approval invalidation and SOP retrieval not covered by this check."
+}

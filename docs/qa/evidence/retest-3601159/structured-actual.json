@@ -1,0 +1,137 @@
+{
+  "commit": "36011592155b899b87168906588d8ea83791faec",
+  "manifest_sha256": "6f9f18d7d68d7b1c852d2f95fd32ecbaeba82b82a02b03266ae4c39aa474a320",
+  "source_runs": [
+    {
+      "selected": "A",
+      "volume_cbm": "3",
+      "weight_kg": "400",
+      "base_usd": "2460.00",
+      "fee_source_notes": [
+        {
+          "source_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+          "sheet": "巴西海运双清包税",
+          "cell": "B19",
+          "raw_text": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。"
+        }
+      ],
+      "unresolved": [
+        "运价仍未审核，未确认当前有效期。",
+        "未评估所有附加费，试算不代表最终应付总价。",
+        "付款、品名、单件规格、包装、派送和保险等条件性费用待核定。"
+      ],
+      "selected_fees": [],
+      "total_payable": null,
+      "usable_for_quote": false
+    },
+    {
+      "selected": "B",
+      "volume_cbm": "3",
+      "weight_kg": "400",
+      "base_usd": "2280.00",
+      "fee_source_notes": [
+        {
+          "source_sha256": "b17fb83927e41102509dd93fbecc1cdf3492ce66dd3800196b8dad8205a6c8a0",
+          "sheet": "巴西海运双清包税",
+          "cell": "B19",
+          "raw_text": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。"
+        }
+      ],
+      "unresolved": [
+        "运价仍未审核，未确认当前有效期。",
+        "未评估所有附加费，试算不代表最终应付总价。",
+        "付款、品名、单件规格、包装、派送和保险等条件性费用待核定。"
+      ],
+      "selected_fees": [],
+      "total_payable": null,
+      "usable_for_quote": false
+    },
+    {
+      "selected": "A",
+      "volume_cbm": "3",
+      "weight_kg": "400",
+      "base_usd": "2460.00",
+      "fee_source_notes": [
+        {
+          "source_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+          "sheet": "巴西海运双清包税",
+          "cell": "B19",
+          "raw_text": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。"
+        }
+      ],
+      "unresolved": [
+        "运价仍未审核，未确认当前有效期。",
+        "未评估所有附加费，试算不代表最终应付总价。",
+        "付款、品名、单件规格、包装、派送和保险等条件性费用待核定。"
+      ],
+      "selected_fees": [],
+      "total_payable": null,
+      "usable_for_quote": false
+    }
+  ],
+  "adjacent_controls": [
+    {
+      "selected": "B",
+      "volume_cbm": "0.5",
+      "weight_kg": "120",
+      "base_usd": "760.00",
+      "fee_source_notes": [
+        {
+          "source_sha256": "b17fb83927e41102509dd93fbecc1cdf3492ce66dd3800196b8dad8205a6c8a0",
+          "sheet": "巴西海运双清包税",
+          "cell": "B19",
+          "raw_text": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。"
+        }
+      ],
+      "unresolved": [
+        "运价仍未审核，未确认当前有效期。",
+        "未评估所有附加费，试算不代表最终应付总价。",
+        "付款、品名、单件规格、包装、派送和保险等条件性费用待核定。"
+      ],
+      "selected_fees": [],
+      "total_payable": null,
+      "usable_for_quote": false
+    },
+    {
+      "selected": "A",
+      "input_change": {
+        "volume_cbm": "6"
+      },
+      "cell": "F5",
+      "source_value": null,
+      "error": "原表单价必须是正数",
+      "outcome": "blocked; no calculation result returned"
+    },
+    {
+      "selected": "A",
+      "input_change": {
+        "fumigation": true
+      },
+      "cell": "B23",
+      "source_value": null,
+      "error": "来源费用原文已变化，停止计算：fumigation",
+      "outcome": "blocked; no calculation result returned"
+    },
+    {
+      "selected": "B",
+      "input_change": {
+        "volume_cbm": "6"
+      },
+      "cell": "F5",
+      "source_value": null,
+      "error": "原表单价必须是正数",
+      "outcome": "blocked; no calculation result returned"
+    },
+    {
+      "selected": "B",
+      "input_change": {
+        "fumigation": true
+      },
+      "cell": "B23",
+      "source_value": null,
+      "error": "来源费用原文已变化，停止计算：fumigation",
+      "outcome": "blocked; no calculation result returned"
+    }
+  ],
+  "structured_fee_checks": "PASS"
+}
