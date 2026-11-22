@@ -52,3 +52,14 @@ test('UI-02 manual box entries enforce the same positive safe decimal integer ru
  }
  for(const value of ['1','20','9007199254740991'])assert.equal(core.validBoxes(value),true);
 });
+
+test('backend export uses the current quote, version and matching approval',()=>{
+ const {context}=harness(), c=context.getCase();
+ c.serverDraft={version:3,input:{product_name:'收纳盒',volume_cbm:'3',weight_kg:'400'},
+  quote:{base_freight_usd:'2460.00',calculation:'3 × 820',source:{file:'rate-A-v1.xlsx',sheet:'海运',price_cell:'E5',sha256:'a'.repeat(64)},unresolved:['保险费待核定']},
+  approval:{case:{id:c.id,version:3},scope:'internal_quote_review',state:'REJECTED',approval_id:'review-3'}};
+ const report=()=>vm.runInContext("report(current(),'内部试算记录')",context);
+ for(const expected of ['v3','2460.00 USD','海运!E5','保险费待核定','内部草稿审核：已拒绝','review-3'])assert.ok(report().includes(expected));
+ c.serverDraft.version=4;c.serverDraft.quote=null;
+ assert.match(report(),/本版尚无审批记录/);assert.doesNotMatch(report(),/2460|review-3|已拒绝/);
+});
