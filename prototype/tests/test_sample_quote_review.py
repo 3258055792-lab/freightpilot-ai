@@ -48,3 +48,10 @@ class SampleQuoteReviewTest(unittest.TestCase):
                         call("approve", **previous)
                     with self.assertRaises(ServiceError):
                         call("calculate", **previous)
+            history = call("read")["quote_history"]
+            self.assertEqual([row["source"]["file"] for row in history],
+                             ["rate-A-v1.xlsx", "rate-B-v1.xlsx", "rate-A-v1.xlsx"])
+            self.assertEqual([row["review_state"] for row in history], ["INVALIDATED","INVALIDATED","REJECTED"])
+            self.assertEqual([row["decision"] for row in history], ["APPROVE","APPROVE","REJECT"])
+            self.assertEqual({row["trial_state"] for row in history}, {"CONSUMED"})
+            self.assertEqual(len({row[key] for row in history for key in ("trial_id","review_id")}), 6)

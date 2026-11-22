@@ -33,6 +33,17 @@ async function draftCall(c,action,body={}){
  if(!response.ok)throw Error(result.error || '草稿服务暂不可用');
  c.serverDraft=result;
 }
+function quoteHistoryLines(draft){
+ const labels={PENDING:'待审核',APPROVED:'已批准',CONSUMED:'已使用',REJECTED:'已拒绝',INVALIDATED:'已失效'};
+ return (draft.quote_history||[]).map(record=>{
+  const source=record.source;
+  const reviewed=record.decision==='APPROVE' && record.review_state==='INVALIDATED'?'曾批准，现已失效':labels[record.review_state]||'未申请';
+  return ['v'+record.case_version+' · '+source.file+' · '+record.calculation,
+   source.sheet+'!'+source.band_cell+' / '+source.price_cell+' · SHA-256 '+source.sha256,
+   '试算许可：'+labels[record.trial_state]+' · '+record.trial_id,
+   '草稿审核：'+reviewed+(record.review_id?' · '+record.review_id:'')].join('\n');
+ });
+}
 function draftCard(c){
  if(!localDrafts() || c.locked)return '';
  const d=c.serverDraft,a=d?.approval;
@@ -47,7 +58,8 @@ function draftCard(c){
  else if(selected && a.state==='APPROVED' && a.scope==='classification_trial')controls.push(btn('生成内部报价草稿','draft-calculate'));
  else if(selected && a.state==='CONSUMED' && d.quote)controls.push(btn('申请内部草稿审核','draft-review'));
  else if(a.state==='PENDING')controls.push(btn('批准本版','draft-approve'),btn('拒绝本版','draft-reject'));
- return card('后端分类试算审批（合成）',(c.intake?'<p>'+esc(c.intake.status)+'</p><details><summary>依据：SOP-01 §1</summary>'+esc(c.intake.sop)+'<p>'+esc(c.intake.file)+' · '+esc(c.intake.sha)+'</p></details>':'')+picker+'<p>'+info+'</p>'+(d?.quote?'<p>基础运费 '+esc(d.quote.calculation)+' · '+esc(d.quote.source.file)+' / '+esc(d.quote.source.price_cell)+'</p><p>来源 SHA-256：'+esc(d.quote.source.sha256)+'</p><p>'+d.quote.unresolved.map(esc).join(' ')+'</p>':'')+'<p>'+ (a && a.case.version===d?.version?(a.scope==='internal_quote_review'?'内部草稿审核 · ':'试算许可 · '):'')+esc(statuses[a?.state] || '尚未申请')+'</p><div class="actions">'+controls.join('')+'</div><small>绑定商品、总体积与总重。修改这些字段后点击“保存人工修改”会更新后端版本。</small>');
+ const history=quoteHistoryLines(d||{});
+ return card('后端分类试算审批（合成）',(c.intake?'<p>'+esc(c.intake.status)+'</p><details><summary>依据：SOP-01 §1</summary>'+esc(c.intake.sop)+'<p>'+esc(c.intake.file)+' · '+esc(c.intake.sha)+'</p></details>':'')+picker+'<p>'+info+'</p>'+(d?.quote?'<p>基础运费 '+esc(d.quote.calculation)+' · '+esc(d.quote.source.file)+' / '+esc(d.quote.source.price_cell)+'</p><p>来源 SHA-256：'+esc(d.quote.source.sha256)+'</p><p>'+d.quote.unresolved.map(esc).join(' ')+'</p>':'')+'<p>'+ (a && a.case.version===d?.version?(a.scope==='internal_quote_review'?'内部草稿审核 · ':'试算许可 · '):'')+esc(statuses[a?.state] || '尚未申请')+'</p><div class="actions">'+controls.join('')+'</div>'+(history.length?'<details><summary>历版试算与审核（'+history.length+'）</summary>'+history.map(line=>'<pre>'+esc(line)+'</pre>').join('')+'</details>':'')+'<small>绑定商品、总体积与总重。修改这些字段后点击“保存人工修改”会更新后端版本。</small>');
 }
 async function saveBackend(c,fields){
  const rate=$('#draft-source')?.value;
@@ -93,6 +105,8 @@ function backendReport(c){
    '审批记录：'+a.approval_id);
   if(a.scope!=='internal_quote_review')lines.push('本版内部草稿尚未送审。');
  }else lines.push('本版尚无审批记录。');
+ const history=quoteHistoryLines(d);
+ if(history.length)lines.push('','历版试算与审核',...history);
  lines.push('本记录仅供团队复核模拟业务。');
  return lines.join('\n');
 }
