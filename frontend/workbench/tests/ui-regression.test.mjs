@@ -79,3 +79,18 @@ test('switching freight preserves prior estimates and requires a new approval be
  assert.notEqual(c.snapshot.row.total,first.row.total);
  core.placeOrder(c,'测试',true);assert.throws(()=>core.reselectChannel(c,'测试'));
 });
+
+test('channel comparison exports only completed snapshots with original amounts and transit estimates',()=>{
+ const {context}=harness(), c=context.getCase();
+ core.requestApproval(c,rules,'测试');core.decide(c,true,'测试');core.reselectChannel(c,'测试');
+ const compareReport=()=>vm.runInContext("report(current(),'货运方案对比')",context);
+ c.selected='空运';core.requestApproval(c,rules,'测试');
+ assert.match(compareReport(),/历史方案 · v1 · 海运/);
+ assert.doesNotMatch(compareReport(),/当前方案|空运/);
+ core.decide(c,true,'测试');
+ const output=compareReport();
+ assert.match(output,/当前方案 · v2 · 空运/);
+ assert.match(output,new RegExp('预计 '+c.snapshot.row.rule.transitDays+' 天'));
+ assert.ok(output.indexOf('当前方案')<output.indexOf('历史方案'));
+ assert.ok(output.includes(c.previousTrials[0].row.rule.cell));
+});
