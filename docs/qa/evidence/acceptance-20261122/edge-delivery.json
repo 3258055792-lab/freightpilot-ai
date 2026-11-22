@@ -1,0 +1,22 @@
+{
+  "commit": "d88ee9db48feaaa061b3b1669b2464fd49239b85",
+  "assets": {
+    "index.html": {
+      "git_sha256": "9a4e1132ad53240628610cffedf92fb6d3fd7c7819941eea029bad40fd5373cb",
+      "served_sha256": "fc3158d74a8015b84180af9a8c9e29f60ac6edcc9e46109e9d5f2fd6906e5c88"
+    },
+    "app.js": {
+      "git_sha256": "d56f91891a1bca377de0f9eec348bd5377e2b52dfe7d930acbaf6d27355c41d4",
+      "served_sha256": "d56f91891a1bca377de0f9eec348bd5377e2b52dfe7d930acbaf6d27355c41d4"
+    },
+    "core.js": {
+      "git_sha256": "26b3fd84e4b5303e702a7acc3ea0fad79df894e12cb4c5c13ed2cc9b2b950f10",
+      "served_sha256": "26b3fd84e4b5303e702a7acc3ea0fad79df894e12cb4c5c13ed2cc9b2b950f10"
+    },
+    "inquiry-panel.js": {
+      "git_sha256": "0eed051b5f95d1e1eef53ec0e93b182b2e53d588ef961b11eaa18730c6e09893",
+      "served_sha256": "0eed051b5f95d1e1eef53ec0e93b182b2e53d588ef961b11eaa18730c6e09893"
+    }
+  },
+  "note": "The checked-in server injects its inquiry panel in index.html. JS resources are served unchanged."
+}

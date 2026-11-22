@@ -1,0 +1,285 @@
+{
+  "schema_version": 1,
+  "candidate_commit": "d88ee9db48feaaa061b3b1669b2464fd49239b85",
+  "remote": "https://github.com/3258055792-lab/freightpilot-ai.git",
+  "ref": "refs/heads/codex/local-customer-inquiry",
+  "status": "passed",
+  "evidence_level": "independent HTTP integrated backend and persisted SQLite records",
+  "scope": "Normal synthetic A/B/A through POST /drafts; local simulated operator; no real model, credentials, booking or external business.",
+  "existing_sample_quote_test": {
+    "command": "python -B -m unittest tests.test_sample_quote_review -v",
+    "tests": 1,
+    "exit_code": 0
+  },
+  "normal_input": {
+    "product_name": "塑料收纳盒",
+    "weight_kg": "400",
+    "volume_cbm": "3"
+  },
+  "rows": [
+    {
+      "sequence": 1,
+      "case_version": 2,
+      "source": {
+        "band_cell": "E4",
+        "file": "rate-A-v1.xlsx",
+        "price_cell": "E5",
+        "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+        "sheet": "巴西海运双清包税"
+      },
+      "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+      "base_freight_usd": "2460.00",
+      "trial_id": "trial-1",
+      "review_id": "review-1",
+      "trial_state": "CONSUMED",
+      "review_state": "INVALIDATED",
+      "review_decision": "APPROVE"
+    },
+    {
+      "sequence": 2,
+      "case_version": 3,
+      "source": {
+        "band_cell": "E4",
+        "file": "rate-B-v1.xlsx",
+        "price_cell": "E5",
+        "sha256": "b17fb83927e41102509dd93fbecc1cdf3492ce66dd3800196b8dad8205a6c8a0",
+        "sheet": "巴西海运双清包税"
+      },
+      "calculation": "3 CBM × 760 USD/CBM = 2280.00 USD",
+      "base_freight_usd": "2280.00",
+      "trial_id": "trial-2",
+      "review_id": "review-2",
+      "trial_state": "CONSUMED",
+      "review_state": "INVALIDATED",
+      "review_decision": "APPROVE"
+    },
+    {
+      "sequence": 3,
+      "case_version": 4,
+      "source": {
+        "band_cell": "E4",
+        "file": "rate-A-v1.xlsx",
+        "price_cell": "E5",
+        "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+        "sheet": "巴西海运双清包税"
+      },
+      "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+      "base_freight_usd": "2460.00",
+      "trial_id": "trial-3",
+      "review_id": "review-3",
+      "trial_state": "CONSUMED",
+      "review_state": "REJECTED",
+      "review_decision": "REJECT"
+    }
+  ],
+  "pending_third_review_states": [
+    "INVALIDATED",
+    "INVALIDATED",
+    "PENDING"
+  ],
+  "distinct_trial_and_review_records": 6,
+  "legal_calculations_before_rejection": 3,
+  "persisted_after_rejection": {
+    "case_drafts": 3,
+    "approvals": 6,
+    "decisions": 6,
+    "operations": 3,
+    "effects": 3,
+    "results": 3,
+    "audit_events": 21
+  },
+  "after_rejection_and_after_restart_delta": {
+    "case_drafts": 0,
+    "approvals": 0,
+    "decisions": 0,
+    "operations": 0,
+    "effects": 0,
+    "results": 0,
+    "audit_events": 0
+  },
+  "business_record_fingerprint_unchanged_after_rejection_and_restart": true,
+  "http_request_count": 31,
+  "service_launches": 2,
+  "own_service_stopped": true,
+  "tracked_files_unchanged": true,
+  "limitations": [
+    "No browser UI or export/render verification.",
+    "No real model or live business.",
+    "Order execution is outside this adapter; no order endpoint was called.",
+    "Existing successful calculations remain as history after review rejection; zero increment means no new business records."
+  ],
+  "next_check": "Verify the same three persisted rows and pending/rejected states in authorized browser UI and exports without repeating calculations.",
+  "runtime_sources": [
+    {
+      "file": "prototype/agent/workbench.mjs",
+      "git_blob": "76b7df7702fcc0c4ee20dbaa1475172fe17c55aa",
+      "sha256": "f9053209fb83689091a8d7ff2beda8bc94aa2ad60fa0da4e6ebe3d150edb4cad"
+    },
+    {
+      "file": "prototype/approval_service.py",
+      "git_blob": "dff96572bd12694e65933eefa294a1b61a82ee43",
+      "sha256": "6bd18a34b082c2dfc827096bbfa3a0de6ca772405e20e5f90e25671175840111"
+    },
+    {
+      "file": "prototype/freight_tools.py",
+      "git_blob": "64654d32afaa2484a47868e1adc5817a4a44a38c",
+      "sha256": "066170c807899bf956b923067e4bf443ca627d2beb1f70253c867199bdf2c550"
+    },
+    {
+      "file": "prototype/sample_quote.py",
+      "git_blob": "3180513e4eb918556158a68cf59f2308186257a5",
+      "sha256": "7f87719f920f1d4d4b9dacb146a364d2eb6e8597d6b6b922288c8731e113bea7"
+    },
+    {
+      "file": "prototype/workbench_draft.py",
+      "git_blob": "86e52dd5827d6f162c8e0908e583cde43432b871",
+      "sha256": "c627eda9818777b2c2d68814ca1c77a216584436767bbcfaece446d20655d3a5"
+    }
+  ],
+  "http_summary": {
+    "total": 31,
+    "status_counts": {
+      "200": 27,
+      "409": 4
+    },
+    "all_responses_matched_expected": true,
+    "post_rejection_and_restart": [
+      {
+        "step": "after-reject.read",
+        "http_status": 200,
+        "approval_state": "REJECTED"
+      },
+      {
+        "step": "after-reject.retry-review",
+        "http_status": 200,
+        "approval_state": "REJECTED"
+      },
+      {
+        "step": "after-reject.retry-rejection",
+        "http_status": 200,
+        "approval_state": "REJECTED"
+      },
+      {
+        "step": "after-reject.approve-rejected-review",
+        "http_status": 409,
+        "error": "only a pending approval can be decided"
+      },
+      {
+        "step": "after-reject.calculate-rejected-review",
+        "http_status": 409,
+        "error": "草稿审核不能授权试算"
+      },
+      {
+        "step": "after-restart.read",
+        "http_status": 200,
+        "approval_state": "REJECTED"
+      },
+      {
+        "step": "after-restart.retry-review",
+        "http_status": 200,
+        "approval_state": "REJECTED"
+      },
+      {
+        "step": "after-restart.retry-rejection",
+        "http_status": 200,
+        "approval_state": "REJECTED"
+      },
+      {
+        "step": "after-restart.approve-rejected-review",
+        "http_status": 409,
+        "error": "only a pending approval can be decided"
+      },
+      {
+        "step": "after-restart.calculate-rejected-review",
+        "http_status": 409,
+        "error": "草稿审核不能授权试算"
+      }
+    ]
+  },
+  "persisted_record_fingerprints": [
+    {
+      "stage": "after-third-review-rejection",
+      "sha256": "a4c2d367ae60cb762d024f7c6a727d00f89ad41d76a06e175e90f1b2c6ae599e"
+    },
+    {
+      "stage": "after-reject.zero-increment",
+      "sha256": "a4c2d367ae60cb762d024f7c6a727d00f89ad41d76a06e175e90f1b2c6ae599e"
+    },
+    {
+      "stage": "after-restart.zero-increment",
+      "sha256": "a4c2d367ae60cb762d024f7c6a727d00f89ad41d76a06e175e90f1b2c6ae599e"
+    }
+  ],
+  "legal_calculation_counts": [
+    {
+      "sequence": 1,
+      "operations": 1,
+      "effects": 1,
+      "results": 1
+    },
+    {
+      "sequence": 2,
+      "operations": 2,
+      "effects": 2,
+      "results": 2
+    },
+    {
+      "sequence": 3,
+      "operations": 3,
+      "effects": 3,
+      "results": 3
+    }
+  ],
+  "successful_calculation_replays": {
+    "attempts": 3,
+    "new_operations": 0,
+    "new_effects": 0,
+    "new_results": 0
+  },
+  "no_quote_or_order_claim": {
+    "usable_for_quote": false,
+    "total_payable": null,
+    "order_endpoint_called": false
+  },
+  "test_layers": {
+    "independently_verified": "HTTP service route and persistent database",
+    "developer_self_report_used_as_pass_evidence": false,
+    "not_tested": [
+      "Browser UI and export rendering",
+      "Real model and live business"
+    ]
+  },
+  "database_crosscheck": {
+    "method": "read-only SQLite query independent of HTTP response rendering",
+    "approval_records": [
+      {
+        "case_version": 2,
+        "source_ref": "A",
+        "trial_state": "CONSUMED",
+        "review_state": "INVALIDATED",
+        "review_decision": "APPROVE",
+        "trial_snapshot_hash": "41817b14c5cd3ba829ee09175ff3536fb66db16f483a5570cb051b78e19eea66",
+        "review_snapshot_hash": "c4265bb7a314e15b7a06063702302471b29755b60762b9d51f549f28f8041ea8"
+      },
+      {
+        "case_version": 3,
+        "source_ref": "B",
+        "trial_state": "CONSUMED",
+        "review_state": "INVALIDATED",
+        "review_decision": "APPROVE",
+        "trial_snapshot_hash": "19de1b5feeb8f4d4eaeccadb9c2bee070ee881a3e04b969876e88b3877606a4a",
+        "review_snapshot_hash": "3e86f0e58d9a8a90d13f5bda09fbc5bee021a7f158d34b801fb5e47e1922c42c"
+      },
+      {
+        "case_version": 4,
+        "source_ref": "A",
+        "trial_state": "CONSUMED",
+        "review_state": "REJECTED",
+        "review_decision": "REJECT",
+        "trial_snapshot_hash": "f994a701886cbf1f545e686a660ba8326a98dec57f942908cfe6bbe7a50da5b7",
+        "review_snapshot_hash": "cc0aebe5ba5add862b1388215b929e9e191c2d82da46066959557722b68e14e1"
+      }
+    ],
+    "result_amounts_and_source_shas_match_http_rows": true
+  }
+}
