@@ -1,16 +1,9 @@
-import {readFile} from 'node:fs/promises';
-import {createHash} from 'node:crypto';
+import {readIntakeSection} from './sop.mjs';
 import {extract} from '../../frontend/workbench/dist/core.js';
 
 export async function caseIntake(text) {
   if(typeof text!=='string'||!text.trim()||text.length>8000)throw Error('请输入客户询价原文（最多 8000 字）');
-  const file='SOP-01-v1.md';
-  const dir=new URL('../../data/sample/fp01/',import.meta.url);
-  const raw=await readFile(new URL(file,dir));
-  const sha=createHash('sha256').update(raw).digest('hex');
-  const manifest=await readFile(new URL('SHA256SUMS',dir),'utf8');
-  if(!manifest.split(/\r?\n/).includes(sha+'  '+file))throw Error('操作规范来源校验失败');
-  const sop=raw.toString('utf8').trim().split('\n').at(-1);
+  const {file,sha,sop}=await readIntakeSection();
   const keys=['goods','country','mode'];
   const schema={type:'object',properties:Object.fromEntries(keys.map(k=>[k,{type:'string'}])),required:keys,additionalProperties:false};
   const response=await fetch('http://127.0.0.1:1234/v1/chat/completions',{

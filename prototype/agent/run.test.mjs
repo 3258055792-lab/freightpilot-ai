@@ -53,3 +53,16 @@ test('customer inquiry returns the authoritative calculation immediately after a
   assert.equal(reply.estimate.total_payable, null);
   assert.equal(reply.estimate.source.price_cell, 'E5');
 });
+
+test('SOP lookup cites the synthetic intake section only for covered questions', async () => {
+  const {lookupSop}=await import('./sop.mjs');
+  for(const question of ['巴西海运试算需要哪些资料？','询价资料不全怎么办','箱数可以替代总体积吗？']){
+    const {source}=await lookupSop(question);
+    assert.equal(source.title,'§1 基础运费试算资料');
+    assert.match(source.sop,/箱数不能替代总体积/);
+    assert.match(source.sha,/^[0-9a-f]{64}$/);
+  }
+  for(const question of ['巴西港口免堆期几天？','询价需要哪些资料，还要多少税？','美国海运试算需要哪些资料？'])
+    assert.equal((await lookupSop(question)).status,'insufficient');
+  await assert.rejects(lookupSop(' '));
+});
