@@ -6,6 +6,7 @@ import subprocess
 import sys
 
 root = Path(__file__).resolve().parents[1]
+subprocess.run([sys.executable, str(root / "scripts/check_workbench_manifest.py")], check=True)
 env = dict(os.environ, FREIGHT_PYTHON=sys.executable, PYTHONUTF8='1')
 subprocess.run([sys.executable, '-m', 'unittest', 'discover', '-s', 'prototype/tests', '-t', 'prototype', '-v'], cwd=root, env=env, check=True)
 node = shutil.which('node')
