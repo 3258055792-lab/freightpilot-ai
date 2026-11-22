@@ -94,3 +94,19 @@ test('channel comparison exports only completed snapshots with original amounts 
  assert.ok(output.indexOf('当前方案')<output.indexOf('历史方案'));
  assert.ok(output.includes(c.previousTrials[0].row.rule.cell));
 });
+
+test('main extraction button routes conversational inquiry to local intake and preserves customer instructions',async()=>{
+ const {context,nodes}=harness(),c=context.getCase();
+ const raw='你好，我们有一批塑料收纳盒，想从中国走海运到巴西。货物共 30 箱，整票总体积 3 立方米，总毛重 400 公斤。这次先不加保险，也不需要额外包装。麻烦帮我估一下这票货的基础海运费，用美元报价。另外，哪些费用还需要单独确认？';
+ nodes['#inquiry'].value=raw;nodes['meta[name=local-inquiries]']={};
+ context.fetch=async(url,opts)=>{
+  assert.equal(url,'/case-intake');assert.equal(JSON.parse(opts.body).prompt,raw);
+  const parsed=core.extract(raw);
+  return {ok:true,json:async()=>({...parsed,fields:{...parsed.fields,goods:'塑料收纳盒',country:'巴西'},mode:'海运',status:'资料已齐'})};
+ };
+ await context.run('extract');
+ assert.deepEqual([c.fields.goods,c.fields.country,c.fields.boxes,c.fields.volume,c.fields.weight],['塑料收纳盒','巴西','30','3','400']);
+ const notes=vm.runInContext('customerNotes(current())',context);
+ for(const phrase of ['不加保险','不需要额外包装','用美元报价','哪些费用还需要单独确认'])assert.ok(notes.includes(phrase));
+ assert.equal(c.fields.tax,'');
+});
