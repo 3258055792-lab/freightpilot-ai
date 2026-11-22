@@ -41,6 +41,19 @@ export function edit(c,fields,actor){if(c.locked)throw Error('版本已锁定，
 export function confirmClassification(c,actor){if(c.locked||c.approval!=='未申请'||c.classification==='已确认')throw Error('流程不可重复');if(!['普货','敏感货','危险品'].includes(c.fields.category))throw Error('请先确认货物类别');c.classification='已确认';log(c,'分类确认',actor,c.fields.category);}
 export function requestApproval(c,rules,actor){if(c.locked||c.approval!=='未申请'||c.classification!=='已确认')throw Error('须先人工确认分类，且每版本仅允许一次审批');const row=compare(c.fields,rules).find(x=>x.channel===c.selected);if(!row||row.status!=='可直接计算')throw Error('所选渠道尚不能直接计算');c.snapshot=JSON.parse(JSON.stringify({fields:c.fields,row,version:c.version}));c.locked=true;c.approval='待审批';log(c,'申请试算审批',actor,'输入、规则、来源与版本已锁定');}
 export function decide(c,approved,actor){if(c.approval!=='待审批')throw Error('审批已处理或尚未申请');c.approval=approved?'已确认':'已拒绝';if(!approved){c.classification='已拒绝';c.trial='已停止';c.quote='已拒绝';c.order='已停止';log(c,'拒绝并终止',actor);return;}c.trial='已生成';c.quote='试算待核验';log(c,'批准并生成试算',actor);}
+export function reselectChannel(c,actor){
+ if(!c.locked || c.approval!=='已确认' || c.trial!=='已生成' || c.order!=='未下单' || !c.snapshot)
+  throw Error('仅可重选已完成试算且尚未下单的货运方式');
+ (c.previousTrials??=[]).push(c.snapshot);
+ c.version++;
+ c.selected='';
+ c.snapshot=null;
+ c.locked=false;
+ c.approval='未申请';
+ c.trial='未生成';
+ c.quote='草稿';
+ log(c,'重选货运方式',actor,'上一版试算已保留，请选择渠道并重新试算');
+}
 export function placeOrder(c,actor,customerConfirmed){if(!customerConfirmed||c.approval!=='已确认'||c.trial!=='已生成'||c.order!=='未下单')throw Error('需已生成试算、人工记录客户确认且尚未下单');c.order='待订舱';c.quote='客户已确认';c.events.push({at:new Date().toISOString(),node:'客户下单',location:'待补充',note:'工作台登记；未向承运商下单'});log(c,'登记客户确认与订单',actor);}
 export function cloneCase(c){const n=newCase(c.name+' · 副本');n.text=c.text;n.fields={...c.fields};n.evidence={...c.evidence};n.parentId=c.id;log(n,'复制案例','操作员',c.id);return n;}
 export function addEvent(c,event,actor){if(['未下单','已停止'].includes(c.order))throw Error('请先登记订单');if(!event.node||!event.location)throw Error('节点和当前位置必填');c.events.push({...event,at:new Date().toISOString()});c.order=event.node;c.exception=event.exception?'异常待处理':'无异常';log(c,'物流节点更新',actor,JSON.stringify(event));}

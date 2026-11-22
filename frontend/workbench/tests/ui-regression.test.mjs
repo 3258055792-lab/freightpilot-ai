@@ -63,3 +63,19 @@ test('backend export uses the current quote, version and matching approval',()=>
  c.serverDraft.version=4;c.serverDraft.quote=null;
  assert.match(report(),/本版尚无审批记录/);assert.doesNotMatch(report(),/2460|review-3|已拒绝/);
 });
+
+test('switching freight preserves prior estimates and requires a new approval before order',()=>{
+ const {context}=harness(), c=context.getCase();
+ const oldId=c.id,oldFields={...c.fields};
+ core.requestApproval(c,rules,'测试');core.decide(c,true,'测试');
+ const first=c.snapshot;
+ core.reselectChannel(c,'测试');
+ assert.equal(c.id,oldId);assert.deepEqual({...c.fields},oldFields);
+ assert.equal(c.previousTrials[0],first);assert.equal(c.snapshot,null);
+ assert.throws(()=>core.placeOrder(c,'测试',true));
+ assert.throws(()=>core.requestApproval(c,rules,'测试'));
+ c.selected='空运';core.requestApproval(c,rules,'测试');
+ assert.equal(c.approval,'待审批');core.decide(c,true,'测试');
+ assert.notEqual(c.snapshot.row.total,first.row.total);
+ core.placeOrder(c,'测试',true);assert.throws(()=>core.reselectChannel(c,'测试'));
+});
