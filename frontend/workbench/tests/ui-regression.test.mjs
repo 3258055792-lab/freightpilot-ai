@@ -136,3 +136,17 @@ test('Brazil base estimate appears with current review while full service remain
  c.serverDraft.approval.case.version=1;assert.doesNotMatch(html(),/内部草稿已批准/);
  c.serverDraft.quote=null;assert.doesNotMatch(html(),/2460 USD|查看试算记录/);
 });
+
+test('selecting the Brazil estimate binds the current version and exposes the selected price',()=>{
+ const {context}=harness(),c=context.getCase();c.fields.country='巴西';
+ c.serverDraft={rate_source:'A',version:2,quote:{calculation:'3 CBM × 820 = 2460 USD'}};
+ const run=code=>vm.runInContext(code,context);
+ run('selectChannel(current(),baseChannel)');
+ assert.equal(run('selectedBase(current())'),true);
+ assert.match(run('channels(current())'),/选择巴西海运基础运费[^>]+checked/);
+ assert.match(run('caseDetail()'),/04 \/ 已选巴西海运基础运费/);
+ assert.equal(c.approval,'未申请');
+ c.serverDraft.version++;assert.equal(run('selectedBase(current())'),false);
+ c.serverDraft.approval={case:{id:c.id,version:3},scope:'internal_quote_review',state:'REJECTED'};
+ assert.throws(()=>run('selectChannel(current(),baseChannel)'));
+});
