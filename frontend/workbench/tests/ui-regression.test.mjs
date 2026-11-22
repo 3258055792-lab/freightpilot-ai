@@ -126,3 +126,13 @@ test('customer followup asks only for missing or invalid fields and copies the e
  let copied;context.navigator={clipboard:{writeText:async value=>{copied=value}}};
  await context.run('copy-followup');assert.equal(copied,nodes['#customer-followup'].value);
 });
+
+test('Brazil base estimate appears with current review while full service remains unmatched',()=>{
+ const {context}=harness(),c=context.getCase();c.fields.country='巴西';
+ c.serverDraft={rate_source:'A',version:2,quote:{calculation:'3 CBM × 820 = 2460 USD'},approval:{case:{id:c.id,version:2},scope:'internal_quote_review',state:'APPROVED'}};
+ const html=()=>vm.runInContext('channels(current())',context);
+ assert.match(html(),/2460 USD/);assert.match(html(),/内部草稿已批准/);
+ assert.match(html(),/需人工询价/);assert.equal(c.trial,'未生成');
+ c.serverDraft.approval.case.version=1;assert.doesNotMatch(html(),/内部草稿已批准/);
+ c.serverDraft.quote=null;assert.doesNotMatch(html(),/2460 USD|查看试算记录/);
+});
