@@ -110,3 +110,19 @@ test('main extraction button routes conversational inquiry to local intake and p
  for(const phrase of ['不加保险','不需要额外包装','用美元报价','哪些费用还需要单独确认'])assert.ok(notes.includes(phrase));
  assert.equal(c.fields.tax,'');
 });
+
+test('customer followup asks only for missing or invalid fields and copies the edited message',async()=>{
+ const {context,nodes}=harness(),c=context.getCase();
+ assert.equal(core.customerFollowup(c.fields),'');
+ c.fields.volume='';c.fields.delivery='';c.fields.boxes='1.5';
+ const draft=core.customerFollowup(c.fields);
+ assert.match(draft,/多少箱/);assert.match(draft,/总体积/);assert.match(draft,/自提还是送货上门/);
+ assert.doesNotMatch(draft,/毛重|清关|税费|电池|哪个国家/);
+ c.fields.volume='3';c.fields.boxes='20';
+ assert.doesNotMatch(core.customerFollowup(c.fields),/多少箱|总体积/);
+ assert.equal(core.customerFollowup(c.fields,'我们自行提货。'),'');
+ assert.match(core.customerFollowup(c.fields,'需要送货上门吗？'),/自提还是送货上门/);
+ nodes['#fields-form'].values={...c.fields};nodes['#customer-followup']={value:'您好，您希望送货上门吗？'};
+ let copied;context.navigator={clipboard:{writeText:async value=>{copied=value}}};
+ await context.run('copy-followup');assert.equal(copied,nodes['#customer-followup'].value);
+});

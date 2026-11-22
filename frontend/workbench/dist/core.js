@@ -13,6 +13,35 @@ export function extract(text){
  return {fields:f,evidence};
 }
 export function missing(f){return Object.keys(FIELDS).filter(k=>!String(f[k]??'').trim() || f[k]==='待核验' || ['volume','weight','boxes','days'].includes(k)&&(!Number.isFinite(+f[k])||+f[k]<=0) || k==='boxes'&&!validBoxes(f[k]));}
+export function customerFollowup(fields,text=''){
+ const gaps=new Set(missing(fields));
+ // An explicit preference can answer a customer question before it maps to a tariff field.
+ const clauses=text.match(/[^。；;！？!?\n]+[？?]?/g)||[];
+ const statements=clauses.filter(clause=>!/[？?]|是否|能否|可否|还是|吗|么|能不能|可不可以/.test(clause)).join('。');
+ const answered={
+  days:/时效不限|不赶时间|时间(?:比较)?灵活|到货时间不限/,
+  delivery:/我们(?:自己|自行)提货|我们自提|请送货上门|需要送货上门/,
+  customs:/我们(?:自己|自行)清关|清关由我们(?:自己|自行)?安排|请(?:你们|贵司)(?:协助|代理)清关/,
+  tax:/进口税费(?:由我们承担|由收货人承担|请单列)|请把进口税费(?:列入|计入)报价/,
+ };
+ for(const [key,pattern] of Object.entries(answered)){
+  if(pattern.test(statements))gaps.delete(key);
+ }
+ if(!gaps.size)return '';
+ const questions=[];
+ if(gaps.has('goods'))questions.push('这票货具体是什么产品？');
+ if(gaps.has('country'))questions.push('货物准备发往哪个国家？');
+ const quantities=[['boxes','一共有多少箱'],['volume','整票货物的总体积是多少立方米'],['weight','含包装的总毛重是多少公斤']]
+  .filter(([key])=>gaps.has(key)).map(([,question])=>question);
+ if(quantities.length)questions.push(quantities.join('，')+'？');
+ if(gaps.has('category'))questions.push('货物是否带电池，或含有液体、粉末等需要特别说明的成分？');
+ if(gaps.has('days'))questions.push('您希望多久送到，还是时间比较灵活？');
+ if(gaps.has('delivery'))questions.push('到目的地后，您希望自提还是送货上门？');
+ if(gaps.has('customs') && gaps.has('tax'))questions.push('清关打算由您安排，还是需要我们协助？进口税费也需要列入报价吗？');
+ else if(gaps.has('customs'))questions.push('清关打算由您安排，还是需要我们协助？');
+ else if(gaps.has('tax'))questions.push('报价里需要列入目的地的进口税费吗？');
+ return '您好，'+(fields.goods&&!gaps.has('goods')?'关于这票'+fields.goods+'，':'')+'想跟您确认一下：'+questions.join('')+'暂时没定的也可以先告诉我，谢谢！';
+}
 export function validateRule(r){
  const required=['id','country','category','channel','delivery','customs','tax','currency','basis','version','sheet','cell'];
  if(required.some(k=>!String(r[k]??'').trim()))throw Error('规则缺少标识、适用条件或来源字段');

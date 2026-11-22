@@ -2,14 +2,14 @@
   "HANDOFF.md": "3dba332cfb23c1ee27f5af25d9d3ab66be9830ca940c51e1f046b2d5341b2bbe",
   "README.md": "59549f23008d8b6cba04a5417b6f7f627fba1f9a4ff490ad949fda5e54860e3b",
   "TEST-RESULTS.txt": "1adadf0d748f796afd57ec07b2802239456e81665a446d4afb57c9cecfefe85e",
-  "dist/app.js": "558b3525d0508f58c50fb7ad94a55003b33775a22b5e66f03538a7ebb9b3c301",
-  "dist/core.js": "26b3fd84e4b5303e702a7acc3ea0fad79df894e12cb4c5c13ed2cc9b2b950f10",
+  "dist/app.js": "3f30370a0a9c2cbc5248eca7b41dd709241b5f4669758cff77cf740065ac7188",
+  "dist/core.js": "21e0989585bae4ebe697d4fef9ec50c60378f65c76f6247845b3d1c2b3627654",
   "dist/demo-rates.json": "b88c43e080e9a6595cf8836be75de805bcd88d400f6c16e32f88e058bda70951",
   "dist/index.html": "9a4e1132ad53240628610cffedf92fb6d3fd7c7819941eea029bad40fd5373cb",
   "dist/inquiry-panel.js": "0eed051b5f95d1e1eef53ec0e93b182b2e53d588ef961b11eaa18730c6e09893",
   "dist/style.css": "3c5184cf24c6b2f9e860f774b4e660dd9b137813b2efa9e5b74e9f86da2f0e2f",
   "fixtures.json": "ad532c634b7952215941dba1ddb5af78d291d0ab923ff805544fa5f49d950023",
   "package.json": "9ae21b0d630d74f81b99f5c39b38c1a534aa34aa24f2d296195f1cafb1606b2f",
-  "tests/ui-regression.test.mjs": "9366a9608dfb3be43e00556199a5fe1c939a7d153a160eaa6f2a2e23991f9ad1",
+  "tests/ui-regression.test.mjs": "e38498d1506df48972b2cb8744f180adcdc29043c92211e742180d4fb0452936",
   "tests/workflow.test.mjs": "bd526865cf0ea1794768597f5a94d6acbb80395bc573d116ead6524144b64162"
 }
