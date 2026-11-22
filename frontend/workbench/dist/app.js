@@ -36,15 +36,17 @@ function draftCard(c){
  const controls=[btn('读取服务端状态','draft-read')];
  const selected=['A','B'].includes(d?.rate_source)?d.rate_source:'';
  const picker='<label>合成巴西海运运价<select id="draft-source"><option value="">仅分类演示</option>'+['A','B'].map(k=>'<option value="'+k+'" '+(k===selected?'selected':'')+'>运价表 '+k+' · v1</option>').join('')+'</select></label>';
+ if(!d?.input)controls.push(btn('用本地千问识别客户原文','case-intake'));
  if(!d?.input)controls.push(btn('保存为后端草稿','draft-save'));
  else if(!a || a.case.version!==d.version)controls.push(btn('申请本版审批','draft-request'));
  else if(selected && a.state==='APPROVED' && a.scope==='classification_trial')controls.push(btn('生成内部报价草稿','draft-calculate'));
  else if(selected && a.state==='CONSUMED' && d.quote)controls.push(btn('申请内部草稿审核','draft-review'));
  else if(a.state==='PENDING')controls.push(btn('批准本版','draft-approve'),btn('拒绝本版','draft-reject'));
- return card('后端分类试算审批（合成）',picker+'<p>'+info+'</p>'+(d?.quote?'<p>基础运费 '+esc(d.quote.calculation)+' · '+esc(d.quote.source.file)+' / '+esc(d.quote.source.price_cell)+'</p><p>来源 SHA-256：'+esc(d.quote.source.sha256)+'</p><p>'+d.quote.unresolved.map(esc).join(' ')+'</p>':'')+'<p>'+ (a && a.case.version===d?.version?(a.scope==='internal_quote_review'?'内部草稿审核 · ':'试算许可 · '):'')+esc(statuses[a?.state] || '尚未申请')+'</p><div class="actions">'+controls.join('')+'</div><small>绑定商品、总体积与总重。修改这些字段后点击“保存人工修改”会更新后端版本。</small>');
+ return card('后端分类试算审批（合成）',(c.intake?'<p>'+esc(c.intake.status)+'</p><details><summary>依据：SOP-01 §1</summary>'+esc(c.intake.sop)+'<p>'+esc(c.intake.file)+' · '+esc(c.intake.sha)+'</p></details>':'')+picker+'<p>'+info+'</p>'+(d?.quote?'<p>基础运费 '+esc(d.quote.calculation)+' · '+esc(d.quote.source.file)+' / '+esc(d.quote.source.price_cell)+'</p><p>来源 SHA-256：'+esc(d.quote.source.sha256)+'</p><p>'+d.quote.unresolved.map(esc).join(' ')+'</p>':'')+'<p>'+ (a && a.case.version===d?.version?(a.scope==='internal_quote_review'?'内部草稿审核 · ':'试算许可 · '):'')+esc(statuses[a?.state] || '尚未申请')+'</p><div class="actions">'+controls.join('')+'</div><small>绑定商品、总体积与总重。修改这些字段后点击“保存人工修改”会更新后端版本。</small>');
 }
 async function saveBackend(c,fields){
  const rate=$('#draft-source')?.value;
+ if(rate && c.intake && (fields.country!=='巴西'||c.intake.mode!=='海运'))throw Error('本样例只支持巴西海运，请核对原文后重新识别');
  if(!rate && ['A','B'].includes(c.serverDraft?.rate_source))throw Error('请选择运价表 A 或 B');
  await draftCall(c,'save',{...(rate?{rate_source:rate}:{}),expected_version:c.serverDraft?.version || 1,input:draftValues(fields)});
 }
@@ -68,6 +70,18 @@ function assertSavedInputs(c){
  if(Object.keys(FIELDS).some(k=>String(fields[k]??'')!==String(c.fields[k]??''))||$('#case-name').value!==c.name||$('#inquiry').value!==c.text)throw Error('存在未保存修改，请先保存人工修改，再重新确认分类；尚未申请审批');
 }
 async function action(a){const c=current();if(a==='request'||a==='confirm-class')assertSavedInputs(c);switch(a){
+ case 'case-intake':{
+  const text=$('#inquiry').value;
+  const fieldsBefore=JSON.stringify(fieldsFromForm());
+  toast('本机千问正在识别询价');
+  const res=await fetch('/case-intake',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:text})});
+  const recognized=await res.json();
+  if(!res.ok)throw Error(recognized.error || '识别失败');
+  if(current()!==c || !$('#inquiry') || $('#inquiry').value!==text || fieldsBefore!==JSON.stringify(fieldsFromForm()) || c.serverDraft?.input)throw Error('案例已变化，请重新识别');
+  c.text=text;c.name=$('#case-name').value.trim()||c.name;
+  edit(c,recognized.fields,state.actor);c.evidence=recognized.evidence;c.intake=recognized;
+  log(c,'千问识别询价','本地千问',recognized.status);break;
+ }
  case 'draft-read':await draftCall(c,'read');break;
  case 'draft-save':{
   const fields=fieldsFromForm();await saveBackend(c,fields);

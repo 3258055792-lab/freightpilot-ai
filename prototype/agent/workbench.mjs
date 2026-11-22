@@ -3,6 +3,7 @@ import {fileURLToPath} from 'node:url';
 import {createServer} from 'node:http';
 import {randomUUID} from 'node:crypto';
 import {readFile} from 'node:fs/promises';
+import {caseIntake} from './case-intake.mjs';
 import {runAgent,toolRegistry} from './run.mjs';
 
 const port=Number(process.env.FREIGHT_PORT || 4178);
@@ -48,6 +49,10 @@ createServer(async(req,res)=>{
   try {
     if(req.headers.host!=='127.0.0.1:'+port)return json(403,{error:'仅本机使用'});
     const path=new URL(req.url,origin).pathname;
+    if(req.method==='POST' && path==='/case-intake'){
+      const {prompt}=await payload(req);
+      return json(200,await caseIntake(prompt));
+    }
     if(req.method==='POST' && path==='/drafts'){
       const input=await payload(req);
       const result=await new Promise((resolve,reject)=>{
