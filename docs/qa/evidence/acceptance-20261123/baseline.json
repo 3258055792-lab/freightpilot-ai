@@ -1,0 +1,166 @@
+{
+  "recorded_at": "2026-11-23T14:08:11+08:00",
+  "scope": "Pachat #245, independent offline synthetic QA; new detached ordinary Windows checkout",
+  "repository": "https://github.com/3258055792-lab/freightpilot-ai.git",
+  "branch": "codex/local-customer-inquiry",
+  "commit": "06f2d28190cba3e370f355d0ab975c0ca604a959",
+  "upstream_branch_tip_at_fetch": "06f2d28190cba3e370f355d0ab975c0ca604a959",
+  "environment": {
+    "os": "Windows",
+    "python": "3.15.2",
+    "openpyxl": "3.1.5",
+    "node": "v26.13.0",
+    "core.autocrlf": "true",
+    "status_porcelain_empty": true,
+    "deps": "pinned npm ci --offline --ignore-scripts from D: cache; existing local D: Python with pinned openpyxl"
+  },
+  "fixed_delivery": {
+    "manifest": "frontend/workbench/SHA256SUMS.json",
+    "manifest_sha256": "03d48926ce8a5024a6bad279fb9955f10f65467a9a9a5e25dafc489959f99717",
+    "tracked_payload_count": 13,
+    "independent_hash_test": "Exact list equality against HEAD tree and index (manifest excluded from its own list); SHA-256 of each Windows file and exact Git blob equal its list entry. Manifest bytes also equal Git blob.",
+    "repo_checker_exit": 0,
+    "key_sha256": {
+      "dist/app.js": "d79a25f182e12c5b1843494830e1ab0104561efa295494dfb2b6c86301da2193",
+      "dist/core.js": "21e0989585bae4ebe697d4fef9ec50c60378f65c76f6247845b3d1c2b3627654",
+      "tests/ui-regression.test.mjs": "4cbe53e4602452d1c9ef0a2f6bb17df1abb1c811c875e883ccbc0c3176474bf4"
+    },
+    "fixture_manifest": "data/sample/fp01/SHA256SUMS",
+    "fixture_binaries_and_text_sha256": {
+      "rate-A-v1.xlsx": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+      "rate-B-v1.xlsx": "b17fb83927e41102509dd93fbecc1cdf3492ce66dd3800196b8dad8205a6c8a0",
+      "SOP-01-v1.md": "8cb172b47d33620c0fd973ebd60fa742ba38fbd70576bb824dbad41c653652f8"
+    },
+    "result": "PASS"
+  },
+  "counts": {
+    "frontend_node_vm": {
+      "tests": 23,
+      "pass": 23,
+      "fail": 0,
+      "declared": 23,
+      "exit": 0
+    },
+    "python_existing_business": {
+      "collected": 46,
+      "executed": 43,
+      "pass": 43,
+      "fail": 0,
+      "omitted": 3,
+      "exit": 0
+    },
+    "node_harness_existing_business": {
+      "tests": 21,
+      "pass": 21,
+      "fail": 0,
+      "declared": 27,
+      "omitted": 6,
+      "exit": 0
+    },
+    "existing_unique_executed": 87,
+    "existing_unique_pass": 87,
+    "existing_unique_omitted": 9,
+    "historic_checked_in_TEST_RESULTS_count": 15,
+    "count_note": "Scope-filtered process results; focused repeats and standalone fixture verifier excluded from unique count. Full omnibus scripts/check.py not invoked."
+  },
+  "excluded_existing_python_cases": [
+    "test_loopback_http_routes_enforce_roles_and_return_authoritative_records",
+    "test_requester_cannot_self_approve_and_rejection_survives_restart",
+    "test_roles_and_forged_identity_fields_fail_closed"
+  ],
+  "excluded_existing_node_cases": [
+    "model supplied approval marker fails closed and does not get another round",
+    "unknown tools and malformed arguments never execute",
+    "external endpoint is refused before sending inquiry",
+    "local model redirect stops before a second request or tool execution",
+    "direct exported calculation helper never grants model supplied confirmation",
+    "unknown confirmation or bypass parameters cannot reach the approval service"
+  ],
+  "core_selection": {
+    "test_file": "frontend/workbench/tests/ui-regression.test.mjs",
+    "test_case": "selecting the Brazil estimate binds the current version and exposes the selected price",
+    "neighbor": "Brazil base estimate appears with current review while full service remains unmatched",
+    "fixture": "synthetic Brazilian A-v2 calculation, 3 CBM × 820 USD; A-v3 rejected for negative selection",
+    "asserted_in_fixed_vm": [
+      "Direct selection helper sets the current version as selected",
+      "generated radio markup includes checked",
+      "detail shows selected Brazil base freight",
+      "local approval remains unrequested",
+      "incrementing version invalidates selection",
+      "attempt to select rejected version throws"
+    ],
+    "neighbor_assertions": [
+      "base estimate amount and matching current review render with full service requiring manual inquiry",
+      "different review version does not inherit approval label",
+      "no quote removes amount and record link"
+    ],
+    "parent_control": {
+      "product_commit": "5a3fd558a2898031f68ccd2b12ed819b9050d861",
+      "test_source_commit": "06f2d28190cba3e370f355d0ab975c0ca604a959",
+      "procedure": "Same fixed existing test module over parent Git blob product inputs, isolated under tmp/parent-control. Focused run includes both tests.",
+      "counts": {
+        "tests": 2,
+        "pass": 1,
+        "fail": 1
+      },
+      "exit": 1,
+      "error": "ReferenceError: selectChannel is not defined",
+      "neighbor": "PASS"
+    },
+    "fixed_repeat": {
+      "counts": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0
+      },
+      "exit": 0
+    },
+    "not_exercised_in_this_vm": [
+      "actual radio change, unsaved-input guard and form restore",
+      "real browser persistence after refresh",
+      "same browser case with A to B to A callbacks",
+      "backend decision/order counts for clicking this choice"
+    ]
+  },
+  "standalone_fixture_verifier": {
+    "command": "python -B data/sample/fp01/verify.py",
+    "runs": [
+      {
+        "selected": "A",
+        "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+        "base_freight_usd": "2460.00",
+        "cell": "E5"
+      },
+      {
+        "selected": "B",
+        "sha256": "b17fb83927e41102509dd93fbecc1cdf3492ce66dd3800196b8dad8205a6c8a0",
+        "base_freight_usd": "2280.00",
+        "cell": "E5"
+      },
+      {
+        "selected": "A",
+        "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+        "base_freight_usd": "2460.00",
+        "cell": "E5"
+      }
+    ],
+    "asserted_total_payable_null_all": true,
+    "asserted_only_matching_fee_note_B19_all": true,
+    "exit": 0
+  },
+  "limits": "Synthetic local only. Browser, external models, external/business services and production orders excluded. Fixed delivery is Git checkout; ZIP/archive equivalence was not tested.",
+  "commands": {
+    "frontend": "node --test frontend/workbench/tests/ui-regression.test.mjs frontend/workbench/tests/workflow.test.mjs",
+    "backend": "Use Python unittest discovery in prototype/tests (top level prototype); run all except three IDs above. Use node --test --test-skip-pattern over the six named cases above with prototype/{harness/freight-plugin,agent/run}.test.mjs.",
+    "setup": "python -B prototype/create_demo.py; npm ci --offline --ignore-scripts --no-audit --no-fund",
+    "focused": "node --test --test-name-pattern \"Brazil base estimate appears|selecting the Brazil estimate\" tests/ui-regression.test.mjs"
+  },
+  "log_sha256": {
+    "front.log": "4f043e0e9a69d84cd8435eeefc5d5366a0d602de94c578b4e49ebef81d56198a",
+    "python.log": "a8ae01b6c2523e85565b56567c6faac6d9b30b75edcf1d97ecea2b450903541e",
+    "node.log": "84b612679fef3a199940d48891e96b347ccece002d93f5283bbaab409785aede",
+    "parent-control.log": "73914400a0ef00741f3e5a60fb3f1abf7cf6e893353cd639b3a5489ea36def70",
+    "fixed-control.log": "ad75fe62362eb3619214d38f35849a0e0adf8729887b3bd568088aae715247f8",
+    "fp01.log": "ad2cd1fd5d3fa7d1f1817c7c34edc3daf875a108602912683cde6014b2998e0d"
+  }
+}
