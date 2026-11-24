@@ -1,0 +1,146 @@
+Workbench manifest: 13 files verified
+python.exe : test_concurrent_same_create_key_yields_one_approval (tests.test_approval_service.ApprovalServiceTests.test
+_concurrent_same_create_key_yields_one_approval) ... ok
+所在位置 行:9 字符: 1
++ & $py 'scripts/check.py' 2>&1 | Tee-Object -FilePath "$root\project-c ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (test_concurrent...pproval) ... ok:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+test_concurrent_same_operation_has_one_effect (tests.test_approval_service.ApprovalServiceTests.test_concurrent_same_op
+eration_has_one_effect) ... ok
+test_creation_is_idempotent_and_payload_conflict_is_rejected (tests.test_approval_service.ApprovalServiceTests.test_cre
+ation_is_idempotent_and_payload_conflict_is_rejected) ... ok
+test_decision_replay_is_idempotent_and_competing_humans_cannot_both_decide (tests.test_approval_service.ApprovalService
+Tests.test_decision_replay_is_idempotent_and_competing_humans_cannot_both_decide) ... ok
+test_idempotent_create_retry_does_not_reread_changed_source (tests.test_approval_service.ApprovalServiceTests.test_idem
+potent_create_retry_does_not_reread_changed_source) ... ok
+test_loopback_http_routes_enforce_roles_and_return_authoritative_records (tests.test_approval_service.ApprovalServiceTe
+sts.test_loopback_http_routes_enforce_roles_and_return_authoritative_records) ... D:\DevEnv\Python\Lib\tempfile.py:538:
+ ResourceWarning: Implicitly cleaning up <HTTPError 401: 'Unauthorized'>
+  _warnings.warn(self.warn_message, ResourceWarning)
+D:\DevEnv\Python\Lib\tempfile.py:538: ResourceWarning: Implicitly cleaning up <HTTPError 403: 'Forbidden'>
+  _warnings.warn(self.warn_message, ResourceWarning)
+D:\DevEnv\Python\Lib\tempfile.py:538: ResourceWarning: Implicitly cleaning up <HTTPError 400: 'Bad Request'>
+  _warnings.warn(self.warn_message, ResourceWarning)
+D:\DevEnv\Python\Lib\tempfile.py:538: ResourceWarning: Implicitly cleaning up <HTTPError 404: 'Not Found'>
+  _warnings.warn(self.warn_message, ResourceWarning)
+ok
+test_requester_cannot_self_approve_and_rejection_survives_restart (tests.test_approval_service.ApprovalServiceTests.tes
+t_requester_cannot_self_approve_and_rejection_survives_restart) ... ok
+test_roles_and_forged_identity_fields_fail_closed (tests.test_approval_service.ApprovalServiceTests.test_roles_and_forg
+ed_identity_fields_fail_closed) ... ok
+test_simulation_is_atomic_persistent_and_replay_does_not_duplicate_effect (tests.test_approval_service.ApprovalServiceT
+ests.test_simulation_is_atomic_persistent_and_replay_does_not_duplicate_effect) ... ok
+test_source_change_invalidates_old_approval_without_an_effect (tests.test_approval_service.ApprovalServiceTests.test_so
+urce_change_invalidates_old_approval_without_an_effect) ... ok
+test_weight_edit_invalidates_old_approval_and_requires_new_review (tests.test_approval_service.ApprovalServiceTests.tes
+t_weight_edit_invalidates_old_approval_and_requires_new_review) ... ok
+test_broad_partial_synonym_and_mixed_inputs_need_clarification (tests.test_freight_classify.FreightClassifyTests.test_b
+road_partial_synonym_and_mixed_inputs_need_clarification) ... ok
+test_classification_does_not_depend_on_prices_or_fee_cells (tests.test_freight_classify.FreightClassifyTests.test_class
+ification_does_not_depend_on_prices_or_fee_cells) ... ok
+test_dispatch_and_cli_return_same_classification (tests.test_freight_classify.FreightClassifyTests.test_dispatch_and_cl
+i_return_same_classification) ... ok
+test_duplicate_sha_in_damaged_schema_is_rejected (tests.test_freight_classify.FreightClassifyTests.test_duplicate_sha_i
+n_damaged_schema_is_rejected) ... ok
+test_exact_matches_cover_later_archive_rows_and_slash_lists (tests.test_freight_classify.FreightClassifyTests.test_exac
+t_matches_cover_later_archive_rows_and_slash_lists) ... ok
+test_exact_product_has_original_cells_and_sha (tests.test_freight_classify.FreightClassifyTests.test_exact_product_has_
+original_cells_and_sha) ... ok
+test_excel_and_database_remain_byte_identical_and_connection_read_only (tests.test_freight_classify.FreightClassifyTest
+s.test_excel_and_database_remain_byte_identical_and_connection_read_only) ... ok
+test_formulas_numeric_cells_and_money_in_product_column_fail_closed (tests.test_freight_classify.FreightClassifyTests.t
+est_formulas_numeric_cells_and_money_in_product_column_fail_closed) ... ok
+test_invalid_product_and_sha_parameters (tests.test_freight_classify.FreightClassifyTests.test_invalid_product_and_sha_
+parameters) ... ok
+test_missing_archive_or_sheet_is_rejected (tests.test_freight_classify.FreightClassifyTests.test_missing_archive_or_she
+et_is_rejected) ... ok
+test_missing_or_empty_category_and_product_cells_are_rejected (tests.test_freight_classify.FreightClassifyTests.test_mi
+ssing_or_empty_category_and_product_cells_are_rejected) ... ok
+test_multiple_versions_require_explicit_unique_sha (tests.test_freight_classify.FreightClassifyTests.test_multiple_vers
+ions_require_explicit_unique_sha) ... ok
+test_parenthetical_qualifiers_are_not_dropped_or_split (tests.test_freight_classify.FreightClassifyTests.test_parenthet
+ical_qualifiers_are_not_dropped_or_split) ... ok
+test_product_in_two_categories_stays_ambiguous (tests.test_freight_classify.FreightClassifyTests.test_product_in_two_ca
+tegories_stays_ambiguous) ... ok
+test_repeated_product_in_same_cell_is_not_a_second_candidate (tests.test_freight_classify.FreightClassifyTests.test_rep
+eated_product_in_same_cell_is_not_a_second_candidate) ... ok
+test_unknown_source_version_does_not_fall_back (tests.test_freight_classify.FreightClassifyTests.test_unknown_source_ve
+rsion_does_not_fall_back) ... ok
+test_bad_numbers (tests.test_freight_tools.FreightToolTests.test_bad_numbers) ... ok
+test_boundaries_and_whole_shipment (tests.test_freight_tools.FreightToolTests.test_boundaries_and_whole_shipment) ... o
+k
+test_cell_requires_sheet (tests.test_freight_tools.FreightToolTests.test_cell_requires_sheet) ... ok
+test_fees_and_currency_separation (tests.test_freight_tools.FreightToolTests.test_fees_and_currency_separation) ... ok
+test_lookup_across_workbook_and_provenance (tests.test_freight_tools.FreightToolTests.test_lookup_across_workbook_and_p
+rovenance) ... ok
+test_multiple_versions_and_missing_confirmation_fail (tests.test_freight_tools.FreightToolTests.test_multiple_versions_
+and_missing_confirmation_fail) ... ok
+test_non_numeric_rates_are_not_zero (tests.test_freight_tools.FreightToolTests.test_non_numeric_rates_are_not_zero) ...
+ ok
+test_original_database_unchanged (tests.test_freight_tools.FreightToolTests.test_original_database_unchanged) ... ok
+test_overweight_uses_actual_volume_even_below_minimum (tests.test_freight_tools.FreightToolTests.test_overweight_uses_a
+ctual_volume_even_below_minimum) ... ok
+test_database_constraints_reject_approval_and_validity (tests.test_import_quotes.PendingImportTests.test_database_const
+raints_reject_approval_and_validity) ... ok
+test_invalid_prices_and_excel_mismatch_leave_database_unchanged (tests.test_import_quotes.PendingImportTests.test_inval
+id_prices_and_excel_mismatch_leave_database_unchanged) ... ok
+test_late_database_conflict_rolls_back_new_rows (tests.test_import_quotes.PendingImportTests.test_late_database_conflic
+t_rolls_back_new_rows) ... ok
+test_missing_or_ambiguous_review_status_fails_before_database_creation (tests.test_import_quotes.PendingImportTests.tes
+t_missing_or_ambiguous_review_status_fails_before_database_creation) ... ok
+test_no_pending_records_creates_no_quote_rows (tests.test_import_quotes.PendingImportTests.test_no_pending_records_crea
+tes_no_quote_rows) ... ok
+test_only_explicit_pending_records_are_imported (tests.test_import_quotes.PendingImportTests.test_only_explicit_pending
+_records_are_imported) ... ok
+test_precise_provenance_is_preserved (tests.test_import_quotes.PendingImportTests.test_precise_provenance_is_preserved)
+ ... ok
+test_repeat_and_reordered_input_do_not_duplicate (tests.test_import_quotes.PendingImportTests.test_repeat_and_reordered
+_input_do_not_duplicate) ... ok
+test_unrelated_database_is_not_modified (tests.test_import_quotes.PendingImportTests.test_unrelated_database_is_not_mod
+ified) ... ok
+test_destination_confirmation_revises_approved_snapshot (tests.test_sample_quote_review.SampleQuoteReviewTest.test_dest
+ination_confirmation_revises_approved_snapshot) ... ok
+test_switch_back_and_reject_retries (tests.test_sample_quote_review.SampleQuoteReviewTest.test_switch_back_and_reject_r
+etries) ... ok
+
+----------------------------------------------------------------------
+Ran 47 tests in 27.208s
+
+OK
+✔ model calls real Python classification; exact evidence is returned into next model round (221.5608ms)
+✔ model supplied approval marker fails closed and does not get another round (0.9417ms)
+✔ calculation without a human approval channel blocks and stops the loop (220.7369ms)
+✔ unknown tools and malformed arguments never execute (1.3325ms)
+✔ bounded model loop and no-tool reply are not reported as tool execution (215.3799ms)
+✔ external endpoint is refused before sending inquiry (0.6195ms)
+✔ local model redirect stops before a second request or tool execution (0.7158ms)
+✔ customer inquiry returns the authoritative calculation immediately after a simulated one-use review (425.1045ms)
+✔ SOP lookup cites the synthetic intake section only for covered questions (51.3441ms)
+✔ registers all three tools with required product and source schema (3.7625ms)
+✔ real plugin subprocess returns exact candidate and original source, without prices (215.4274ms)
+✔ broad names require clarification and duplicate source matches stay ambiguous (438.7352ms)
+✔ schema and Python validation reject invalid classification inputs (806.7711ms)
+✔ legacy lookup still retrieves original cells and lists all sheets (401.0393ms)
+✔ direct exported calculation helper never grants model supplied confirmation (0.3413ms)
+✔ missing approval channel or execution context fails closed (792.8795ms)
+✔ only allowed-once grants; rejected, unavailable, cancelled and malformed answers block (1400.2101ms)
+✔ a throwing approval channel fails closed (180.0286ms)
+✔ unknown confirmation or bypass parameters cannot reach the approval service (0.5791ms)
+✔ missing product, broad product, mismatched category and invalid version cannot request approval (920.9996ms)
+✔ trusted single-call approval preserves legacy estimate, binds SHA and records reviewed inputs (378.8637ms)
+✔ approval always repeats per call; no cached model or session confirmation (591.2944ms)
+✔ ambiguous candidate review includes both original alternatives (182.9597ms)
+✔ approval binds a snapshot despite argument mutation while waiting (400.967ms)
+✔ cancellation after approval prevents calculation (187.8221ms)
+✔ plugin queries and approved estimate preserve original database and Excel bytes (741.5119ms)
+✔ approval summary shows selected extra services without technical payload (370.1894ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 27
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8311.0192

@@ -1,0 +1,13 @@
+python.exe : test_destination_confirmation_revises_approved_snapshot (qa_current_approval.SampleQuoteReviewTest.test_de
+stination_confirmation_revises_approved_snapshot) ... ok
+所在位置 行:16 字符: 2
++  & $py -m unittest -v qa_current_approval.SampleQuoteReviewTest.test_ ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (test_destinatio...napshot) ... ok:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+
+----------------------------------------------------------------------
+Ran 1 test in 3.346s
+
+OK

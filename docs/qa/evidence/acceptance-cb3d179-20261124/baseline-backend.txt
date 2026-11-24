@@ -1,0 +1,32 @@
+python.exe : test_destination_confirmation_revises_approved_snapshot (qa_current_approval.SampleQuoteReviewTest.test_de
+stination_confirmation_revises_approved_snapshot) ... ERROR
+所在位置 行:13 字符: 2
++  & $py -m unittest -v qa_current_approval.SampleQuoteReviewTest.test_ ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (test_destinatio...shot) ... ERROR:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+
+======================================================================
+ERROR: test_destination_confirmation_revises_approved_snapshot (qa_current_approval.SampleQuoteReviewTest.test_destinat
+ion_confirmation_revises_approved_snapshot)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Codex\货代agent\fp03-offline-cb3d179\qa_current_approval.py", line 86, in test_destination_confirmation_revise
+s_approved_snapshot
+    updated = call("save", input=values, expected_version=old["version"], rate_source="A")
+  File "D:\Codex\货代agent\fp03-offline-cb3d179\qa_current_approval.py", line 67, in call
+    return dispatch(store, action, case, body)
+  File "D:\Codex\货代agent\fp03-offline-cb3d179\baseline\prototype\workbench_draft.py", line 44, in dispatch
+    store._draft_input(body.get("input"), require_dimensions=True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Codex\货代agent\fp03-offline-cb3d179\baseline\prototype\approval_service.py", line 252, in _draft_input
+    values = _check_keys(payload, {"product_name"}, fields)
+  File "D:\Codex\货代agent\fp03-offline-cb3d179\baseline\prototype\approval_service.py", line 85, in _check_keys
+    raise ServiceError(400, "INVALID_REQUEST", "request fields do not match the supported schema")
+approval_service.ServiceError: request fields do not match the supported schema
+
+----------------------------------------------------------------------
+Ran 1 test in 2.620s
+
+FAILED (errors=1)

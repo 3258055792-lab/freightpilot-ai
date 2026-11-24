@@ -1,0 +1,6 @@
+cb3d179a684f7ad7812578ca2f5ac91509249a60	refs/heads/codex/local-customer-inquiry
+cb3d179a684f7ad7812578ca2f5ac91509249a60
+## HEAD (no branch)
+Workbench manifest: 13 files verified
+A9BCFBAA13AC871D1D15FFCC0F7033545E7F1E2ADDE5771E02776DE08190E0ED  D:\Codex\货代agent\fp03-offline-cb3d179\candidate\frontend\workbench\SHA256SUMS.json
+C7F350314283645CBD7D7053009EC090F1CBE8FB0EEC6C22DDCA51DFA41598B5  D:\Codex\货代agent\fp03-offline-cb3d179\candidate\data\sample\fp01\SHA256SUMS

@@ -1,0 +1,36 @@
+
+> test
+> node --test tests/*.test.mjs
+
+✔ UI-01 all visible fields, name and raw inquiry block stale approval without erasing edits (24.6656ms)
+✔ UI-01 saving requires reclassification and then snapshots the new weight (2.0278ms)
+✔ UI-02 invalid original box tokens retain evidence and block extracted-form approval (21.4724ms)
+✔ UI-02 normal integer with punctuation remains valid and yields 1260 CNY (2.8094ms)
+✔ UI-02 manual box entries enforce the same positive safe decimal integer rule (7.8467ms)
+✔ backend export uses the current quote, version and matching approval (1.9753ms)
+✔ switching freight preserves prior estimates and requires a new approval before order (4.6533ms)
+✔ channel comparison exports only completed snapshots with original amounts and transit estimates (17.6936ms)
+✔ main extraction button routes conversational inquiry to local intake and preserves customer instructions (1.328ms)
+✔ customer followup asks only for missing or invalid fields and copies the edited message (1.6804ms)
+✔ Brazil base estimate appears with current review while full service remains unmatched (1.2576ms)
+✔ selecting the Brazil estimate binds the current version and exposes the selected price (5.5484ms)
+✔ home, library, detail and export agree on the server revision and unresolved destination (2.1025ms)
+✔ missing fields remain blank and ambiguous quantities are not guessed (2.3781ms)
+✔ all explicit fields extracted; invalid positive quantities block (0.3015ms)
+✔ service, dimensions, transit and verification all participate in matching (0.6702ms)
+✔ request needs classification and locks a precomputed amount without approving or displaying it (7.3193ms)
+✔ reject is terminal across edit, approve, retry and order paths (0.6886ms)
+✔ snapshot survives source changes; approval and customer order are each once (0.6077ms)
+✔ weight billing honors volumetric factor and per-currency charges (0.2939ms)
+✔ restart retains locked workflow and duplicate protection (0.3382ms)
+✔ invalid source definitions are refused (0.6513ms)
+✔ ranges, thousands separators and per-box quantities require a human (0.4313ms)
+✔ incomplete quantity tokens retain evidence and prevent approval (1.5095ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 255.6907

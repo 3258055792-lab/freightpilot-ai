@@ -1,0 +1,3353 @@
+[
+  {
+    "commit": "06f2d28190cba3e370f355d0ab975c0ca604a959",
+    "case_id": "c63e096b-c365-4f28-80da-2c0f946370a2",
+    "origin": "http://127.0.0.1:51821",
+    "http_steps": [
+      {
+        "step": "save A without country",
+        "request": {
+          "case": "c63e096b-c365-4f28-80da-2c0f946370a2",
+          "action": "save",
+          "body": {
+            "expected_version": 1,
+            "input": {
+              "product_name": "塑料收纳盒",
+              "volume_cbm": "3",
+              "weight_kg": "400"
+            },
+            "rate_source": "A"
+          }
+        },
+        "status": 200,
+        "response": {
+          "version": 2,
+          "input": {
+            "product_name": "塑料收纳盒",
+            "volume_cbm": "3",
+            "weight_kg": "400"
+          },
+          "approval": null,
+          "rate_source": "A",
+          "quote_history": [],
+          "quote": null
+        }
+      },
+      {
+        "step": "apply for trial",
+        "request": {
+          "case": "c63e096b-c365-4f28-80da-2c0f946370a2",
+          "action": "request",
+          "body": {
+            "version": 2,
+            "input": {
+              "product_name": "塑料收纳盒",
+              "volume_cbm": "3",
+              "weight_kg": "400"
+            }
+          }
+        },
+        "status": 200,
+        "response": {
+          "version": 2,
+          "input": {
+            "product_name": "塑料收纳盒",
+            "volume_cbm": "3",
+            "weight_kg": "400"
+          },
+          "approval": {
+            "approval_id": "approval-3442ebd3f4a248f5afc377ddc974ae78",
+            "tenant_id": "synthetic-demo",
+            "requester_principal": "workbench-requester",
+            "create_digest": "a4f4da4368afe2bb016282a61de2e452a677996f5f56c286fdfd85bc40355859",
+            "scope": "classification_trial",
+            "case": {
+              "id": "c63e096b-c365-4f28-80da-2c0f946370a2",
+              "version": 2
+            },
+            "source": {
+              "ref": "A",
+              "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+              "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+            },
+            "snapshot": {
+              "case": {
+                "id": "c63e096b-c365-4f28-80da-2c0f946370a2",
+                "version": 2
+              },
+              "input": {
+                "product_name": "塑料收纳盒",
+                "volume_cbm": "3",
+                "weight_kg": "400"
+              },
+              "protocol": "fp02-snapshot-v1",
+              "scope": "classification_trial",
+              "simulator_version": "classification-trial-simulator-v1",
+              "source": {
+                "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "declared_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "ref": "A",
+                "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+              }
+            },
+            "snapshot_hash": "0a2e91c7059f5958ae31107604f4bec0d34e7965185c4873aa7e29f03ed709ee",
+            "state": "PENDING",
+            "revision": 1,
+            "decision_record": null,
+            "created_at": "2026-11-24T07:22:01.365Z",
+            "updated_at": "2026-11-24T07:22:01.365Z"
+          },
+          "rate_source": "A",
+          "quote_history": [],
+          "quote": null
+        }
+      },
+      {
+        "step": "approve trial",
+        "request": {
+          "case": "c63e096b-c365-4f28-80da-2c0f946370a2",
+          "action": "approve",
+          "body": {
+            "id": "approval-3442ebd3f4a248f5afc377ddc974ae78",
+            "version": 2,
+            "revision": 1,
+            "hash": "0a2e91c7059f5958ae31107604f4bec0d34e7965185c4873aa7e29f03ed709ee"
+          }
+        },
+        "status": 200,
+        "response": {
+          "version": 2,
+          "input": {
+            "product_name": "塑料收纳盒",
+            "volume_cbm": "3",
+            "weight_kg": "400"
+          },
+          "approval": {
+            "approval_id": "approval-3442ebd3f4a248f5afc377ddc974ae78",
+            "tenant_id": "synthetic-demo",
+            "requester_principal": "workbench-requester",
+            "create_digest": "a4f4da4368afe2bb016282a61de2e452a677996f5f56c286fdfd85bc40355859",
+            "scope": "classification_trial",
+            "case": {
+              "id": "c63e096b-c365-4f28-80da-2c0f946370a2",
+              "version": 2
+            },
+            "source": {
+              "ref": "A",
+              "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+              "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+            },
+            "snapshot": {
+              "case": {
+                "id": "c63e096b-c365-4f28-80da-2c0f946370a2",
+                "version": 2
+              },
+              "input": {
+                "product_name": "塑料收纳盒",
+                "volume_cbm": "3",
+                "weight_kg": "400"
+              },
+              "protocol": "fp02-snapshot-v1",
+              "scope": "classification_trial",
+              "simulator_version": "classification-trial-simulator-v1",
+              "source": {
+                "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "declared_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "ref": "A",
+                "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+              }
+            },
+            "snapshot_hash": "0a2e91c7059f5958ae31107604f4bec0d34e7965185c4873aa7e29f03ed709ee",
+            "state": "APPROVED",
+            "revision": 2,
+            "decision_record": {
+              "decision_id": "decision-e5e2bc39883f4778b351ffde7a83f894",
+              "actor_type": "human",
+              "actor_id": "workbench-operator",
+              "decision": "APPROVE",
+              "snapshot_hash": "0a2e91c7059f5958ae31107604f4bec0d34e7965185c4873aa7e29f03ed709ee",
+              "reason": "工作台操作员决定（本机模拟）",
+              "created_at": "2026-11-24T07:22:01.735Z"
+            },
+            "created_at": "2026-11-24T07:22:01.365Z",
+            "updated_at": "2026-11-24T07:22:01.735Z"
+          },
+          "rate_source": "A",
+          "quote_history": [],
+          "quote": null
+        }
+      },
+      {
+        "step": "calculate A",
+        "request": {
+          "case": "c63e096b-c365-4f28-80da-2c0f946370a2",
+          "action": "calculate",
+          "body": {
+            "id": "approval-3442ebd3f4a248f5afc377ddc974ae78",
+            "version": 2,
+            "revision": 2,
+            "hash": "0a2e91c7059f5958ae31107604f4bec0d34e7965185c4873aa7e29f03ed709ee"
+          }
+        },
+        "status": 200,
+        "response": {
+          "version": 2,
+          "input": {
+            "product_name": "塑料收纳盒",
+            "volume_cbm": "3",
+            "weight_kg": "400"
+          },
+          "approval": {
+            "approval_id": "approval-3442ebd3f4a248f5afc377ddc974ae78",
+            "tenant_id": "synthetic-demo",
+            "requester_principal": "workbench-requester",
+            "create_digest": "a4f4da4368afe2bb016282a61de2e452a677996f5f56c286fdfd85bc40355859",
+            "scope": "classification_trial",
+            "case": {
+              "id": "c63e096b-c365-4f28-80da-2c0f946370a2",
+              "version": 2
+            },
+            "source": {
+              "ref": "A",
+              "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+              "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+            },
+            "snapshot": {
+              "case": {
+                "id": "c63e096b-c365-4f28-80da-2c0f946370a2",
+                "version": 2
+              },
+              "input": {
+                "product_name": "塑料收纳盒",
+                "volume_cbm": "3",
+                "weight_kg": "400"
+              },
+              "protocol": "fp02-snapshot-v1",
+              "scope": "classification_trial",
+              "simulator_version": "classification-trial-simulator-v1",
+              "source": {
+                "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "declared_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "ref": "A",
+                "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+              }
+            },
+            "snapshot_hash": "0a2e91c7059f5958ae31107604f4bec0d34e7965185c4873aa7e29f03ed709ee",
+            "state": "CONSUMED",
+            "revision": 3,
+            "decision_record": {
+              "decision_id": "decision-e5e2bc39883f4778b351ffde7a83f894",
+              "actor_type": "human",
+              "actor_id": "workbench-operator",
+              "decision": "APPROVE",
+              "snapshot_hash": "0a2e91c7059f5958ae31107604f4bec0d34e7965185c4873aa7e29f03ed709ee",
+              "reason": "工作台操作员决定（本机模拟）",
+              "created_at": "2026-11-24T07:22:01.735Z"
+            },
+            "created_at": "2026-11-24T07:22:01.365Z",
+            "updated_at": "2026-11-24T07:22:02.095Z"
+          },
+          "rate_source": "A",
+          "quote_history": [
+            {
+              "case_version": 2,
+              "trial_id": "approval-3442ebd3f4a248f5afc377ddc974ae78",
+              "trial_state": "CONSUMED",
+              "review_id": null,
+              "review_state": null,
+              "decision": null,
+              "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+              "source": {
+                "band_cell": "E4",
+                "category_cell": "A5",
+                "confirmed_rules": {
+                  "cbm_boundary_assignment": {
+                    "5": "1-5CBM",
+                    "10": "5-10CBM"
+                  },
+                  "minimum_billable_cbm": 1,
+                  "pricing_method": "whole_shipment"
+                },
+                "effective_cell": "A3",
+                "effective_raw": "仅供比赛测试，无商业有效期",
+                "file": "rate-A-v1.xlsx",
+                "minimum_charge_cell": "B19",
+                "price_cell": "E5",
+                "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "sheet": "巴西海运双清包税",
+                "weight_rule_cell": "H5"
+              }
+            }
+          ],
+          "quote": {
+            "band": "1-5CBM",
+            "base_freight_usd": "2460.00",
+            "billable_cbm": "3",
+            "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+            "category": "普货一类",
+            "currency_conversion_applied": false,
+            "fee_source_notes": [
+              {
+                "cell": "B19",
+                "raw_text": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。",
+                "sheet": "巴西海运双清包税",
+                "source_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+              }
+            ],
+            "input": {
+              "actual_volume_cbm": "3",
+              "actual_weight_kg": "400"
+            },
+            "known_subtotals": {
+              "CNY": "0.00",
+              "USD": "2460.00"
+            },
+            "pricing_scope": "仅巴西海运单一明确类别；整票基础运费及明确选择的服务费。",
+            "selected_fees": [],
+            "source": {
+              "band_cell": "E4",
+              "category_cell": "A5",
+              "confirmed_rules": {
+                "cbm_boundary_assignment": {
+                  "5": "1-5CBM",
+                  "10": "5-10CBM"
+                },
+                "minimum_billable_cbm": 1,
+                "pricing_method": "whole_shipment"
+              },
+              "effective_cell": "A3",
+              "effective_raw": "仅供比赛测试，无商业有效期",
+              "file": "rate-A-v1.xlsx",
+              "minimum_charge_cell": "B19",
+              "price_cell": "E5",
+              "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+              "sheet": "巴西海运双清包税",
+              "weight_rule_cell": "H5"
+            },
+            "status": "pending_review_estimate",
+            "total_payable": null,
+            "unit_price_usd_per_cbm": "820",
+            "unresolved": [
+              "运价仍未审核，未确认当前有效期。",
+              "未评估所有附加费，试算不代表最终应付总价。",
+              "付款、品名、单件规格、包装、派送和保险等条件性费用待核定。"
+            ],
+            "usable_for_quote": false
+          }
+        }
+      },
+      {
+        "step": "apply for internal review",
+        "request": {
+          "case": "c63e096b-c365-4f28-80da-2c0f946370a2",
+          "action": "review",
+          "body": {
+            "version": 2,
+            "input": {
+              "product_name": "塑料收纳盒",
+              "volume_cbm": "3",
+              "weight_kg": "400"
+            }
+          }
+        },
+        "status": 200,
+        "response": {
+          "version": 2,
+          "input": {
+            "product_name": "塑料收纳盒",
+            "volume_cbm": "3",
+            "weight_kg": "400"
+          },
+          "approval": {
+            "approval_id": "approval-e76377b839aa475f89aa1ac21c691f27",
+            "tenant_id": "synthetic-demo",
+            "requester_principal": "workbench-requester",
+            "create_digest": "6597f80dd0dd878848fd1ec3b07dfc6c347226b57f29100d9c3e6dbf258a4dfe",
+            "scope": "internal_quote_review",
+            "case": {
+              "id": "c63e096b-c365-4f28-80da-2c0f946370a2",
+              "version": 2
+            },
+            "source": {
+              "ref": "A",
+              "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+              "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+            },
+            "snapshot": {
+              "case": {
+                "id": "c63e096b-c365-4f28-80da-2c0f946370a2",
+                "version": 2
+              },
+              "input": {
+                "product_name": "塑料收纳盒",
+                "volume_cbm": "3",
+                "weight_kg": "400"
+              },
+              "protocol": "fp02-snapshot-v1",
+              "quote": {
+                "band": "1-5CBM",
+                "base_freight_usd": "2460.00",
+                "billable_cbm": "3",
+                "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+                "category": "普货一类",
+                "currency_conversion_applied": false,
+                "fee_source_notes": [
+                  {
+                    "cell": "B19",
+                    "raw_text": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。",
+                    "sheet": "巴西海运双清包税",
+                    "source_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+                  }
+                ],
+                "input": {
+                  "actual_volume_cbm": "3",
+                  "actual_weight_kg": "400"
+                },
+                "known_subtotals": {
+                  "CNY": "0.00",
+                  "USD": "2460.00"
+                },
+                "pricing_scope": "仅巴西海运单一明确类别；整票基础运费及明确选择的服务费。",
+                "selected_fees": [],
+                "source": {
+                  "band_cell": "E4",
+                  "category_cell": "A5",
+                  "confirmed_rules": {
+                    "cbm_boundary_assignment": {
+                      "5": "1-5CBM",
+                      "10": "5-10CBM"
+                    },
+                    "minimum_billable_cbm": 1,
+                    "pricing_method": "whole_shipment"
+                  },
+                  "effective_cell": "A3",
+                  "effective_raw": "仅供比赛测试，无商业有效期",
+                  "file": "rate-A-v1.xlsx",
+                  "minimum_charge_cell": "B19",
+                  "price_cell": "E5",
+                  "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                  "sheet": "巴西海运双清包税",
+                  "weight_rule_cell": "H5"
+                },
+                "status": "pending_review_estimate",
+                "total_payable": null,
+                "unit_price_usd_per_cbm": "820",
+                "unresolved": [
+                  "运价仍未审核，未确认当前有效期。",
+                  "未评估所有附加费，试算不代表最终应付总价。",
+                  "付款、品名、单件规格、包装、派送和保险等条件性费用待核定。"
+                ],
+                "usable_for_quote": false
+              },
+              "scope": "internal_quote_review",
+              "simulator_version": "classification-trial-simulator-v1",
+              "source": {
+                "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "declared_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "ref": "A",
+                "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+              },
+              "trial_result_hash": "c6cf3018a7003907d6e584cc9f0a75fa1962a3c8529ad092c29dd99e7f5709b1"
+            },
+            "snapshot_hash": "4f196cd1b6d64a6677014b5151df830c884bc98339e4718c920c9d1cfb770936",
+            "state": "PENDING",
+            "revision": 1,
+            "decision_record": null,
+            "created_at": "2026-11-24T07:22:02.782Z",
+            "updated_at": "2026-11-24T07:22:02.782Z"
+          },
+          "rate_source": "A",
+          "quote_history": [
+            {
+              "case_version": 2,
+              "trial_id": "approval-3442ebd3f4a248f5afc377ddc974ae78",
+              "trial_state": "CONSUMED",
+              "review_id": "approval-e76377b839aa475f89aa1ac21c691f27",
+              "review_state": "PENDING",
+              "decision": null,
+              "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+              "source": {
+                "band_cell": "E4",
+                "category_cell": "A5",
+                "confirmed_rules": {
+                  "cbm_boundary_assignment": {
+                    "5": "1-5CBM",
+                    "10": "5-10CBM"
+                  },
+                  "minimum_billable_cbm": 1,
+                  "pricing_method": "whole_shipment"
+                },
+                "effective_cell": "A3",
+                "effective_raw": "仅供比赛测试，无商业有效期",
+                "file": "rate-A-v1.xlsx",
+                "minimum_charge_cell": "B19",
+                "price_cell": "E5",
+                "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "sheet": "巴西海运双清包税",
+                "weight_rule_cell": "H5"
+              }
+            }
+          ],
+          "quote": {
+            "band": "1-5CBM",
+            "base_freight_usd": "2460.00",
+            "billable_cbm": "3",
+            "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+            "category": "普货一类",
+            "currency_conversion_applied": false,
+            "fee_source_notes": [
+              {
+                "cell": "B19",
+                "raw_text": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。",
+                "sheet": "巴西海运双清包税",
+                "source_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+              }
+            ],
+            "input": {
+              "actual_volume_cbm": "3",
+              "actual_weight_kg": "400"
+            },
+            "known_subtotals": {
+              "CNY": "0.00",
+              "USD": "2460.00"
+            },
+            "pricing_scope": "仅巴西海运单一明确类别；整票基础运费及明确选择的服务费。",
+            "selected_fees": [],
+            "source": {
+              "band_cell": "E4",
+              "category_cell": "A5",
+              "confirmed_rules": {
+                "cbm_boundary_assignment": {
+                  "5": "1-5CBM",
+                  "10": "5-10CBM"
+                },
+                "minimum_billable_cbm": 1,
+                "pricing_method": "whole_shipment"
+              },
+              "effective_cell": "A3",
+              "effective_raw": "仅供比赛测试，无商业有效期",
+              "file": "rate-A-v1.xlsx",
+              "minimum_charge_cell": "B19",
+              "price_cell": "E5",
+              "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+              "sheet": "巴西海运双清包税",
+              "weight_rule_cell": "H5"
+            },
+            "status": "pending_review_estimate",
+            "total_payable": null,
+            "unit_price_usd_per_cbm": "820",
+            "unresolved": [
+              "运价仍未审核，未确认当前有效期。",
+              "未评估所有附加费，试算不代表最终应付总价。",
+              "付款、品名、单件规格、包装、派送和保险等条件性费用待核定。"
+            ],
+            "usable_for_quote": false
+          }
+        }
+      },
+      {
+        "step": "approve original internal review",
+        "request": {
+          "case": "c63e096b-c365-4f28-80da-2c0f946370a2",
+          "action": "approve",
+          "body": {
+            "id": "approval-e76377b839aa475f89aa1ac21c691f27",
+            "version": 2,
+            "revision": 1,
+            "hash": "4f196cd1b6d64a6677014b5151df830c884bc98339e4718c920c9d1cfb770936"
+          }
+        },
+        "status": 200,
+        "response": {
+          "version": 2,
+          "input": {
+            "product_name": "塑料收纳盒",
+            "volume_cbm": "3",
+            "weight_kg": "400"
+          },
+          "approval": {
+            "approval_id": "approval-e76377b839aa475f89aa1ac21c691f27",
+            "tenant_id": "synthetic-demo",
+            "requester_principal": "workbench-requester",
+            "create_digest": "6597f80dd0dd878848fd1ec3b07dfc6c347226b57f29100d9c3e6dbf258a4dfe",
+            "scope": "internal_quote_review",
+            "case": {
+              "id": "c63e096b-c365-4f28-80da-2c0f946370a2",
+              "version": 2
+            },
+            "source": {
+              "ref": "A",
+              "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+              "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+            },
+            "snapshot": {
+              "case": {
+                "id": "c63e096b-c365-4f28-80da-2c0f946370a2",
+                "version": 2
+              },
+              "input": {
+                "product_name": "塑料收纳盒",
+                "volume_cbm": "3",
+                "weight_kg": "400"
+              },
+              "protocol": "fp02-snapshot-v1",
+              "quote": {
+                "band": "1-5CBM",
+                "base_freight_usd": "2460.00",
+                "billable_cbm": "3",
+                "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+                "category": "普货一类",
+                "currency_conversion_applied": false,
+                "fee_source_notes": [
+                  {
+                    "cell": "B19",
+                    "raw_text": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。",
+                    "sheet": "巴西海运双清包税",
+                    "source_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+                  }
+                ],
+                "input": {
+                  "actual_volume_cbm": "3",
+                  "actual_weight_kg": "400"
+                },
+                "known_subtotals": {
+                  "CNY": "0.00",
+                  "USD": "2460.00"
+                },
+                "pricing_scope": "仅巴西海运单一明确类别；整票基础运费及明确选择的服务费。",
+                "selected_fees": [],
+                "source": {
+                  "band_cell": "E4",
+                  "category_cell": "A5",
+                  "confirmed_rules": {
+                    "cbm_boundary_assignment": {
+                      "5": "1-5CBM",
+                      "10": "5-10CBM"
+                    },
+                    "minimum_billable_cbm": 1,
+                    "pricing_method": "whole_shipment"
+                  },
+                  "effective_cell": "A3",
+                  "effective_raw": "仅供比赛测试，无商业有效期",
+                  "file": "rate-A-v1.xlsx",
+                  "minimum_charge_cell": "B19",
+                  "price_cell": "E5",
+                  "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                  "sheet": "巴西海运双清包税",
+                  "weight_rule_cell": "H5"
+                },
+                "status": "pending_review_estimate",
+                "total_payable": null,
+                "unit_price_usd_per_cbm": "820",
+                "unresolved": [
+                  "运价仍未审核，未确认当前有效期。",
+                  "未评估所有附加费，试算不代表最终应付总价。",
+                  "付款、品名、单件规格、包装、派送和保险等条件性费用待核定。"
+                ],
+                "usable_for_quote": false
+              },
+              "scope": "internal_quote_review",
+              "simulator_version": "classification-trial-simulator-v1",
+              "source": {
+                "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "declared_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "ref": "A",
+                "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+              },
+              "trial_result_hash": "c6cf3018a7003907d6e584cc9f0a75fa1962a3c8529ad092c29dd99e7f5709b1"
+            },
+            "snapshot_hash": "4f196cd1b6d64a6677014b5151df830c884bc98339e4718c920c9d1cfb770936",
+            "state": "APPROVED",
+            "revision": 2,
+            "decision_record": {
+              "decision_id": "decision-a03fcdd3a2684bc99d8e9dc3a39218cb",
+              "actor_type": "human",
+              "actor_id": "workbench-operator",
+              "decision": "APPROVE",
+              "snapshot_hash": "4f196cd1b6d64a6677014b5151df830c884bc98339e4718c920c9d1cfb770936",
+              "reason": "工作台操作员决定（本机模拟）",
+              "created_at": "2026-11-24T07:22:03.384Z"
+            },
+            "created_at": "2026-11-24T07:22:02.782Z",
+            "updated_at": "2026-11-24T07:22:03.384Z"
+          },
+          "rate_source": "A",
+          "quote_history": [
+            {
+              "case_version": 2,
+              "trial_id": "approval-3442ebd3f4a248f5afc377ddc974ae78",
+              "trial_state": "CONSUMED",
+              "review_id": "approval-e76377b839aa475f89aa1ac21c691f27",
+              "review_state": "APPROVED",
+              "decision": "APPROVE",
+              "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+              "source": {
+                "band_cell": "E4",
+                "category_cell": "A5",
+                "confirmed_rules": {
+                  "cbm_boundary_assignment": {
+                    "5": "1-5CBM",
+                    "10": "5-10CBM"
+                  },
+                  "minimum_billable_cbm": 1,
+                  "pricing_method": "whole_shipment"
+                },
+                "effective_cell": "A3",
+                "effective_raw": "仅供比赛测试，无商业有效期",
+                "file": "rate-A-v1.xlsx",
+                "minimum_charge_cell": "B19",
+                "price_cell": "E5",
+                "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "sheet": "巴西海运双清包税",
+                "weight_rule_cell": "H5"
+              }
+            }
+          ],
+          "quote": {
+            "band": "1-5CBM",
+            "base_freight_usd": "2460.00",
+            "billable_cbm": "3",
+            "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+            "category": "普货一类",
+            "currency_conversion_applied": false,
+            "fee_source_notes": [
+              {
+                "cell": "B19",
+                "raw_text": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。",
+                "sheet": "巴西海运双清包税",
+                "source_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+              }
+            ],
+            "input": {
+              "actual_volume_cbm": "3",
+              "actual_weight_kg": "400"
+            },
+            "known_subtotals": {
+              "CNY": "0.00",
+              "USD": "2460.00"
+            },
+            "pricing_scope": "仅巴西海运单一明确类别；整票基础运费及明确选择的服务费。",
+            "selected_fees": [],
+            "source": {
+              "band_cell": "E4",
+              "category_cell": "A5",
+              "confirmed_rules": {
+                "cbm_boundary_assignment": {
+                  "5": "1-5CBM",
+                  "10": "5-10CBM"
+                },
+                "minimum_billable_cbm": 1,
+                "pricing_method": "whole_shipment"
+              },
+              "effective_cell": "A3",
+              "effective_raw": "仅供比赛测试，无商业有效期",
+              "file": "rate-A-v1.xlsx",
+              "minimum_charge_cell": "B19",
+              "price_cell": "E5",
+              "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+              "sheet": "巴西海运双清包税",
+              "weight_rule_cell": "H5"
+            },
+            "status": "pending_review_estimate",
+            "total_payable": null,
+            "unit_price_usd_per_cbm": "820",
+            "unresolved": [
+              "运价仍未审核，未确认当前有效期。",
+              "未评估所有附加费，试算不代表最终应付总价。",
+              "付款、品名、单件规格、包装、派送和保险等条件性费用待核定。"
+            ],
+            "usable_for_quote": false
+          }
+        }
+      },
+      {
+        "step": "save after filling country; baseline UI payload",
+        "request": {
+          "case": "c63e096b-c365-4f28-80da-2c0f946370a2",
+          "action": "save",
+          "body": {
+            "expected_version": 2,
+            "rate_source": "A",
+            "input": {
+              "product_name": "塑料收纳盒",
+              "volume_cbm": "3",
+              "weight_kg": "400",
+              "destination_country": "巴西"
+            }
+          }
+        },
+        "status": 200,
+        "response": {
+          "version": 2,
+          "input": {
+            "product_name": "塑料收纳盒",
+            "volume_cbm": "3",
+            "weight_kg": "400"
+          },
+          "approval": {
+            "approval_id": "approval-e76377b839aa475f89aa1ac21c691f27",
+            "tenant_id": "synthetic-demo",
+            "requester_principal": "workbench-requester",
+            "create_digest": "6597f80dd0dd878848fd1ec3b07dfc6c347226b57f29100d9c3e6dbf258a4dfe",
+            "scope": "internal_quote_review",
+            "case": {
+              "id": "c63e096b-c365-4f28-80da-2c0f946370a2",
+              "version": 2
+            },
+            "source": {
+              "ref": "A",
+              "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+              "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+            },
+            "snapshot": {
+              "case": {
+                "id": "c63e096b-c365-4f28-80da-2c0f946370a2",
+                "version": 2
+              },
+              "input": {
+                "product_name": "塑料收纳盒",
+                "volume_cbm": "3",
+                "weight_kg": "400"
+              },
+              "protocol": "fp02-snapshot-v1",
+              "quote": {
+                "band": "1-5CBM",
+                "base_freight_usd": "2460.00",
+                "billable_cbm": "3",
+                "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+                "category": "普货一类",
+                "currency_conversion_applied": false,
+                "fee_source_notes": [
+                  {
+                    "cell": "B19",
+                    "raw_text": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。",
+                    "sheet": "巴西海运双清包税",
+                    "source_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+                  }
+                ],
+                "input": {
+                  "actual_volume_cbm": "3",
+                  "actual_weight_kg": "400"
+                },
+                "known_subtotals": {
+                  "CNY": "0.00",
+                  "USD": "2460.00"
+                },
+                "pricing_scope": "仅巴西海运单一明确类别；整票基础运费及明确选择的服务费。",
+                "selected_fees": [],
+                "source": {
+                  "band_cell": "E4",
+                  "category_cell": "A5",
+                  "confirmed_rules": {
+                    "cbm_boundary_assignment": {
+                      "5": "1-5CBM",
+                      "10": "5-10CBM"
+                    },
+                    "minimum_billable_cbm": 1,
+                    "pricing_method": "whole_shipment"
+                  },
+                  "effective_cell": "A3",
+                  "effective_raw": "仅供比赛测试，无商业有效期",
+                  "file": "rate-A-v1.xlsx",
+                  "minimum_charge_cell": "B19",
+                  "price_cell": "E5",
+                  "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                  "sheet": "巴西海运双清包税",
+                  "weight_rule_cell": "H5"
+                },
+                "status": "pending_review_estimate",
+                "total_payable": null,
+                "unit_price_usd_per_cbm": "820",
+                "unresolved": [
+                  "运价仍未审核，未确认当前有效期。",
+                  "未评估所有附加费，试算不代表最终应付总价。",
+                  "付款、品名、单件规格、包装、派送和保险等条件性费用待核定。"
+                ],
+                "usable_for_quote": false
+              },
+              "scope": "internal_quote_review",
+              "simulator_version": "classification-trial-simulator-v1",
+              "source": {
+                "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "declared_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "ref": "A",
+                "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+              },
+              "trial_result_hash": "c6cf3018a7003907d6e584cc9f0a75fa1962a3c8529ad092c29dd99e7f5709b1"
+            },
+            "snapshot_hash": "4f196cd1b6d64a6677014b5151df830c884bc98339e4718c920c9d1cfb770936",
+            "state": "APPROVED",
+            "revision": 2,
+            "decision_record": {
+              "decision_id": "decision-a03fcdd3a2684bc99d8e9dc3a39218cb",
+              "actor_type": "human",
+              "actor_id": "workbench-operator",
+              "decision": "APPROVE",
+              "snapshot_hash": "4f196cd1b6d64a6677014b5151df830c884bc98339e4718c920c9d1cfb770936",
+              "reason": "工作台操作员决定（本机模拟）",
+              "created_at": "2026-11-24T07:22:03.384Z"
+            },
+            "created_at": "2026-11-24T07:22:02.782Z",
+            "updated_at": "2026-11-24T07:22:03.384Z"
+          },
+          "rate_source": "A",
+          "quote_history": [
+            {
+              "case_version": 2,
+              "trial_id": "approval-3442ebd3f4a248f5afc377ddc974ae78",
+              "trial_state": "CONSUMED",
+              "review_id": "approval-e76377b839aa475f89aa1ac21c691f27",
+              "review_state": "APPROVED",
+              "decision": "APPROVE",
+              "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+              "source": {
+                "band_cell": "E4",
+                "category_cell": "A5",
+                "confirmed_rules": {
+                  "cbm_boundary_assignment": {
+                    "5": "1-5CBM",
+                    "10": "5-10CBM"
+                  },
+                  "minimum_billable_cbm": 1,
+                  "pricing_method": "whole_shipment"
+                },
+                "effective_cell": "A3",
+                "effective_raw": "仅供比赛测试，无商业有效期",
+                "file": "rate-A-v1.xlsx",
+                "minimum_charge_cell": "B19",
+                "price_cell": "E5",
+                "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "sheet": "巴西海运双清包税",
+                "weight_rule_cell": "H5"
+              }
+            }
+          ],
+          "quote": {
+            "band": "1-5CBM",
+            "base_freight_usd": "2460.00",
+            "billable_cbm": "3",
+            "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+            "category": "普货一类",
+            "currency_conversion_applied": false,
+            "fee_source_notes": [
+              {
+                "cell": "B19",
+                "raw_text": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。",
+                "sheet": "巴西海运双清包税",
+                "source_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+              }
+            ],
+            "input": {
+              "actual_volume_cbm": "3",
+              "actual_weight_kg": "400"
+            },
+            "known_subtotals": {
+              "CNY": "0.00",
+              "USD": "2460.00"
+            },
+            "pricing_scope": "仅巴西海运单一明确类别；整票基础运费及明确选择的服务费。",
+            "selected_fees": [],
+            "source": {
+              "band_cell": "E4",
+              "category_cell": "A5",
+              "confirmed_rules": {
+                "cbm_boundary_assignment": {
+                  "5": "1-5CBM",
+                  "10": "5-10CBM"
+                },
+                "minimum_billable_cbm": 1,
+                "pricing_method": "whole_shipment"
+              },
+              "effective_cell": "A3",
+              "effective_raw": "仅供比赛测试，无商业有效期",
+              "file": "rate-A-v1.xlsx",
+              "minimum_charge_cell": "B19",
+              "price_cell": "E5",
+              "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+              "sheet": "巴西海运双清包税",
+              "weight_rule_cell": "H5"
+            },
+            "status": "pending_review_estimate",
+            "total_payable": null,
+            "unit_price_usd_per_cbm": "820",
+            "unresolved": [
+              "运价仍未审核，未确认当前有效期。",
+              "未评估所有附加费，试算不代表最终应付总价。",
+              "付款、品名、单件规格、包装、派送和保险等条件性费用待核定。"
+            ],
+            "usable_for_quote": false
+          }
+        }
+      },
+      {
+        "step": "control: send explicit country to old backend",
+        "request": {
+          "case": "c63e096b-c365-4f28-80da-2c0f946370a2",
+          "action": "save",
+          "body": {
+            "expected_version": 2,
+            "rate_source": "A",
+            "input": {
+              "product_name": "塑料收纳盒",
+              "volume_cbm": "3",
+              "weight_kg": "400",
+              "destination_country": "巴西"
+            }
+          }
+        },
+        "status": 400,
+        "response": {
+          "error": "request fields do not match the supported schema",
+          "status": 400
+        }
+      }
+    ],
+    "served_app_sha256": "d79a25f182e12c5b1843494830e1ab0104561efa295494dfb2b6c86301da2193",
+    "destination_binding": "baseline reproduces approval remaining valid and no revised server input",
+    "counts": [
+      2,
+      2,
+      1,
+      1
+    ],
+    "result": "PASS"
+  },
+  {
+    "commit": "cb3d179a684f7ad7812578ca2f5ac91509249a60",
+    "case_id": "d0342346-2b20-4349-83bd-264666846a7b",
+    "origin": "http://127.0.0.1:56343",
+    "http_steps": [
+      {
+        "step": "save A without country",
+        "request": {
+          "case": "d0342346-2b20-4349-83bd-264666846a7b",
+          "action": "save",
+          "body": {
+            "expected_version": 1,
+            "input": {
+              "product_name": "塑料收纳盒",
+              "volume_cbm": "3",
+              "weight_kg": "400"
+            },
+            "rate_source": "A"
+          }
+        },
+        "status": 200,
+        "response": {
+          "version": 2,
+          "input": {
+            "product_name": "塑料收纳盒",
+            "volume_cbm": "3",
+            "weight_kg": "400"
+          },
+          "approval": null,
+          "rate_source": "A",
+          "quote_history": [],
+          "quote": null
+        }
+      },
+      {
+        "step": "apply for trial",
+        "request": {
+          "case": "d0342346-2b20-4349-83bd-264666846a7b",
+          "action": "request",
+          "body": {
+            "version": 2,
+            "input": {
+              "product_name": "塑料收纳盒",
+              "volume_cbm": "3",
+              "weight_kg": "400"
+            }
+          }
+        },
+        "status": 200,
+        "response": {
+          "version": 2,
+          "input": {
+            "product_name": "塑料收纳盒",
+            "volume_cbm": "3",
+            "weight_kg": "400"
+          },
+          "approval": {
+            "approval_id": "approval-f2b16f55abb646d58b211b45eb593fdb",
+            "tenant_id": "synthetic-demo",
+            "requester_principal": "workbench-requester",
+            "create_digest": "37d0d90e198783472a88cabd36d129e560a78390cb6b765e52a096e6e4bb8ae3",
+            "scope": "classification_trial",
+            "case": {
+              "id": "d0342346-2b20-4349-83bd-264666846a7b",
+              "version": 2
+            },
+            "source": {
+              "ref": "A",
+              "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+              "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+            },
+            "snapshot": {
+              "case": {
+                "id": "d0342346-2b20-4349-83bd-264666846a7b",
+                "version": 2
+              },
+              "input": {
+                "product_name": "塑料收纳盒",
+                "volume_cbm": "3",
+                "weight_kg": "400"
+              },
+              "protocol": "fp02-snapshot-v1",
+              "scope": "classification_trial",
+              "simulator_version": "classification-trial-simulator-v1",
+              "source": {
+                "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "declared_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "ref": "A",
+                "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+              }
+            },
+            "snapshot_hash": "8ba69a4cb21ddd220bcb9b556e1c1f6a01a529d23311e850a5a39b5c40cc07fa",
+            "state": "PENDING",
+            "revision": 1,
+            "decision_record": null,
+            "created_at": "2026-11-24T07:22:06.399Z",
+            "updated_at": "2026-11-24T07:22:06.399Z"
+          },
+          "rate_source": "A",
+          "quote_history": [],
+          "quote": null
+        }
+      },
+      {
+        "step": "approve trial",
+        "request": {
+          "case": "d0342346-2b20-4349-83bd-264666846a7b",
+          "action": "approve",
+          "body": {
+            "id": "approval-f2b16f55abb646d58b211b45eb593fdb",
+            "version": 2,
+            "revision": 1,
+            "hash": "8ba69a4cb21ddd220bcb9b556e1c1f6a01a529d23311e850a5a39b5c40cc07fa"
+          }
+        },
+        "status": 200,
+        "response": {
+          "version": 2,
+          "input": {
+            "product_name": "塑料收纳盒",
+            "volume_cbm": "3",
+            "weight_kg": "400"
+          },
+          "approval": {
+            "approval_id": "approval-f2b16f55abb646d58b211b45eb593fdb",
+            "tenant_id": "synthetic-demo",
+            "requester_principal": "workbench-requester",
+            "create_digest": "37d0d90e198783472a88cabd36d129e560a78390cb6b765e52a096e6e4bb8ae3",
+            "scope": "classification_trial",
+            "case": {
+              "id": "d0342346-2b20-4349-83bd-264666846a7b",
+              "version": 2
+            },
+            "source": {
+              "ref": "A",
+              "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+              "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+            },
+            "snapshot": {
+              "case": {
+                "id": "d0342346-2b20-4349-83bd-264666846a7b",
+                "version": 2
+              },
+              "input": {
+                "product_name": "塑料收纳盒",
+                "volume_cbm": "3",
+                "weight_kg": "400"
+              },
+              "protocol": "fp02-snapshot-v1",
+              "scope": "classification_trial",
+              "simulator_version": "classification-trial-simulator-v1",
+              "source": {
+                "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "declared_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "ref": "A",
+                "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+              }
+            },
+            "snapshot_hash": "8ba69a4cb21ddd220bcb9b556e1c1f6a01a529d23311e850a5a39b5c40cc07fa",
+            "state": "APPROVED",
+            "revision": 2,
+            "decision_record": {
+              "decision_id": "decision-5363eecc8938448cae599660faa4deb2",
+              "actor_type": "human",
+              "actor_id": "workbench-operator",
+              "decision": "APPROVE",
+              "snapshot_hash": "8ba69a4cb21ddd220bcb9b556e1c1f6a01a529d23311e850a5a39b5c40cc07fa",
+              "reason": "工作台操作员决定（本机模拟）",
+              "created_at": "2026-11-24T07:22:06.774Z"
+            },
+            "created_at": "2026-11-24T07:22:06.399Z",
+            "updated_at": "2026-11-24T07:22:06.774Z"
+          },
+          "rate_source": "A",
+          "quote_history": [],
+          "quote": null
+        }
+      },
+      {
+        "step": "calculate A",
+        "request": {
+          "case": "d0342346-2b20-4349-83bd-264666846a7b",
+          "action": "calculate",
+          "body": {
+            "id": "approval-f2b16f55abb646d58b211b45eb593fdb",
+            "version": 2,
+            "revision": 2,
+            "hash": "8ba69a4cb21ddd220bcb9b556e1c1f6a01a529d23311e850a5a39b5c40cc07fa"
+          }
+        },
+        "status": 200,
+        "response": {
+          "version": 2,
+          "input": {
+            "product_name": "塑料收纳盒",
+            "volume_cbm": "3",
+            "weight_kg": "400"
+          },
+          "approval": {
+            "approval_id": "approval-f2b16f55abb646d58b211b45eb593fdb",
+            "tenant_id": "synthetic-demo",
+            "requester_principal": "workbench-requester",
+            "create_digest": "37d0d90e198783472a88cabd36d129e560a78390cb6b765e52a096e6e4bb8ae3",
+            "scope": "classification_trial",
+            "case": {
+              "id": "d0342346-2b20-4349-83bd-264666846a7b",
+              "version": 2
+            },
+            "source": {
+              "ref": "A",
+              "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+              "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+            },
+            "snapshot": {
+              "case": {
+                "id": "d0342346-2b20-4349-83bd-264666846a7b",
+                "version": 2
+              },
+              "input": {
+                "product_name": "塑料收纳盒",
+                "volume_cbm": "3",
+                "weight_kg": "400"
+              },
+              "protocol": "fp02-snapshot-v1",
+              "scope": "classification_trial",
+              "simulator_version": "classification-trial-simulator-v1",
+              "source": {
+                "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "declared_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "ref": "A",
+                "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+              }
+            },
+            "snapshot_hash": "8ba69a4cb21ddd220bcb9b556e1c1f6a01a529d23311e850a5a39b5c40cc07fa",
+            "state": "CONSUMED",
+            "revision": 3,
+            "decision_record": {
+              "decision_id": "decision-5363eecc8938448cae599660faa4deb2",
+              "actor_type": "human",
+              "actor_id": "workbench-operator",
+              "decision": "APPROVE",
+              "snapshot_hash": "8ba69a4cb21ddd220bcb9b556e1c1f6a01a529d23311e850a5a39b5c40cc07fa",
+              "reason": "工作台操作员决定（本机模拟）",
+              "created_at": "2026-11-24T07:22:06.774Z"
+            },
+            "created_at": "2026-11-24T07:22:06.399Z",
+            "updated_at": "2026-11-24T07:22:07.152Z"
+          },
+          "rate_source": "A",
+          "quote_history": [
+            {
+              "case_version": 2,
+              "trial_id": "approval-f2b16f55abb646d58b211b45eb593fdb",
+              "trial_state": "CONSUMED",
+              "review_id": null,
+              "review_state": null,
+              "decision": null,
+              "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+              "source": {
+                "band_cell": "E4",
+                "category_cell": "A5",
+                "confirmed_rules": {
+                  "cbm_boundary_assignment": {
+                    "5": "1-5CBM",
+                    "10": "5-10CBM"
+                  },
+                  "minimum_billable_cbm": 1,
+                  "pricing_method": "whole_shipment"
+                },
+                "effective_cell": "A3",
+                "effective_raw": "仅供比赛测试，无商业有效期",
+                "file": "rate-A-v1.xlsx",
+                "minimum_charge_cell": "B19",
+                "price_cell": "E5",
+                "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "sheet": "巴西海运双清包税",
+                "weight_rule_cell": "H5"
+              }
+            }
+          ],
+          "quote": {
+            "band": "1-5CBM",
+            "base_freight_usd": "2460.00",
+            "billable_cbm": "3",
+            "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+            "category": "普货一类",
+            "currency_conversion_applied": false,
+            "fee_source_notes": [
+              {
+                "cell": "B19",
+                "raw_text": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。",
+                "sheet": "巴西海运双清包税",
+                "source_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+              }
+            ],
+            "input": {
+              "actual_volume_cbm": "3",
+              "actual_weight_kg": "400"
+            },
+            "known_subtotals": {
+              "CNY": "0.00",
+              "USD": "2460.00"
+            },
+            "pricing_scope": "仅巴西海运单一明确类别；整票基础运费及明确选择的服务费。",
+            "selected_fees": [],
+            "source": {
+              "band_cell": "E4",
+              "category_cell": "A5",
+              "confirmed_rules": {
+                "cbm_boundary_assignment": {
+                  "5": "1-5CBM",
+                  "10": "5-10CBM"
+                },
+                "minimum_billable_cbm": 1,
+                "pricing_method": "whole_shipment"
+              },
+              "effective_cell": "A3",
+              "effective_raw": "仅供比赛测试，无商业有效期",
+              "file": "rate-A-v1.xlsx",
+              "minimum_charge_cell": "B19",
+              "price_cell": "E5",
+              "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+              "sheet": "巴西海运双清包税",
+              "weight_rule_cell": "H5"
+            },
+            "status": "pending_review_estimate",
+            "total_payable": null,
+            "unit_price_usd_per_cbm": "820",
+            "unresolved": [
+              "运价仍未审核，未确认当前有效期。",
+              "未评估所有附加费，试算不代表最终应付总价。",
+              "付款、品名、单件规格、包装、派送和保险等条件性费用待核定。"
+            ],
+            "usable_for_quote": false
+          }
+        }
+      },
+      {
+        "step": "apply for internal review",
+        "request": {
+          "case": "d0342346-2b20-4349-83bd-264666846a7b",
+          "action": "review",
+          "body": {
+            "version": 2,
+            "input": {
+              "product_name": "塑料收纳盒",
+              "volume_cbm": "3",
+              "weight_kg": "400"
+            }
+          }
+        },
+        "status": 200,
+        "response": {
+          "version": 2,
+          "input": {
+            "product_name": "塑料收纳盒",
+            "volume_cbm": "3",
+            "weight_kg": "400"
+          },
+          "approval": {
+            "approval_id": "approval-e4ab280a5a9b4cd39472532e114c9131",
+            "tenant_id": "synthetic-demo",
+            "requester_principal": "workbench-requester",
+            "create_digest": "b9ec2ff6814bd4c00c9d58c2a6af3c289bb5920419236b0e47376f9d98508250",
+            "scope": "internal_quote_review",
+            "case": {
+              "id": "d0342346-2b20-4349-83bd-264666846a7b",
+              "version": 2
+            },
+            "source": {
+              "ref": "A",
+              "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+              "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+            },
+            "snapshot": {
+              "case": {
+                "id": "d0342346-2b20-4349-83bd-264666846a7b",
+                "version": 2
+              },
+              "input": {
+                "product_name": "塑料收纳盒",
+                "volume_cbm": "3",
+                "weight_kg": "400"
+              },
+              "protocol": "fp02-snapshot-v1",
+              "quote": {
+                "band": "1-5CBM",
+                "base_freight_usd": "2460.00",
+                "billable_cbm": "3",
+                "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+                "category": "普货一类",
+                "currency_conversion_applied": false,
+                "fee_source_notes": [
+                  {
+                    "cell": "B19",
+                    "raw_text": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。",
+                    "sheet": "巴西海运双清包税",
+                    "source_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+                  }
+                ],
+                "input": {
+                  "actual_volume_cbm": "3",
+                  "actual_weight_kg": "400"
+                },
+                "known_subtotals": {
+                  "CNY": "0.00",
+                  "USD": "2460.00"
+                },
+                "pricing_scope": "仅巴西海运单一明确类别；整票基础运费及明确选择的服务费。",
+                "selected_fees": [],
+                "source": {
+                  "band_cell": "E4",
+                  "category_cell": "A5",
+                  "confirmed_rules": {
+                    "cbm_boundary_assignment": {
+                      "5": "1-5CBM",
+                      "10": "5-10CBM"
+                    },
+                    "minimum_billable_cbm": 1,
+                    "pricing_method": "whole_shipment"
+                  },
+                  "effective_cell": "A3",
+                  "effective_raw": "仅供比赛测试，无商业有效期",
+                  "file": "rate-A-v1.xlsx",
+                  "minimum_charge_cell": "B19",
+                  "price_cell": "E5",
+                  "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                  "sheet": "巴西海运双清包税",
+                  "weight_rule_cell": "H5"
+                },
+                "status": "pending_review_estimate",
+                "total_payable": null,
+                "unit_price_usd_per_cbm": "820",
+                "unresolved": [
+                  "运价仍未审核，未确认当前有效期。",
+                  "未评估所有附加费，试算不代表最终应付总价。",
+                  "付款、品名、单件规格、包装、派送和保险等条件性费用待核定。"
+                ],
+                "usable_for_quote": false
+              },
+              "scope": "internal_quote_review",
+              "simulator_version": "classification-trial-simulator-v1",
+              "source": {
+                "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "declared_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "ref": "A",
+                "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+              },
+              "trial_result_hash": "6b8a7bf6524aaa99a4e849ccf63ae380a1f0f43789a2cb397e656a3b387db829"
+            },
+            "snapshot_hash": "fdc07502f0dded66616bc7e760e7e635b2fc2fe1f3aa5c44f57e06d24315ae09",
+            "state": "PENDING",
+            "revision": 1,
+            "decision_record": null,
+            "created_at": "2026-11-24T07:22:07.869Z",
+            "updated_at": "2026-11-24T07:22:07.869Z"
+          },
+          "rate_source": "A",
+          "quote_history": [
+            {
+              "case_version": 2,
+              "trial_id": "approval-f2b16f55abb646d58b211b45eb593fdb",
+              "trial_state": "CONSUMED",
+              "review_id": "approval-e4ab280a5a9b4cd39472532e114c9131",
+              "review_state": "PENDING",
+              "decision": null,
+              "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+              "source": {
+                "band_cell": "E4",
+                "category_cell": "A5",
+                "confirmed_rules": {
+                  "cbm_boundary_assignment": {
+                    "5": "1-5CBM",
+                    "10": "5-10CBM"
+                  },
+                  "minimum_billable_cbm": 1,
+                  "pricing_method": "whole_shipment"
+                },
+                "effective_cell": "A3",
+                "effective_raw": "仅供比赛测试，无商业有效期",
+                "file": "rate-A-v1.xlsx",
+                "minimum_charge_cell": "B19",
+                "price_cell": "E5",
+                "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "sheet": "巴西海运双清包税",
+                "weight_rule_cell": "H5"
+              }
+            }
+          ],
+          "quote": {
+            "band": "1-5CBM",
+            "base_freight_usd": "2460.00",
+            "billable_cbm": "3",
+            "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+            "category": "普货一类",
+            "currency_conversion_applied": false,
+            "fee_source_notes": [
+              {
+                "cell": "B19",
+                "raw_text": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。",
+                "sheet": "巴西海运双清包税",
+                "source_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+              }
+            ],
+            "input": {
+              "actual_volume_cbm": "3",
+              "actual_weight_kg": "400"
+            },
+            "known_subtotals": {
+              "CNY": "0.00",
+              "USD": "2460.00"
+            },
+            "pricing_scope": "仅巴西海运单一明确类别；整票基础运费及明确选择的服务费。",
+            "selected_fees": [],
+            "source": {
+              "band_cell": "E4",
+              "category_cell": "A5",
+              "confirmed_rules": {
+                "cbm_boundary_assignment": {
+                  "5": "1-5CBM",
+                  "10": "5-10CBM"
+                },
+                "minimum_billable_cbm": 1,
+                "pricing_method": "whole_shipment"
+              },
+              "effective_cell": "A3",
+              "effective_raw": "仅供比赛测试，无商业有效期",
+              "file": "rate-A-v1.xlsx",
+              "minimum_charge_cell": "B19",
+              "price_cell": "E5",
+              "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+              "sheet": "巴西海运双清包税",
+              "weight_rule_cell": "H5"
+            },
+            "status": "pending_review_estimate",
+            "total_payable": null,
+            "unit_price_usd_per_cbm": "820",
+            "unresolved": [
+              "运价仍未审核，未确认当前有效期。",
+              "未评估所有附加费，试算不代表最终应付总价。",
+              "付款、品名、单件规格、包装、派送和保险等条件性费用待核定。"
+            ],
+            "usable_for_quote": false
+          }
+        }
+      },
+      {
+        "step": "approve original internal review",
+        "request": {
+          "case": "d0342346-2b20-4349-83bd-264666846a7b",
+          "action": "approve",
+          "body": {
+            "id": "approval-e4ab280a5a9b4cd39472532e114c9131",
+            "version": 2,
+            "revision": 1,
+            "hash": "fdc07502f0dded66616bc7e760e7e635b2fc2fe1f3aa5c44f57e06d24315ae09"
+          }
+        },
+        "status": 200,
+        "response": {
+          "version": 2,
+          "input": {
+            "product_name": "塑料收纳盒",
+            "volume_cbm": "3",
+            "weight_kg": "400"
+          },
+          "approval": {
+            "approval_id": "approval-e4ab280a5a9b4cd39472532e114c9131",
+            "tenant_id": "synthetic-demo",
+            "requester_principal": "workbench-requester",
+            "create_digest": "b9ec2ff6814bd4c00c9d58c2a6af3c289bb5920419236b0e47376f9d98508250",
+            "scope": "internal_quote_review",
+            "case": {
+              "id": "d0342346-2b20-4349-83bd-264666846a7b",
+              "version": 2
+            },
+            "source": {
+              "ref": "A",
+              "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+              "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+            },
+            "snapshot": {
+              "case": {
+                "id": "d0342346-2b20-4349-83bd-264666846a7b",
+                "version": 2
+              },
+              "input": {
+                "product_name": "塑料收纳盒",
+                "volume_cbm": "3",
+                "weight_kg": "400"
+              },
+              "protocol": "fp02-snapshot-v1",
+              "quote": {
+                "band": "1-5CBM",
+                "base_freight_usd": "2460.00",
+                "billable_cbm": "3",
+                "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+                "category": "普货一类",
+                "currency_conversion_applied": false,
+                "fee_source_notes": [
+                  {
+                    "cell": "B19",
+                    "raw_text": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。",
+                    "sheet": "巴西海运双清包税",
+                    "source_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+                  }
+                ],
+                "input": {
+                  "actual_volume_cbm": "3",
+                  "actual_weight_kg": "400"
+                },
+                "known_subtotals": {
+                  "CNY": "0.00",
+                  "USD": "2460.00"
+                },
+                "pricing_scope": "仅巴西海运单一明确类别；整票基础运费及明确选择的服务费。",
+                "selected_fees": [],
+                "source": {
+                  "band_cell": "E4",
+                  "category_cell": "A5",
+                  "confirmed_rules": {
+                    "cbm_boundary_assignment": {
+                      "5": "1-5CBM",
+                      "10": "5-10CBM"
+                    },
+                    "minimum_billable_cbm": 1,
+                    "pricing_method": "whole_shipment"
+                  },
+                  "effective_cell": "A3",
+                  "effective_raw": "仅供比赛测试，无商业有效期",
+                  "file": "rate-A-v1.xlsx",
+                  "minimum_charge_cell": "B19",
+                  "price_cell": "E5",
+                  "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                  "sheet": "巴西海运双清包税",
+                  "weight_rule_cell": "H5"
+                },
+                "status": "pending_review_estimate",
+                "total_payable": null,
+                "unit_price_usd_per_cbm": "820",
+                "unresolved": [
+                  "运价仍未审核，未确认当前有效期。",
+                  "未评估所有附加费，试算不代表最终应付总价。",
+                  "付款、品名、单件规格、包装、派送和保险等条件性费用待核定。"
+                ],
+                "usable_for_quote": false
+              },
+              "scope": "internal_quote_review",
+              "simulator_version": "classification-trial-simulator-v1",
+              "source": {
+                "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "declared_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "ref": "A",
+                "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+              },
+              "trial_result_hash": "6b8a7bf6524aaa99a4e849ccf63ae380a1f0f43789a2cb397e656a3b387db829"
+            },
+            "snapshot_hash": "fdc07502f0dded66616bc7e760e7e635b2fc2fe1f3aa5c44f57e06d24315ae09",
+            "state": "APPROVED",
+            "revision": 2,
+            "decision_record": {
+              "decision_id": "decision-9d225cc61f43476b8dcd5c2ce75bee9e",
+              "actor_type": "human",
+              "actor_id": "workbench-operator",
+              "decision": "APPROVE",
+              "snapshot_hash": "fdc07502f0dded66616bc7e760e7e635b2fc2fe1f3aa5c44f57e06d24315ae09",
+              "reason": "工作台操作员决定（本机模拟）",
+              "created_at": "2026-11-24T07:22:08.243Z"
+            },
+            "created_at": "2026-11-24T07:22:07.869Z",
+            "updated_at": "2026-11-24T07:22:08.243Z"
+          },
+          "rate_source": "A",
+          "quote_history": [
+            {
+              "case_version": 2,
+              "trial_id": "approval-f2b16f55abb646d58b211b45eb593fdb",
+              "trial_state": "CONSUMED",
+              "review_id": "approval-e4ab280a5a9b4cd39472532e114c9131",
+              "review_state": "APPROVED",
+              "decision": "APPROVE",
+              "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+              "source": {
+                "band_cell": "E4",
+                "category_cell": "A5",
+                "confirmed_rules": {
+                  "cbm_boundary_assignment": {
+                    "5": "1-5CBM",
+                    "10": "5-10CBM"
+                  },
+                  "minimum_billable_cbm": 1,
+                  "pricing_method": "whole_shipment"
+                },
+                "effective_cell": "A3",
+                "effective_raw": "仅供比赛测试，无商业有效期",
+                "file": "rate-A-v1.xlsx",
+                "minimum_charge_cell": "B19",
+                "price_cell": "E5",
+                "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "sheet": "巴西海运双清包税",
+                "weight_rule_cell": "H5"
+              }
+            }
+          ],
+          "quote": {
+            "band": "1-5CBM",
+            "base_freight_usd": "2460.00",
+            "billable_cbm": "3",
+            "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+            "category": "普货一类",
+            "currency_conversion_applied": false,
+            "fee_source_notes": [
+              {
+                "cell": "B19",
+                "raw_text": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。",
+                "sheet": "巴西海运双清包税",
+                "source_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+              }
+            ],
+            "input": {
+              "actual_volume_cbm": "3",
+              "actual_weight_kg": "400"
+            },
+            "known_subtotals": {
+              "CNY": "0.00",
+              "USD": "2460.00"
+            },
+            "pricing_scope": "仅巴西海运单一明确类别；整票基础运费及明确选择的服务费。",
+            "selected_fees": [],
+            "source": {
+              "band_cell": "E4",
+              "category_cell": "A5",
+              "confirmed_rules": {
+                "cbm_boundary_assignment": {
+                  "5": "1-5CBM",
+                  "10": "5-10CBM"
+                },
+                "minimum_billable_cbm": 1,
+                "pricing_method": "whole_shipment"
+              },
+              "effective_cell": "A3",
+              "effective_raw": "仅供比赛测试，无商业有效期",
+              "file": "rate-A-v1.xlsx",
+              "minimum_charge_cell": "B19",
+              "price_cell": "E5",
+              "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+              "sheet": "巴西海运双清包税",
+              "weight_rule_cell": "H5"
+            },
+            "status": "pending_review_estimate",
+            "total_payable": null,
+            "unit_price_usd_per_cbm": "820",
+            "unresolved": [
+              "运价仍未审核，未确认当前有效期。",
+              "未评估所有附加费，试算不代表最终应付总价。",
+              "付款、品名、单件规格、包装、派送和保险等条件性费用待核定。"
+            ],
+            "usable_for_quote": false
+          }
+        }
+      },
+      {
+        "step": "save after filling country",
+        "request": {
+          "case": "d0342346-2b20-4349-83bd-264666846a7b",
+          "action": "save",
+          "body": {
+            "expected_version": 2,
+            "rate_source": "A",
+            "input": {
+              "product_name": "塑料收纳盒",
+              "volume_cbm": "3",
+              "weight_kg": "400",
+              "destination_country": "巴西"
+            }
+          }
+        },
+        "status": 200,
+        "response": {
+          "version": 3,
+          "input": {
+            "destination_country": "巴西",
+            "product_name": "塑料收纳盒",
+            "volume_cbm": "3",
+            "weight_kg": "400"
+          },
+          "approval": {
+            "approval_id": "approval-e4ab280a5a9b4cd39472532e114c9131",
+            "tenant_id": "synthetic-demo",
+            "requester_principal": "workbench-requester",
+            "create_digest": "b9ec2ff6814bd4c00c9d58c2a6af3c289bb5920419236b0e47376f9d98508250",
+            "scope": "internal_quote_review",
+            "case": {
+              "id": "d0342346-2b20-4349-83bd-264666846a7b",
+              "version": 2
+            },
+            "source": {
+              "ref": "A",
+              "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+              "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+            },
+            "snapshot": {
+              "case": {
+                "id": "d0342346-2b20-4349-83bd-264666846a7b",
+                "version": 2
+              },
+              "input": {
+                "product_name": "塑料收纳盒",
+                "volume_cbm": "3",
+                "weight_kg": "400"
+              },
+              "protocol": "fp02-snapshot-v1",
+              "quote": {
+                "band": "1-5CBM",
+                "base_freight_usd": "2460.00",
+                "billable_cbm": "3",
+                "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+                "category": "普货一类",
+                "currency_conversion_applied": false,
+                "fee_source_notes": [
+                  {
+                    "cell": "B19",
+                    "raw_text": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。",
+                    "sheet": "巴西海运双清包税",
+                    "source_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+                  }
+                ],
+                "input": {
+                  "actual_volume_cbm": "3",
+                  "actual_weight_kg": "400"
+                },
+                "known_subtotals": {
+                  "CNY": "0.00",
+                  "USD": "2460.00"
+                },
+                "pricing_scope": "仅巴西海运单一明确类别；整票基础运费及明确选择的服务费。",
+                "selected_fees": [],
+                "source": {
+                  "band_cell": "E4",
+                  "category_cell": "A5",
+                  "confirmed_rules": {
+                    "cbm_boundary_assignment": {
+                      "5": "1-5CBM",
+                      "10": "5-10CBM"
+                    },
+                    "minimum_billable_cbm": 1,
+                    "pricing_method": "whole_shipment"
+                  },
+                  "effective_cell": "A3",
+                  "effective_raw": "仅供比赛测试，无商业有效期",
+                  "file": "rate-A-v1.xlsx",
+                  "minimum_charge_cell": "B19",
+                  "price_cell": "E5",
+                  "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                  "sheet": "巴西海运双清包税",
+                  "weight_rule_cell": "H5"
+                },
+                "status": "pending_review_estimate",
+                "total_payable": null,
+                "unit_price_usd_per_cbm": "820",
+                "unresolved": [
+                  "运价仍未审核，未确认当前有效期。",
+                  "未评估所有附加费，试算不代表最终应付总价。",
+                  "付款、品名、单件规格、包装、派送和保险等条件性费用待核定。"
+                ],
+                "usable_for_quote": false
+              },
+              "scope": "internal_quote_review",
+              "simulator_version": "classification-trial-simulator-v1",
+              "source": {
+                "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "declared_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "ref": "A",
+                "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+              },
+              "trial_result_hash": "6b8a7bf6524aaa99a4e849ccf63ae380a1f0f43789a2cb397e656a3b387db829"
+            },
+            "snapshot_hash": "fdc07502f0dded66616bc7e760e7e635b2fc2fe1f3aa5c44f57e06d24315ae09",
+            "state": "INVALIDATED",
+            "revision": 3,
+            "decision_record": {
+              "decision_id": "decision-9d225cc61f43476b8dcd5c2ce75bee9e",
+              "actor_type": "human",
+              "actor_id": "workbench-operator",
+              "decision": "APPROVE",
+              "snapshot_hash": "fdc07502f0dded66616bc7e760e7e635b2fc2fe1f3aa5c44f57e06d24315ae09",
+              "reason": "工作台操作员决定（本机模拟）",
+              "created_at": "2026-11-24T07:22:08.243Z"
+            },
+            "created_at": "2026-11-24T07:22:07.869Z",
+            "updated_at": "2026-11-24T07:22:08.659Z"
+          },
+          "rate_source": "A",
+          "quote_history": [
+            {
+              "case_version": 2,
+              "trial_id": "approval-f2b16f55abb646d58b211b45eb593fdb",
+              "trial_state": "CONSUMED",
+              "review_id": "approval-e4ab280a5a9b4cd39472532e114c9131",
+              "review_state": "INVALIDATED",
+              "decision": "APPROVE",
+              "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+              "source": {
+                "band_cell": "E4",
+                "category_cell": "A5",
+                "confirmed_rules": {
+                  "cbm_boundary_assignment": {
+                    "5": "1-5CBM",
+                    "10": "5-10CBM"
+                  },
+                  "minimum_billable_cbm": 1,
+                  "pricing_method": "whole_shipment"
+                },
+                "effective_cell": "A3",
+                "effective_raw": "仅供比赛测试，无商业有效期",
+                "file": "rate-A-v1.xlsx",
+                "minimum_charge_cell": "B19",
+                "price_cell": "E5",
+                "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "sheet": "巴西海运双清包税",
+                "weight_rule_cell": "H5"
+              }
+            }
+          ],
+          "quote": null
+        }
+      },
+      {
+        "step": "old approval remains unavailable",
+        "request": {
+          "case": "d0342346-2b20-4349-83bd-264666846a7b",
+          "action": "approve",
+          "body": {
+            "id": "approval-e4ab280a5a9b4cd39472532e114c9131",
+            "version": 2,
+            "revision": 2,
+            "hash": "fdc07502f0dded66616bc7e760e7e635b2fc2fe1f3aa5c44f57e06d24315ae09"
+          }
+        },
+        "status": 409,
+        "response": {
+          "error": "审批已变化，请重新读取",
+          "status": 409
+        }
+      },
+      {
+        "step": "apply for trial",
+        "request": {
+          "case": "d0342346-2b20-4349-83bd-264666846a7b",
+          "action": "request",
+          "body": {
+            "version": 3,
+            "input": {
+              "destination_country": "巴西",
+              "product_name": "塑料收纳盒",
+              "volume_cbm": "3",
+              "weight_kg": "400"
+            }
+          }
+        },
+        "status": 200,
+        "response": {
+          "version": 3,
+          "input": {
+            "destination_country": "巴西",
+            "product_name": "塑料收纳盒",
+            "volume_cbm": "3",
+            "weight_kg": "400"
+          },
+          "approval": {
+            "approval_id": "approval-a29ff10fa5ca45c4bee6db8b56baa453",
+            "tenant_id": "synthetic-demo",
+            "requester_principal": "workbench-requester",
+            "create_digest": "3fba49b919163140b0e7a1aa27496303ee7aac69e47a8898b9a8891377284214",
+            "scope": "classification_trial",
+            "case": {
+              "id": "d0342346-2b20-4349-83bd-264666846a7b",
+              "version": 3
+            },
+            "source": {
+              "ref": "A",
+              "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+              "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+            },
+            "snapshot": {
+              "case": {
+                "id": "d0342346-2b20-4349-83bd-264666846a7b",
+                "version": 3
+              },
+              "input": {
+                "destination_country": "巴西",
+                "product_name": "塑料收纳盒",
+                "volume_cbm": "3",
+                "weight_kg": "400"
+              },
+              "protocol": "fp02-snapshot-v1",
+              "scope": "classification_trial",
+              "simulator_version": "classification-trial-simulator-v1",
+              "source": {
+                "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "declared_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "ref": "A",
+                "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+              }
+            },
+            "snapshot_hash": "1eeee44f8c5ceda41802118c86fcc735bbdd9f25599931437742b9b808334a50",
+            "state": "PENDING",
+            "revision": 1,
+            "decision_record": null,
+            "created_at": "2026-11-24T07:22:09.739Z",
+            "updated_at": "2026-11-24T07:22:09.739Z"
+          },
+          "rate_source": "A",
+          "quote_history": [
+            {
+              "case_version": 2,
+              "trial_id": "approval-f2b16f55abb646d58b211b45eb593fdb",
+              "trial_state": "CONSUMED",
+              "review_id": "approval-e4ab280a5a9b4cd39472532e114c9131",
+              "review_state": "INVALIDATED",
+              "decision": "APPROVE",
+              "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+              "source": {
+                "band_cell": "E4",
+                "category_cell": "A5",
+                "confirmed_rules": {
+                  "cbm_boundary_assignment": {
+                    "5": "1-5CBM",
+                    "10": "5-10CBM"
+                  },
+                  "minimum_billable_cbm": 1,
+                  "pricing_method": "whole_shipment"
+                },
+                "effective_cell": "A3",
+                "effective_raw": "仅供比赛测试，无商业有效期",
+                "file": "rate-A-v1.xlsx",
+                "minimum_charge_cell": "B19",
+                "price_cell": "E5",
+                "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "sheet": "巴西海运双清包税",
+                "weight_rule_cell": "H5"
+              }
+            }
+          ],
+          "quote": null
+        }
+      },
+      {
+        "step": "approve trial",
+        "request": {
+          "case": "d0342346-2b20-4349-83bd-264666846a7b",
+          "action": "approve",
+          "body": {
+            "id": "approval-a29ff10fa5ca45c4bee6db8b56baa453",
+            "version": 3,
+            "revision": 1,
+            "hash": "1eeee44f8c5ceda41802118c86fcc735bbdd9f25599931437742b9b808334a50"
+          }
+        },
+        "status": 200,
+        "response": {
+          "version": 3,
+          "input": {
+            "destination_country": "巴西",
+            "product_name": "塑料收纳盒",
+            "volume_cbm": "3",
+            "weight_kg": "400"
+          },
+          "approval": {
+            "approval_id": "approval-a29ff10fa5ca45c4bee6db8b56baa453",
+            "tenant_id": "synthetic-demo",
+            "requester_principal": "workbench-requester",
+            "create_digest": "3fba49b919163140b0e7a1aa27496303ee7aac69e47a8898b9a8891377284214",
+            "scope": "classification_trial",
+            "case": {
+              "id": "d0342346-2b20-4349-83bd-264666846a7b",
+              "version": 3
+            },
+            "source": {
+              "ref": "A",
+              "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+              "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+            },
+            "snapshot": {
+              "case": {
+                "id": "d0342346-2b20-4349-83bd-264666846a7b",
+                "version": 3
+              },
+              "input": {
+                "destination_country": "巴西",
+                "product_name": "塑料收纳盒",
+                "volume_cbm": "3",
+                "weight_kg": "400"
+              },
+              "protocol": "fp02-snapshot-v1",
+              "scope": "classification_trial",
+              "simulator_version": "classification-trial-simulator-v1",
+              "source": {
+                "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "declared_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "ref": "A",
+                "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+              }
+            },
+            "snapshot_hash": "1eeee44f8c5ceda41802118c86fcc735bbdd9f25599931437742b9b808334a50",
+            "state": "APPROVED",
+            "revision": 2,
+            "decision_record": {
+              "decision_id": "decision-d07f40632c354ae1a7caffe28c8e6f39",
+              "actor_type": "human",
+              "actor_id": "workbench-operator",
+              "decision": "APPROVE",
+              "snapshot_hash": "1eeee44f8c5ceda41802118c86fcc735bbdd9f25599931437742b9b808334a50",
+              "reason": "工作台操作员决定（本机模拟）",
+              "created_at": "2026-11-24T07:22:10.202Z"
+            },
+            "created_at": "2026-11-24T07:22:09.739Z",
+            "updated_at": "2026-11-24T07:22:10.202Z"
+          },
+          "rate_source": "A",
+          "quote_history": [
+            {
+              "case_version": 2,
+              "trial_id": "approval-f2b16f55abb646d58b211b45eb593fdb",
+              "trial_state": "CONSUMED",
+              "review_id": "approval-e4ab280a5a9b4cd39472532e114c9131",
+              "review_state": "INVALIDATED",
+              "decision": "APPROVE",
+              "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+              "source": {
+                "band_cell": "E4",
+                "category_cell": "A5",
+                "confirmed_rules": {
+                  "cbm_boundary_assignment": {
+                    "5": "1-5CBM",
+                    "10": "5-10CBM"
+                  },
+                  "minimum_billable_cbm": 1,
+                  "pricing_method": "whole_shipment"
+                },
+                "effective_cell": "A3",
+                "effective_raw": "仅供比赛测试，无商业有效期",
+                "file": "rate-A-v1.xlsx",
+                "minimum_charge_cell": "B19",
+                "price_cell": "E5",
+                "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "sheet": "巴西海运双清包税",
+                "weight_rule_cell": "H5"
+              }
+            }
+          ],
+          "quote": null
+        }
+      },
+      {
+        "step": "calculate A",
+        "request": {
+          "case": "d0342346-2b20-4349-83bd-264666846a7b",
+          "action": "calculate",
+          "body": {
+            "id": "approval-a29ff10fa5ca45c4bee6db8b56baa453",
+            "version": 3,
+            "revision": 2,
+            "hash": "1eeee44f8c5ceda41802118c86fcc735bbdd9f25599931437742b9b808334a50"
+          }
+        },
+        "status": 200,
+        "response": {
+          "version": 3,
+          "input": {
+            "destination_country": "巴西",
+            "product_name": "塑料收纳盒",
+            "volume_cbm": "3",
+            "weight_kg": "400"
+          },
+          "approval": {
+            "approval_id": "approval-a29ff10fa5ca45c4bee6db8b56baa453",
+            "tenant_id": "synthetic-demo",
+            "requester_principal": "workbench-requester",
+            "create_digest": "3fba49b919163140b0e7a1aa27496303ee7aac69e47a8898b9a8891377284214",
+            "scope": "classification_trial",
+            "case": {
+              "id": "d0342346-2b20-4349-83bd-264666846a7b",
+              "version": 3
+            },
+            "source": {
+              "ref": "A",
+              "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+              "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+            },
+            "snapshot": {
+              "case": {
+                "id": "d0342346-2b20-4349-83bd-264666846a7b",
+                "version": 3
+              },
+              "input": {
+                "destination_country": "巴西",
+                "product_name": "塑料收纳盒",
+                "volume_cbm": "3",
+                "weight_kg": "400"
+              },
+              "protocol": "fp02-snapshot-v1",
+              "scope": "classification_trial",
+              "simulator_version": "classification-trial-simulator-v1",
+              "source": {
+                "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "declared_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "ref": "A",
+                "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+              }
+            },
+            "snapshot_hash": "1eeee44f8c5ceda41802118c86fcc735bbdd9f25599931437742b9b808334a50",
+            "state": "CONSUMED",
+            "revision": 3,
+            "decision_record": {
+              "decision_id": "decision-d07f40632c354ae1a7caffe28c8e6f39",
+              "actor_type": "human",
+              "actor_id": "workbench-operator",
+              "decision": "APPROVE",
+              "snapshot_hash": "1eeee44f8c5ceda41802118c86fcc735bbdd9f25599931437742b9b808334a50",
+              "reason": "工作台操作员决定（本机模拟）",
+              "created_at": "2026-11-24T07:22:10.202Z"
+            },
+            "created_at": "2026-11-24T07:22:09.739Z",
+            "updated_at": "2026-11-24T07:22:10.612Z"
+          },
+          "rate_source": "A",
+          "quote_history": [
+            {
+              "case_version": 2,
+              "trial_id": "approval-f2b16f55abb646d58b211b45eb593fdb",
+              "trial_state": "CONSUMED",
+              "review_id": "approval-e4ab280a5a9b4cd39472532e114c9131",
+              "review_state": "INVALIDATED",
+              "decision": "APPROVE",
+              "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+              "source": {
+                "band_cell": "E4",
+                "category_cell": "A5",
+                "confirmed_rules": {
+                  "cbm_boundary_assignment": {
+                    "5": "1-5CBM",
+                    "10": "5-10CBM"
+                  },
+                  "minimum_billable_cbm": 1,
+                  "pricing_method": "whole_shipment"
+                },
+                "effective_cell": "A3",
+                "effective_raw": "仅供比赛测试，无商业有效期",
+                "file": "rate-A-v1.xlsx",
+                "minimum_charge_cell": "B19",
+                "price_cell": "E5",
+                "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "sheet": "巴西海运双清包税",
+                "weight_rule_cell": "H5"
+              }
+            },
+            {
+              "case_version": 3,
+              "trial_id": "approval-a29ff10fa5ca45c4bee6db8b56baa453",
+              "trial_state": "CONSUMED",
+              "review_id": null,
+              "review_state": null,
+              "decision": null,
+              "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+              "source": {
+                "band_cell": "E4",
+                "category_cell": "A5",
+                "confirmed_rules": {
+                  "cbm_boundary_assignment": {
+                    "5": "1-5CBM",
+                    "10": "5-10CBM"
+                  },
+                  "minimum_billable_cbm": 1,
+                  "pricing_method": "whole_shipment"
+                },
+                "effective_cell": "A3",
+                "effective_raw": "仅供比赛测试，无商业有效期",
+                "file": "rate-A-v1.xlsx",
+                "minimum_charge_cell": "B19",
+                "price_cell": "E5",
+                "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "sheet": "巴西海运双清包税",
+                "weight_rule_cell": "H5"
+              }
+            }
+          ],
+          "quote": {
+            "band": "1-5CBM",
+            "base_freight_usd": "2460.00",
+            "billable_cbm": "3",
+            "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+            "category": "普货一类",
+            "currency_conversion_applied": false,
+            "fee_source_notes": [
+              {
+                "cell": "B19",
+                "raw_text": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。",
+                "sheet": "巴西海运双清包税",
+                "source_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+              }
+            ],
+            "input": {
+              "actual_volume_cbm": "3",
+              "actual_weight_kg": "400"
+            },
+            "known_subtotals": {
+              "CNY": "0.00",
+              "USD": "2460.00"
+            },
+            "pricing_scope": "仅巴西海运单一明确类别；整票基础运费及明确选择的服务费。",
+            "selected_fees": [],
+            "source": {
+              "band_cell": "E4",
+              "category_cell": "A5",
+              "confirmed_rules": {
+                "cbm_boundary_assignment": {
+                  "5": "1-5CBM",
+                  "10": "5-10CBM"
+                },
+                "minimum_billable_cbm": 1,
+                "pricing_method": "whole_shipment"
+              },
+              "effective_cell": "A3",
+              "effective_raw": "仅供比赛测试，无商业有效期",
+              "file": "rate-A-v1.xlsx",
+              "minimum_charge_cell": "B19",
+              "price_cell": "E5",
+              "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+              "sheet": "巴西海运双清包税",
+              "weight_rule_cell": "H5"
+            },
+            "status": "pending_review_estimate",
+            "total_payable": null,
+            "unit_price_usd_per_cbm": "820",
+            "unresolved": [
+              "运价仍未审核，未确认当前有效期。",
+              "未评估所有附加费，试算不代表最终应付总价。",
+              "付款、品名、单件规格、包装、派送和保险等条件性费用待核定。"
+            ],
+            "usable_for_quote": false
+          }
+        }
+      },
+      {
+        "step": "apply for internal review",
+        "request": {
+          "case": "d0342346-2b20-4349-83bd-264666846a7b",
+          "action": "review",
+          "body": {
+            "version": 3,
+            "input": {
+              "destination_country": "巴西",
+              "product_name": "塑料收纳盒",
+              "volume_cbm": "3",
+              "weight_kg": "400"
+            }
+          }
+        },
+        "status": 200,
+        "response": {
+          "version": 3,
+          "input": {
+            "destination_country": "巴西",
+            "product_name": "塑料收纳盒",
+            "volume_cbm": "3",
+            "weight_kg": "400"
+          },
+          "approval": {
+            "approval_id": "approval-919b1dbee00041449576dc7af6b297a8",
+            "tenant_id": "synthetic-demo",
+            "requester_principal": "workbench-requester",
+            "create_digest": "35929ee72601f9bdc0baace887134578bb0826fe3aa79322ee3c8923fdc52932",
+            "scope": "internal_quote_review",
+            "case": {
+              "id": "d0342346-2b20-4349-83bd-264666846a7b",
+              "version": 3
+            },
+            "source": {
+              "ref": "A",
+              "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+              "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+            },
+            "snapshot": {
+              "case": {
+                "id": "d0342346-2b20-4349-83bd-264666846a7b",
+                "version": 3
+              },
+              "input": {
+                "destination_country": "巴西",
+                "product_name": "塑料收纳盒",
+                "volume_cbm": "3",
+                "weight_kg": "400"
+              },
+              "protocol": "fp02-snapshot-v1",
+              "quote": {
+                "band": "1-5CBM",
+                "base_freight_usd": "2460.00",
+                "billable_cbm": "3",
+                "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+                "category": "普货一类",
+                "currency_conversion_applied": false,
+                "fee_source_notes": [
+                  {
+                    "cell": "B19",
+                    "raw_text": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。",
+                    "sheet": "巴西海运双清包税",
+                    "source_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+                  }
+                ],
+                "input": {
+                  "actual_volume_cbm": "3",
+                  "actual_weight_kg": "400"
+                },
+                "known_subtotals": {
+                  "CNY": "0.00",
+                  "USD": "2460.00"
+                },
+                "pricing_scope": "仅巴西海运单一明确类别；整票基础运费及明确选择的服务费。",
+                "selected_fees": [],
+                "source": {
+                  "band_cell": "E4",
+                  "category_cell": "A5",
+                  "confirmed_rules": {
+                    "cbm_boundary_assignment": {
+                      "5": "1-5CBM",
+                      "10": "5-10CBM"
+                    },
+                    "minimum_billable_cbm": 1,
+                    "pricing_method": "whole_shipment"
+                  },
+                  "effective_cell": "A3",
+                  "effective_raw": "仅供比赛测试，无商业有效期",
+                  "file": "rate-A-v1.xlsx",
+                  "minimum_charge_cell": "B19",
+                  "price_cell": "E5",
+                  "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                  "sheet": "巴西海运双清包税",
+                  "weight_rule_cell": "H5"
+                },
+                "status": "pending_review_estimate",
+                "total_payable": null,
+                "unit_price_usd_per_cbm": "820",
+                "unresolved": [
+                  "运价仍未审核，未确认当前有效期。",
+                  "未评估所有附加费，试算不代表最终应付总价。",
+                  "付款、品名、单件规格、包装、派送和保险等条件性费用待核定。"
+                ],
+                "usable_for_quote": false
+              },
+              "scope": "internal_quote_review",
+              "simulator_version": "classification-trial-simulator-v1",
+              "source": {
+                "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "declared_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "ref": "A",
+                "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+              },
+              "trial_result_hash": "e392030ca5c771beb3533f8d562de1725cec48af6d0f47c37a0a76b947a7d8a2"
+            },
+            "snapshot_hash": "48ec09a088d7022e277b26705e589d1651645fd6b624a0da277f159ca8e1a331",
+            "state": "PENDING",
+            "revision": 1,
+            "decision_record": null,
+            "created_at": "2026-11-24T07:22:11.303Z",
+            "updated_at": "2026-11-24T07:22:11.303Z"
+          },
+          "rate_source": "A",
+          "quote_history": [
+            {
+              "case_version": 2,
+              "trial_id": "approval-f2b16f55abb646d58b211b45eb593fdb",
+              "trial_state": "CONSUMED",
+              "review_id": "approval-e4ab280a5a9b4cd39472532e114c9131",
+              "review_state": "INVALIDATED",
+              "decision": "APPROVE",
+              "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+              "source": {
+                "band_cell": "E4",
+                "category_cell": "A5",
+                "confirmed_rules": {
+                  "cbm_boundary_assignment": {
+                    "5": "1-5CBM",
+                    "10": "5-10CBM"
+                  },
+                  "minimum_billable_cbm": 1,
+                  "pricing_method": "whole_shipment"
+                },
+                "effective_cell": "A3",
+                "effective_raw": "仅供比赛测试，无商业有效期",
+                "file": "rate-A-v1.xlsx",
+                "minimum_charge_cell": "B19",
+                "price_cell": "E5",
+                "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "sheet": "巴西海运双清包税",
+                "weight_rule_cell": "H5"
+              }
+            },
+            {
+              "case_version": 3,
+              "trial_id": "approval-a29ff10fa5ca45c4bee6db8b56baa453",
+              "trial_state": "CONSUMED",
+              "review_id": "approval-919b1dbee00041449576dc7af6b297a8",
+              "review_state": "PENDING",
+              "decision": null,
+              "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+              "source": {
+                "band_cell": "E4",
+                "category_cell": "A5",
+                "confirmed_rules": {
+                  "cbm_boundary_assignment": {
+                    "5": "1-5CBM",
+                    "10": "5-10CBM"
+                  },
+                  "minimum_billable_cbm": 1,
+                  "pricing_method": "whole_shipment"
+                },
+                "effective_cell": "A3",
+                "effective_raw": "仅供比赛测试，无商业有效期",
+                "file": "rate-A-v1.xlsx",
+                "minimum_charge_cell": "B19",
+                "price_cell": "E5",
+                "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "sheet": "巴西海运双清包税",
+                "weight_rule_cell": "H5"
+              }
+            }
+          ],
+          "quote": {
+            "band": "1-5CBM",
+            "base_freight_usd": "2460.00",
+            "billable_cbm": "3",
+            "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+            "category": "普货一类",
+            "currency_conversion_applied": false,
+            "fee_source_notes": [
+              {
+                "cell": "B19",
+                "raw_text": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。",
+                "sheet": "巴西海运双清包税",
+                "source_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+              }
+            ],
+            "input": {
+              "actual_volume_cbm": "3",
+              "actual_weight_kg": "400"
+            },
+            "known_subtotals": {
+              "CNY": "0.00",
+              "USD": "2460.00"
+            },
+            "pricing_scope": "仅巴西海运单一明确类别；整票基础运费及明确选择的服务费。",
+            "selected_fees": [],
+            "source": {
+              "band_cell": "E4",
+              "category_cell": "A5",
+              "confirmed_rules": {
+                "cbm_boundary_assignment": {
+                  "5": "1-5CBM",
+                  "10": "5-10CBM"
+                },
+                "minimum_billable_cbm": 1,
+                "pricing_method": "whole_shipment"
+              },
+              "effective_cell": "A3",
+              "effective_raw": "仅供比赛测试，无商业有效期",
+              "file": "rate-A-v1.xlsx",
+              "minimum_charge_cell": "B19",
+              "price_cell": "E5",
+              "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+              "sheet": "巴西海运双清包税",
+              "weight_rule_cell": "H5"
+            },
+            "status": "pending_review_estimate",
+            "total_payable": null,
+            "unit_price_usd_per_cbm": "820",
+            "unresolved": [
+              "运价仍未审核，未确认当前有效期。",
+              "未评估所有附加费，试算不代表最终应付总价。",
+              "付款、品名、单件规格、包装、派送和保险等条件性费用待核定。"
+            ],
+            "usable_for_quote": false
+          }
+        }
+      },
+      {
+        "step": "reject new internal review",
+        "request": {
+          "case": "d0342346-2b20-4349-83bd-264666846a7b",
+          "action": "reject",
+          "body": {
+            "id": "approval-919b1dbee00041449576dc7af6b297a8",
+            "version": 3,
+            "revision": 1,
+            "hash": "48ec09a088d7022e277b26705e589d1651645fd6b624a0da277f159ca8e1a331"
+          }
+        },
+        "status": 200,
+        "response": {
+          "version": 3,
+          "input": {
+            "destination_country": "巴西",
+            "product_name": "塑料收纳盒",
+            "volume_cbm": "3",
+            "weight_kg": "400"
+          },
+          "approval": {
+            "approval_id": "approval-919b1dbee00041449576dc7af6b297a8",
+            "tenant_id": "synthetic-demo",
+            "requester_principal": "workbench-requester",
+            "create_digest": "35929ee72601f9bdc0baace887134578bb0826fe3aa79322ee3c8923fdc52932",
+            "scope": "internal_quote_review",
+            "case": {
+              "id": "d0342346-2b20-4349-83bd-264666846a7b",
+              "version": 3
+            },
+            "source": {
+              "ref": "A",
+              "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+              "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+            },
+            "snapshot": {
+              "case": {
+                "id": "d0342346-2b20-4349-83bd-264666846a7b",
+                "version": 3
+              },
+              "input": {
+                "destination_country": "巴西",
+                "product_name": "塑料收纳盒",
+                "volume_cbm": "3",
+                "weight_kg": "400"
+              },
+              "protocol": "fp02-snapshot-v1",
+              "quote": {
+                "band": "1-5CBM",
+                "base_freight_usd": "2460.00",
+                "billable_cbm": "3",
+                "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+                "category": "普货一类",
+                "currency_conversion_applied": false,
+                "fee_source_notes": [
+                  {
+                    "cell": "B19",
+                    "raw_text": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。",
+                    "sheet": "巴西海运双清包税",
+                    "source_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+                  }
+                ],
+                "input": {
+                  "actual_volume_cbm": "3",
+                  "actual_weight_kg": "400"
+                },
+                "known_subtotals": {
+                  "CNY": "0.00",
+                  "USD": "2460.00"
+                },
+                "pricing_scope": "仅巴西海运单一明确类别；整票基础运费及明确选择的服务费。",
+                "selected_fees": [],
+                "source": {
+                  "band_cell": "E4",
+                  "category_cell": "A5",
+                  "confirmed_rules": {
+                    "cbm_boundary_assignment": {
+                      "5": "1-5CBM",
+                      "10": "5-10CBM"
+                    },
+                    "minimum_billable_cbm": 1,
+                    "pricing_method": "whole_shipment"
+                  },
+                  "effective_cell": "A3",
+                  "effective_raw": "仅供比赛测试，无商业有效期",
+                  "file": "rate-A-v1.xlsx",
+                  "minimum_charge_cell": "B19",
+                  "price_cell": "E5",
+                  "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                  "sheet": "巴西海运双清包税",
+                  "weight_rule_cell": "H5"
+                },
+                "status": "pending_review_estimate",
+                "total_payable": null,
+                "unit_price_usd_per_cbm": "820",
+                "unresolved": [
+                  "运价仍未审核，未确认当前有效期。",
+                  "未评估所有附加费，试算不代表最终应付总价。",
+                  "付款、品名、单件规格、包装、派送和保险等条件性费用待核定。"
+                ],
+                "usable_for_quote": false
+              },
+              "scope": "internal_quote_review",
+              "simulator_version": "classification-trial-simulator-v1",
+              "source": {
+                "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "declared_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "ref": "A",
+                "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+              },
+              "trial_result_hash": "e392030ca5c771beb3533f8d562de1725cec48af6d0f47c37a0a76b947a7d8a2"
+            },
+            "snapshot_hash": "48ec09a088d7022e277b26705e589d1651645fd6b624a0da277f159ca8e1a331",
+            "state": "REJECTED",
+            "revision": 2,
+            "decision_record": {
+              "decision_id": "decision-9e35299cf9584a2eb2c4550fddc58e8f",
+              "actor_type": "human",
+              "actor_id": "workbench-operator",
+              "decision": "REJECT",
+              "snapshot_hash": "48ec09a088d7022e277b26705e589d1651645fd6b624a0da277f159ca8e1a331",
+              "reason": "工作台操作员决定（本机模拟）",
+              "created_at": "2026-11-24T07:22:11.703Z"
+            },
+            "created_at": "2026-11-24T07:22:11.303Z",
+            "updated_at": "2026-11-24T07:22:11.703Z"
+          },
+          "rate_source": "A",
+          "quote_history": [
+            {
+              "case_version": 2,
+              "trial_id": "approval-f2b16f55abb646d58b211b45eb593fdb",
+              "trial_state": "CONSUMED",
+              "review_id": "approval-e4ab280a5a9b4cd39472532e114c9131",
+              "review_state": "INVALIDATED",
+              "decision": "APPROVE",
+              "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+              "source": {
+                "band_cell": "E4",
+                "category_cell": "A5",
+                "confirmed_rules": {
+                  "cbm_boundary_assignment": {
+                    "5": "1-5CBM",
+                    "10": "5-10CBM"
+                  },
+                  "minimum_billable_cbm": 1,
+                  "pricing_method": "whole_shipment"
+                },
+                "effective_cell": "A3",
+                "effective_raw": "仅供比赛测试，无商业有效期",
+                "file": "rate-A-v1.xlsx",
+                "minimum_charge_cell": "B19",
+                "price_cell": "E5",
+                "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "sheet": "巴西海运双清包税",
+                "weight_rule_cell": "H5"
+              }
+            },
+            {
+              "case_version": 3,
+              "trial_id": "approval-a29ff10fa5ca45c4bee6db8b56baa453",
+              "trial_state": "CONSUMED",
+              "review_id": "approval-919b1dbee00041449576dc7af6b297a8",
+              "review_state": "REJECTED",
+              "decision": "REJECT",
+              "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+              "source": {
+                "band_cell": "E4",
+                "category_cell": "A5",
+                "confirmed_rules": {
+                  "cbm_boundary_assignment": {
+                    "5": "1-5CBM",
+                    "10": "5-10CBM"
+                  },
+                  "minimum_billable_cbm": 1,
+                  "pricing_method": "whole_shipment"
+                },
+                "effective_cell": "A3",
+                "effective_raw": "仅供比赛测试，无商业有效期",
+                "file": "rate-A-v1.xlsx",
+                "minimum_charge_cell": "B19",
+                "price_cell": "E5",
+                "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "sheet": "巴西海运双清包税",
+                "weight_rule_cell": "H5"
+              }
+            }
+          ],
+          "quote": {
+            "band": "1-5CBM",
+            "base_freight_usd": "2460.00",
+            "billable_cbm": "3",
+            "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+            "category": "普货一类",
+            "currency_conversion_applied": false,
+            "fee_source_notes": [
+              {
+                "cell": "B19",
+                "raw_text": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。",
+                "sheet": "巴西海运双清包税",
+                "source_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+              }
+            ],
+            "input": {
+              "actual_volume_cbm": "3",
+              "actual_weight_kg": "400"
+            },
+            "known_subtotals": {
+              "CNY": "0.00",
+              "USD": "2460.00"
+            },
+            "pricing_scope": "仅巴西海运单一明确类别；整票基础运费及明确选择的服务费。",
+            "selected_fees": [],
+            "source": {
+              "band_cell": "E4",
+              "category_cell": "A5",
+              "confirmed_rules": {
+                "cbm_boundary_assignment": {
+                  "5": "1-5CBM",
+                  "10": "5-10CBM"
+                },
+                "minimum_billable_cbm": 1,
+                "pricing_method": "whole_shipment"
+              },
+              "effective_cell": "A3",
+              "effective_raw": "仅供比赛测试，无商业有效期",
+              "file": "rate-A-v1.xlsx",
+              "minimum_charge_cell": "B19",
+              "price_cell": "E5",
+              "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+              "sheet": "巴西海运双清包税",
+              "weight_rule_cell": "H5"
+            },
+            "status": "pending_review_estimate",
+            "total_payable": null,
+            "unit_price_usd_per_cbm": "820",
+            "unresolved": [
+              "运价仍未审核，未确认当前有效期。",
+              "未评估所有附加费，试算不代表最终应付总价。",
+              "付款、品名、单件规格、包装、派送和保险等条件性费用待核定。"
+            ],
+            "usable_for_quote": false
+          }
+        }
+      },
+      {
+        "step": "read after rejection",
+        "request": {
+          "case": "d0342346-2b20-4349-83bd-264666846a7b",
+          "action": "read",
+          "body": {}
+        },
+        "status": 200,
+        "response": {
+          "version": 3,
+          "input": {
+            "destination_country": "巴西",
+            "product_name": "塑料收纳盒",
+            "volume_cbm": "3",
+            "weight_kg": "400"
+          },
+          "approval": {
+            "approval_id": "approval-919b1dbee00041449576dc7af6b297a8",
+            "tenant_id": "synthetic-demo",
+            "requester_principal": "workbench-requester",
+            "create_digest": "35929ee72601f9bdc0baace887134578bb0826fe3aa79322ee3c8923fdc52932",
+            "scope": "internal_quote_review",
+            "case": {
+              "id": "d0342346-2b20-4349-83bd-264666846a7b",
+              "version": 3
+            },
+            "source": {
+              "ref": "A",
+              "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+              "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+            },
+            "snapshot": {
+              "case": {
+                "id": "d0342346-2b20-4349-83bd-264666846a7b",
+                "version": 3
+              },
+              "input": {
+                "destination_country": "巴西",
+                "product_name": "塑料收纳盒",
+                "volume_cbm": "3",
+                "weight_kg": "400"
+              },
+              "protocol": "fp02-snapshot-v1",
+              "quote": {
+                "band": "1-5CBM",
+                "base_freight_usd": "2460.00",
+                "billable_cbm": "3",
+                "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+                "category": "普货一类",
+                "currency_conversion_applied": false,
+                "fee_source_notes": [
+                  {
+                    "cell": "B19",
+                    "raw_text": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。",
+                    "sheet": "巴西海运双清包税",
+                    "source_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+                  }
+                ],
+                "input": {
+                  "actual_volume_cbm": "3",
+                  "actual_weight_kg": "400"
+                },
+                "known_subtotals": {
+                  "CNY": "0.00",
+                  "USD": "2460.00"
+                },
+                "pricing_scope": "仅巴西海运单一明确类别；整票基础运费及明确选择的服务费。",
+                "selected_fees": [],
+                "source": {
+                  "band_cell": "E4",
+                  "category_cell": "A5",
+                  "confirmed_rules": {
+                    "cbm_boundary_assignment": {
+                      "5": "1-5CBM",
+                      "10": "5-10CBM"
+                    },
+                    "minimum_billable_cbm": 1,
+                    "pricing_method": "whole_shipment"
+                  },
+                  "effective_cell": "A3",
+                  "effective_raw": "仅供比赛测试，无商业有效期",
+                  "file": "rate-A-v1.xlsx",
+                  "minimum_charge_cell": "B19",
+                  "price_cell": "E5",
+                  "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                  "sheet": "巴西海运双清包税",
+                  "weight_rule_cell": "H5"
+                },
+                "status": "pending_review_estimate",
+                "total_payable": null,
+                "unit_price_usd_per_cbm": "820",
+                "unresolved": [
+                  "运价仍未审核，未确认当前有效期。",
+                  "未评估所有附加费，试算不代表最终应付总价。",
+                  "付款、品名、单件规格、包装、派送和保险等条件性费用待核定。"
+                ],
+                "usable_for_quote": false
+              },
+              "scope": "internal_quote_review",
+              "simulator_version": "classification-trial-simulator-v1",
+              "source": {
+                "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "declared_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "ref": "A",
+                "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+              },
+              "trial_result_hash": "e392030ca5c771beb3533f8d562de1725cec48af6d0f47c37a0a76b947a7d8a2"
+            },
+            "snapshot_hash": "48ec09a088d7022e277b26705e589d1651645fd6b624a0da277f159ca8e1a331",
+            "state": "REJECTED",
+            "revision": 2,
+            "decision_record": {
+              "decision_id": "decision-9e35299cf9584a2eb2c4550fddc58e8f",
+              "actor_type": "human",
+              "actor_id": "workbench-operator",
+              "decision": "REJECT",
+              "snapshot_hash": "48ec09a088d7022e277b26705e589d1651645fd6b624a0da277f159ca8e1a331",
+              "reason": "工作台操作员决定（本机模拟）",
+              "created_at": "2026-11-24T07:22:11.703Z"
+            },
+            "created_at": "2026-11-24T07:22:11.303Z",
+            "updated_at": "2026-11-24T07:22:11.703Z"
+          },
+          "rate_source": "A",
+          "quote_history": [
+            {
+              "case_version": 2,
+              "trial_id": "approval-f2b16f55abb646d58b211b45eb593fdb",
+              "trial_state": "CONSUMED",
+              "review_id": "approval-e4ab280a5a9b4cd39472532e114c9131",
+              "review_state": "INVALIDATED",
+              "decision": "APPROVE",
+              "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+              "source": {
+                "band_cell": "E4",
+                "category_cell": "A5",
+                "confirmed_rules": {
+                  "cbm_boundary_assignment": {
+                    "5": "1-5CBM",
+                    "10": "5-10CBM"
+                  },
+                  "minimum_billable_cbm": 1,
+                  "pricing_method": "whole_shipment"
+                },
+                "effective_cell": "A3",
+                "effective_raw": "仅供比赛测试，无商业有效期",
+                "file": "rate-A-v1.xlsx",
+                "minimum_charge_cell": "B19",
+                "price_cell": "E5",
+                "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "sheet": "巴西海运双清包税",
+                "weight_rule_cell": "H5"
+              }
+            },
+            {
+              "case_version": 3,
+              "trial_id": "approval-a29ff10fa5ca45c4bee6db8b56baa453",
+              "trial_state": "CONSUMED",
+              "review_id": "approval-919b1dbee00041449576dc7af6b297a8",
+              "review_state": "REJECTED",
+              "decision": "REJECT",
+              "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+              "source": {
+                "band_cell": "E4",
+                "category_cell": "A5",
+                "confirmed_rules": {
+                  "cbm_boundary_assignment": {
+                    "5": "1-5CBM",
+                    "10": "5-10CBM"
+                  },
+                  "minimum_billable_cbm": 1,
+                  "pricing_method": "whole_shipment"
+                },
+                "effective_cell": "A3",
+                "effective_raw": "仅供比赛测试，无商业有效期",
+                "file": "rate-A-v1.xlsx",
+                "minimum_charge_cell": "B19",
+                "price_cell": "E5",
+                "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "sheet": "巴西海运双清包税",
+                "weight_rule_cell": "H5"
+              }
+            }
+          ],
+          "quote": {
+            "band": "1-5CBM",
+            "base_freight_usd": "2460.00",
+            "billable_cbm": "3",
+            "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+            "category": "普货一类",
+            "currency_conversion_applied": false,
+            "fee_source_notes": [
+              {
+                "cell": "B19",
+                "raw_text": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。",
+                "sheet": "巴西海运双清包税",
+                "source_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+              }
+            ],
+            "input": {
+              "actual_volume_cbm": "3",
+              "actual_weight_kg": "400"
+            },
+            "known_subtotals": {
+              "CNY": "0.00",
+              "USD": "2460.00"
+            },
+            "pricing_scope": "仅巴西海运单一明确类别；整票基础运费及明确选择的服务费。",
+            "selected_fees": [],
+            "source": {
+              "band_cell": "E4",
+              "category_cell": "A5",
+              "confirmed_rules": {
+                "cbm_boundary_assignment": {
+                  "5": "1-5CBM",
+                  "10": "5-10CBM"
+                },
+                "minimum_billable_cbm": 1,
+                "pricing_method": "whole_shipment"
+              },
+              "effective_cell": "A3",
+              "effective_raw": "仅供比赛测试，无商业有效期",
+              "file": "rate-A-v1.xlsx",
+              "minimum_charge_cell": "B19",
+              "price_cell": "E5",
+              "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+              "sheet": "巴西海运双清包税",
+              "weight_rule_cell": "H5"
+            },
+            "status": "pending_review_estimate",
+            "total_payable": null,
+            "unit_price_usd_per_cbm": "820",
+            "unresolved": [
+              "运价仍未审核，未确认当前有效期。",
+              "未评估所有附加费，试算不代表最终应付总价。",
+              "付款、品名、单件规格、包装、派送和保险等条件性费用待核定。"
+            ],
+            "usable_for_quote": false
+          }
+        }
+      },
+      {
+        "step": "retry rejected review for same version",
+        "request": {
+          "case": "d0342346-2b20-4349-83bd-264666846a7b",
+          "action": "review",
+          "body": {
+            "version": 3,
+            "input": {
+              "destination_country": "巴西",
+              "product_name": "塑料收纳盒",
+              "volume_cbm": "3",
+              "weight_kg": "400"
+            }
+          }
+        },
+        "status": 200,
+        "response": {
+          "version": 3,
+          "input": {
+            "destination_country": "巴西",
+            "product_name": "塑料收纳盒",
+            "volume_cbm": "3",
+            "weight_kg": "400"
+          },
+          "approval": {
+            "approval_id": "approval-919b1dbee00041449576dc7af6b297a8",
+            "tenant_id": "synthetic-demo",
+            "requester_principal": "workbench-requester",
+            "create_digest": "35929ee72601f9bdc0baace887134578bb0826fe3aa79322ee3c8923fdc52932",
+            "scope": "internal_quote_review",
+            "case": {
+              "id": "d0342346-2b20-4349-83bd-264666846a7b",
+              "version": 3
+            },
+            "source": {
+              "ref": "A",
+              "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+              "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+            },
+            "snapshot": {
+              "case": {
+                "id": "d0342346-2b20-4349-83bd-264666846a7b",
+                "version": 3
+              },
+              "input": {
+                "destination_country": "巴西",
+                "product_name": "塑料收纳盒",
+                "volume_cbm": "3",
+                "weight_kg": "400"
+              },
+              "protocol": "fp02-snapshot-v1",
+              "quote": {
+                "band": "1-5CBM",
+                "base_freight_usd": "2460.00",
+                "billable_cbm": "3",
+                "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+                "category": "普货一类",
+                "currency_conversion_applied": false,
+                "fee_source_notes": [
+                  {
+                    "cell": "B19",
+                    "raw_text": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。",
+                    "sheet": "巴西海运双清包税",
+                    "source_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+                  }
+                ],
+                "input": {
+                  "actual_volume_cbm": "3",
+                  "actual_weight_kg": "400"
+                },
+                "known_subtotals": {
+                  "CNY": "0.00",
+                  "USD": "2460.00"
+                },
+                "pricing_scope": "仅巴西海运单一明确类别；整票基础运费及明确选择的服务费。",
+                "selected_fees": [],
+                "source": {
+                  "band_cell": "E4",
+                  "category_cell": "A5",
+                  "confirmed_rules": {
+                    "cbm_boundary_assignment": {
+                      "5": "1-5CBM",
+                      "10": "5-10CBM"
+                    },
+                    "minimum_billable_cbm": 1,
+                    "pricing_method": "whole_shipment"
+                  },
+                  "effective_cell": "A3",
+                  "effective_raw": "仅供比赛测试，无商业有效期",
+                  "file": "rate-A-v1.xlsx",
+                  "minimum_charge_cell": "B19",
+                  "price_cell": "E5",
+                  "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                  "sheet": "巴西海运双清包税",
+                  "weight_rule_cell": "H5"
+                },
+                "status": "pending_review_estimate",
+                "total_payable": null,
+                "unit_price_usd_per_cbm": "820",
+                "unresolved": [
+                  "运价仍未审核，未确认当前有效期。",
+                  "未评估所有附加费，试算不代表最终应付总价。",
+                  "付款、品名、单件规格、包装、派送和保险等条件性费用待核定。"
+                ],
+                "usable_for_quote": false
+              },
+              "scope": "internal_quote_review",
+              "simulator_version": "classification-trial-simulator-v1",
+              "source": {
+                "bytes_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "declared_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "ref": "A",
+                "version": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+              },
+              "trial_result_hash": "e392030ca5c771beb3533f8d562de1725cec48af6d0f47c37a0a76b947a7d8a2"
+            },
+            "snapshot_hash": "48ec09a088d7022e277b26705e589d1651645fd6b624a0da277f159ca8e1a331",
+            "state": "REJECTED",
+            "revision": 2,
+            "decision_record": {
+              "decision_id": "decision-9e35299cf9584a2eb2c4550fddc58e8f",
+              "actor_type": "human",
+              "actor_id": "workbench-operator",
+              "decision": "REJECT",
+              "snapshot_hash": "48ec09a088d7022e277b26705e589d1651645fd6b624a0da277f159ca8e1a331",
+              "reason": "工作台操作员决定（本机模拟）",
+              "created_at": "2026-11-24T07:22:11.703Z"
+            },
+            "created_at": "2026-11-24T07:22:11.303Z",
+            "updated_at": "2026-11-24T07:22:11.703Z"
+          },
+          "rate_source": "A",
+          "quote_history": [
+            {
+              "case_version": 2,
+              "trial_id": "approval-f2b16f55abb646d58b211b45eb593fdb",
+              "trial_state": "CONSUMED",
+              "review_id": "approval-e4ab280a5a9b4cd39472532e114c9131",
+              "review_state": "INVALIDATED",
+              "decision": "APPROVE",
+              "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+              "source": {
+                "band_cell": "E4",
+                "category_cell": "A5",
+                "confirmed_rules": {
+                  "cbm_boundary_assignment": {
+                    "5": "1-5CBM",
+                    "10": "5-10CBM"
+                  },
+                  "minimum_billable_cbm": 1,
+                  "pricing_method": "whole_shipment"
+                },
+                "effective_cell": "A3",
+                "effective_raw": "仅供比赛测试，无商业有效期",
+                "file": "rate-A-v1.xlsx",
+                "minimum_charge_cell": "B19",
+                "price_cell": "E5",
+                "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "sheet": "巴西海运双清包税",
+                "weight_rule_cell": "H5"
+              }
+            },
+            {
+              "case_version": 3,
+              "trial_id": "approval-a29ff10fa5ca45c4bee6db8b56baa453",
+              "trial_state": "CONSUMED",
+              "review_id": "approval-919b1dbee00041449576dc7af6b297a8",
+              "review_state": "REJECTED",
+              "decision": "REJECT",
+              "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+              "source": {
+                "band_cell": "E4",
+                "category_cell": "A5",
+                "confirmed_rules": {
+                  "cbm_boundary_assignment": {
+                    "5": "1-5CBM",
+                    "10": "5-10CBM"
+                  },
+                  "minimum_billable_cbm": 1,
+                  "pricing_method": "whole_shipment"
+                },
+                "effective_cell": "A3",
+                "effective_raw": "仅供比赛测试，无商业有效期",
+                "file": "rate-A-v1.xlsx",
+                "minimum_charge_cell": "B19",
+                "price_cell": "E5",
+                "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+                "sheet": "巴西海运双清包税",
+                "weight_rule_cell": "H5"
+              }
+            }
+          ],
+          "quote": {
+            "band": "1-5CBM",
+            "base_freight_usd": "2460.00",
+            "billable_cbm": "3",
+            "calculation": "3 CBM × 820 USD/CBM = 2460.00 USD",
+            "category": "普货一类",
+            "currency_conversion_applied": false,
+            "fee_source_notes": [
+              {
+                "cell": "B19",
+                "raw_text": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。",
+                "sheet": "巴西海运双清包税",
+                "source_sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc"
+              }
+            ],
+            "input": {
+              "actual_volume_cbm": "3",
+              "actual_weight_kg": "400"
+            },
+            "known_subtotals": {
+              "CNY": "0.00",
+              "USD": "2460.00"
+            },
+            "pricing_scope": "仅巴西海运单一明确类别；整票基础运费及明确选择的服务费。",
+            "selected_fees": [],
+            "source": {
+              "band_cell": "E4",
+              "category_cell": "A5",
+              "confirmed_rules": {
+                "cbm_boundary_assignment": {
+                  "5": "1-5CBM",
+                  "10": "5-10CBM"
+                },
+                "minimum_billable_cbm": 1,
+                "pricing_method": "whole_shipment"
+              },
+              "effective_cell": "A3",
+              "effective_raw": "仅供比赛测试，无商业有效期",
+              "file": "rate-A-v1.xlsx",
+              "minimum_charge_cell": "B19",
+              "price_cell": "E5",
+              "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+              "sheet": "巴西海运双清包税",
+              "weight_rule_cell": "H5"
+            },
+            "status": "pending_review_estimate",
+            "total_payable": null,
+            "unit_price_usd_per_cbm": "820",
+            "unresolved": [
+              "运价仍未审核，未确认当前有效期。",
+              "未评估所有附加费，试算不代表最终应付总价。",
+              "付款、品名、单件规格、包装、派送和保险等条件性费用待核定。"
+            ],
+            "usable_for_quote": false
+          }
+        }
+      }
+    ],
+    "served_app_sha256": "a88c500e732a3db4ce2a8dc8c0f30057e5e51ceba07af0e4662d421b6e342808",
+    "counts_before_retry": [
+      4,
+      4,
+      2,
+      2
+    ],
+    "destination_binding": "country binding, invalidation and fresh review verified",
+    "counts": [
+      4,
+      4,
+      2,
+      2
+    ],
+    "result": "PASS"
+  }
+]

@@ -1,0 +1,16 @@
+{"coreSha256":"21e0989585bae4ebe697d4fef9ec50c60378f65c76f6247845b3d1c2b3627654","sourceSha256":"b88c43e080e9a6595cf8836be75de805bcd88d400f6c16e32f88e058bda70951"}
+✔ 正常20箱可申请，1260仅为已锁定的预计算金额 (7.6633ms)
+✔ 1/2箱不能截取尾数形成可审批输入 (0.7712ms)
+ℹ {"input":"1/2箱","boxes":"","evidence":"无效箱数，须人工确认正整数：目的国：德国，货名：塑料收纳盒，货物类别：普货，3CBM，400kg，1/2箱，40天，派送需求：到门，清关需求：代理清关，税费需求：DAP","missing":["boxes"],"approval":"未申请","error":"所选渠道尚不能直接计算"}
+✔ 1e3箱不能截取尾数形成可审批输入 (0.2079ms)
+ℹ {"input":"1e3箱","boxes":"","evidence":"无效箱数，须人工确认正整数：目的国：德国，货名：塑料收纳盒，货物类别：普货，3CBM，400kg，1e3箱，40天，派送需求：到门，清关需求：代理清关，税费需求：DAP","missing":["boxes"],"approval":"未申请","error":"所选渠道尚不能直接计算"}
+✔ 手工箱数超安全整数必须在申请前被拒绝 (0.944ms)
+ℹ {"boxes":"9007199254740993","numericValue":9007199254740992,"missing":["boxes"],"approval":"未申请","error":"所选渠道尚不能直接计算"}
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 153.7189

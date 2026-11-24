@@ -1,0 +1,157 @@
+{
+  "rows": [
+    {
+      "id": "VIEW-01",
+      "layer": "浏览器",
+      "status": "阻塞",
+      "met": null,
+      "actual": "Computer Use 无法核验本机浏览器 URL，页面操作终止。无服务端草稿的本地对照未进入页面。",
+      "evidence": [
+        {
+          "layer": "浏览器",
+          "ref": "evidence/acceptance-cb3d179-20261124/edge-stop.md"
+        }
+      ],
+      "missing_dependency": "Windows Edge UI",
+      "next": "取得可识别本机 URL 的 Edge 会话，跑一票无后端草稿的对照。"
+    },
+    {
+      "id": "VIEW-02",
+      "layer": "浏览器",
+      "status": "阻塞",
+      "met": null,
+      "actual": "Computer Use 无法核验本机浏览器 URL，页面操作终止。离线工作台运行同一渲染断言，旧版首页缺服务端版本，新版通过。后台空目的国按 A 试算为 2460 USD。",
+      "evidence": [
+        {
+          "layer": "浏览器",
+          "ref": "evidence/acceptance-cb3d179-20261124/edge-stop.md"
+        },
+        {
+          "layer": "离线",
+          "ref": "evidence/acceptance-cb3d179-20261124/comparison-ui.txt"
+        },
+        {
+          "layer": "后台",
+          "ref": "evidence/acceptance-cb3d179-20261124/backend-destination-and-review.json"
+        }
+      ],
+      "missing_dependency": "Windows Edge UI",
+      "next": "在同票空目的国的待审阶段比对首页、案例库、详情、导出预览。"
+    },
+    {
+      "id": "VIEW-03",
+      "layer": "浏览器",
+      "status": "阻塞",
+      "met": null,
+      "actual": "Computer Use 无法核验本机浏览器 URL，页面操作终止。后台明确记录旧版与候选的 A 草稿批准。四处实际浏览器显示及审核编号对照待补。",
+      "evidence": [
+        {
+          "layer": "浏览器",
+          "ref": "evidence/acceptance-cb3d179-20261124/edge-stop.md"
+        },
+        {
+          "layer": "后台",
+          "ref": "evidence/acceptance-cb3d179-20261124/backend-destination-and-review.json"
+        }
+      ],
+      "missing_dependency": "Windows Edge UI",
+      "next": "批准同票草稿后比对四处状态、版本和审核编号。"
+    },
+    {
+      "id": "DST-01",
+      "layer": "端到端",
+      "status": "阻塞",
+      "met": null,
+      "actual": "Computer Use 无法核验本机浏览器 URL，页面操作终止。后台复现旧版保存后仍 v2、旧审核仍批准。候选手填巴西后 v2→v3，旧审核失效且过期批准返回 409，新审核快照含巴西并有独立编号。待补同次 Edge 交互证据。",
+      "evidence": [
+        {
+          "layer": "浏览器",
+          "ref": "evidence/acceptance-cb3d179-20261124/edge-stop.md"
+        },
+        {
+          "layer": "后台",
+          "ref": "evidence/acceptance-cb3d179-20261124/backend-destination-and-review.json"
+        }
+      ],
+      "missing_dependency": "Windows Edge UI",
+      "next": "通过 Edge 补录巴西并保存，再用同一案例 ID 对证 SQLite 新旧审核记录。"
+    },
+    {
+      "id": "RATE-01",
+      "layer": "浏览器",
+      "status": "阻塞",
+      "met": null,
+      "actual": "Computer Use 无法核验本机浏览器 URL，页面操作终止。后台同票 v2 A、v3 B、v4 A 依次为 2460→2280→2460 USD，运价表来源哈希匹配，旧审核失效，每版独立试算。固定工作簿 E5/B19 对照通过。Edge 选择与审核仍待补。",
+      "evidence": [
+        {
+          "layer": "浏览器",
+          "ref": "evidence/acceptance-cb3d179-20261124/edge-stop.md"
+        },
+        {
+          "layer": "离线",
+          "ref": "evidence/acceptance-cb3d179-20261124/sample-fp01.txt"
+        },
+        {
+          "layer": "后台",
+          "ref": "evidence/acceptance-cb3d179-20261124/backend-rate-aba.json"
+        }
+      ],
+      "missing_dependency": "Windows Edge UI",
+      "next": "在 Edge 同票完成 A→B→A，核对三次金额、选择和审核状态。"
+    },
+    {
+      "id": "RATE-02",
+      "layer": "端到端",
+      "status": "阻塞",
+      "met": null,
+      "actual": "Computer Use 无法核验本机浏览器 URL，页面操作终止。目的国及 A→B→A 两条后台路径重读和同版重试均保留拒绝审批编号，审批、决定、操作、结果计数分别保持 4/4/2/2 和 6/6/3/3。Edge 刷新和选项禁用待补。",
+      "evidence": [
+        {
+          "layer": "浏览器",
+          "ref": "evidence/acceptance-cb3d179-20261124/edge-stop.md"
+        },
+        {
+          "layer": "后台",
+          "ref": "evidence/acceptance-cb3d179-20261124/backend-destination-and-review.json"
+        },
+        {
+          "layer": "后台",
+          "ref": "evidence/acceptance-cb3d179-20261124/backend-rate-aba.json"
+        }
+      ],
+      "missing_dependency": "Windows Edge UI",
+      "next": "末版拒绝后在 Edge 刷新并重试，对比四处显示和同票持久计数。"
+    }
+  ],
+  "offline": [
+    {
+      "name": "候选 Python 固定用例",
+      "passed": 47,
+      "total": 47,
+      "ref": "evidence/acceptance-cb3d179-20261124/project-check.txt"
+    },
+    {
+      "name": "候选 Node Harness 与 agent 固定用例",
+      "passed": 27,
+      "total": 27,
+      "ref": "evidence/acceptance-cb3d179-20261124/project-check.txt"
+    },
+    {
+      "name": "候选工作台固定用例",
+      "passed": 24,
+      "total": 24,
+      "ref": "evidence/acceptance-cb3d179-20261124/workbench.txt"
+    },
+    {
+      "name": "独立箱数边界回归",
+      "passed": 4,
+      "total": 4,
+      "ref": "evidence/acceptance-cb3d179-20261124/numeric.txt"
+    }
+  ],
+  "retrospective": {
+    "本次遗漏了什么": "六项 Edge 浏览器或端到端场景未取得同层证据。旧版渲染复现采用原固定源码和同一离线断言，补录目的国对照通过正常本机 HTTP 接口。真实千问、补问至审批及实际下载继续延续。",
+    "下次应增加哪些测试": "开测先记录 Edge 可见的工作台 URL、标题和页面版本。按同一案例逐次记录空目的国、已批准、补填后的无审核、A/B 换表和拒绝刷新，关联页面、审核编号和持久记录。",
+    "怎样验证升级有效": "用相同合成输入复验 06f2d28 与 cb3d179，核对四处界面状态与服务端版本，证明旧缺陷出现、候选通过及拒绝同版重试无新增决定，再核对 102 项固定和边界回归。"
+  }
+}
