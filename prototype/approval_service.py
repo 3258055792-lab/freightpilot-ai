@@ -249,8 +249,10 @@ class ApprovalStore:
     @staticmethod
     def _draft_input(payload, *, require_dimensions=False):
         fields = {"weight_kg", "volume_cbm"}
-        values = _check_keys(payload, {"product_name"}, fields)
+        values = _check_keys(payload, {"product_name"}, fields | {"destination_country"})
         result = {"product_name": unicodedata.normalize("NFC", require_string(values["product_name"], "product_name", 2, 80))}
+        if "destination_country" in values:
+            result["destination_country"] = require_string(values["destination_country"], "destination_country", 1, 80)
         if require_dimensions or fields.intersection(values):
             for field in sorted(fields):
                 value = values.get(field)
@@ -282,6 +284,8 @@ class ApprovalStore:
                 source_version = hashlib.sha256(raw).hexdigest()
                 connection.execute("INSERT OR IGNORE INTO source_versions VALUES(?,?,?,?,?,?)",
                                    (principal.tenant_id, ref, source_version, raw, source_version, now_utc()))
+            if ref in ("A", "B") and body["input"].get("destination_country") not in (None, "巴西"):
+                raise ServiceError(400, "INVALID_DESTINATION", "巴西海运样例不适用于所填目的国")
             current = connection.execute("SELECT input_json FROM case_drafts WHERE tenant_id=? AND case_id=? AND version=?", (*key, version)).fetchone()
             if (ref, source_version) == (case["source_ref"], case["source_version"]) and current and current[0] == draft and expected in (version, version - 1):
                 connection.commit()

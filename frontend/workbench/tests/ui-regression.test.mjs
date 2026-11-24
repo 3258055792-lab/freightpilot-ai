@@ -150,3 +150,14 @@ test('selecting the Brazil estimate binds the current version and exposes the se
  c.serverDraft.approval={case:{id:c.id,version:3},scope:'internal_quote_review',state:'REJECTED'};
  assert.throws(()=>run('selectChannel(current(),baseChannel)'));
 });
+
+test('home, library, detail and export agree on the server revision and unresolved destination',()=>{
+ const {context}=harness(), c=context.getCase();
+ c.serverDraft={rate_source:'A',version:12,input:{product_name:'收纳盒',weight_kg:'400',volume_cbm:'3'},
+  quote:{base_freight_usd:'2460.00',calculation:'3 × 820 = 2460 USD',source:{},unresolved:[]},
+  approval:{case:{id:c.id,version:12},scope:'internal_quote_review',state:'REJECTED',approval_id:'review-12'}};
+ for(const expression of ['overview()', 'caseList()', 'caseDetail()', 'backendReport(current())']){
+  const output=vm.runInContext(expression,context);
+  for(const value of ['v12','已拒绝','目的地待人工确认','2460 USD'])assert.ok(output.includes(value),expression+' '+value);
+ }
+});

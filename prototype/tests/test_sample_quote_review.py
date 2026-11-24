@@ -55,3 +55,41 @@ class SampleQuoteReviewTest(unittest.TestCase):
             self.assertEqual([row["decision"] for row in history], ["APPROVE","APPROVE","REJECT"])
             self.assertEqual({row["trial_state"] for row in history}, {"CONSUMED"})
             self.assertEqual(len({row[key] for row in history for key in ("trial_id","review_id")}), 6)
+
+    def test_destination_confirmation_revises_approved_snapshot(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            store = ApprovalStore(Path(tmp) / "cases.db")
+            store.seed_demo()
+            case = str(uuid.uuid4())
+            values = {"product_name": "塑料收纳盒", "volume_cbm": "3", "weight_kg": "400"}
+
+            def call(action, **body):
+                return dispatch(store, action, case, body)
+
+            def decision(draft):
+                approval = draft["approval"]
+                return dict(id=approval["approval_id"], version=draft["version"],
+                            hash=approval["snapshot_hash"], revision=approval["revision"])
+
+            def reviewed(version):
+                request = dict(version=version, input=values)
+                trial = call("request", **request)
+                approved = call("approve", **decision(trial))
+                quote = call("calculate", **decision(approved))
+                self.assertEqual(quote["quote"]["base_freight_usd"], "2460.00")
+                return call("review", **request)
+
+            original = call("save", input=values, expected_version=1, rate_source="A")
+            old = reviewed(original["version"])
+            call("approve", **decision(old))
+            values["destination_country"] = "巴西"
+            updated = call("save", input=values, expected_version=old["version"], rate_source="A")
+            self.assertEqual(updated["version"], old["version"] + 1)
+            self.assertIsNone(updated["quote"])
+            self.assertEqual(updated["approval"]["state"], "INVALIDATED")
+            with self.assertRaises(ServiceError):
+                call("approve", **decision(old))
+            new = reviewed(updated["version"])
+            self.assertEqual(new["approval"]["snapshot"]["input"]["destination_country"], "巴西")
+            self.assertNotEqual(decision(old)["id"], decision(new)["id"])
+            self.assertEqual(new["approval"]["state"], "PENDING")
