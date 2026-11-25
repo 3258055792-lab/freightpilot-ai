@@ -10,6 +10,7 @@ import ipaddress
 import json
 import os
 import re
+import re
 import sqlite3
 import sys
 import unicodedata
@@ -131,6 +132,12 @@ class ApprovalStore:
                     FOREIGN KEY (tenant_id, source_ref, source_version)
                       REFERENCES source_versions(tenant_id, source_ref, source_version)
                 );
+                CREATE TABLE IF NOT EXISTS case_drafts (
+                    tenant_id TEXT NOT NULL, case_id TEXT NOT NULL, version INTEGER NOT NULL,
+                    input_json TEXT NOT NULL,
+                    PRIMARY KEY (tenant_id, case_id, version),
+                    FOREIGN KEY (tenant_id, case_id) REFERENCES cases(tenant_id, case_id)
+                );
                 CREATE TABLE IF NOT EXISTS approvals (
                     approval_id TEXT PRIMARY KEY,
                     tenant_id TEXT NOT NULL,
@@ -241,6 +248,48 @@ class ApprovalStore:
             connection.close()
 
     @staticmethod
+    def _draft_input(payload, *, require_dimensions=False):
+        fields = {"weight_kg", "volume_cbm"}
+        values = _check_keys(payload, {"product_name"}, fields)
+        result = {"product_name": unicodedata.normalize("NFC", require_string(values["product_name"], "product_name", 2, 80))}
+        if require_dimensions or fields.intersection(values):
+            for field in sorted(fields):
+                value = values.get(field)
+                if not isinstance(value, str) or not re.fullmatch(r"[0-9]{1,10}(?:[.][0-9]{1,6})?", value) or not value.strip("0."):
+                    raise ServiceError(400, "INVALID_REQUEST", f"{field} must be a positive decimal string")
+                result[field] = value
+        return result
+
+    def revise_case(self, principal, case_id, payload):
+        self._require_role(principal, {"human"})
+        body = _check_keys(payload, {"expected_version", "input"})
+        expected = require_positive_int(body["expected_version"], "expected_version")
+        draft = canonical_json(self._draft_input(body["input"], require_dimensions=True))
+        key = (principal.tenant_id, case_id)
+        connection = _connect(self.database)
+        try:
+            connection.execute("BEGIN IMMEDIATE")
+            case = connection.execute("SELECT version FROM cases WHERE tenant_id=? AND case_id=?", key).fetchone()
+            if not case:
+                raise ServiceError(404, "CASE_NOT_FOUND", "case not found")
+            version = case["version"]
+            current = connection.execute("SELECT input_json FROM case_drafts WHERE tenant_id=? AND case_id=? AND version=?", (*key, version)).fetchone()
+            if current and current[0] == draft and expected in (version, version - 1):
+                connection.commit()
+                return {"version": version, "changed": False}
+            if version != expected:
+                raise ServiceError(409, "CASE_VERSION_STALE", "reload the current case version")
+            version += 1
+            connection.execute("INSERT INTO case_drafts VALUES(?,?,?,?)", (*key, version, draft))
+            connection.execute("UPDATE cases SET version=? WHERE tenant_id=? AND case_id=?", (version, *key))
+            connection.execute("UPDATE approvals SET state='INVALIDATED',revision=revision+1,updated_at=? WHERE tenant_id=? AND case_id=? AND state IN ('PENDING','APPROVED')", (now_utc(), *key))
+            self._audit(connection, principal, "case", case_id, "DRAFT_REVISED", {"version": version})
+            connection.commit()
+            return {"version": version, "changed": True}
+        finally:
+            connection.close()
+
+    @staticmethod
     def _normalize_create(payload: Any) -> dict[str, Any]:
         payload = _check_keys(
             payload,
@@ -257,15 +306,13 @@ class ApprovalStore:
         source_version = require_string(payload["source_version"], "source_version", 1, 64)
         if source_version.lower() == "latest":
             raise ServiceError(400, "IMMUTABLE_SOURCE_REQUIRED", "source_version must be immutable, not latest")
-        values = _check_keys(payload["input"], {"product_name"})
-        product = unicodedata.normalize("NFC", require_string(values["product_name"], "input.product_name", 2, 80))
         return {
             "idempotency_key": key,
             "case": {"id": case_id, "version": case_version},
             "scope": scope,
             "source_ref": source_ref,
             "source_version": source_version,
-            "input": {"product_name": product},
+            "input": ApprovalStore._draft_input(payload["input"]),
         }
 
     def create_approval(self, principal: Principal, payload: Any) -> dict[str, Any]:
@@ -303,6 +350,12 @@ class ApprovalStore:
                 raise ServiceError(404, "CASE_NOT_FOUND", "case was not found in this tenant")
             if case["version"] != request["case"]["version"]:
                 raise ServiceError(409, "CASE_VERSION_STALE", "case version is no longer current")
+            current = connection.execute("SELECT input_json FROM case_drafts WHERE tenant_id=? AND case_id=? AND version=?",
+                                         (principal.tenant_id, case["case_id"], case["version"])).fetchone()
+            if current and current[0] != canonical_json(request["input"]):
+                raise ServiceError(409, "DRAFT_INPUT_MISMATCH", "approval inputs differ from the saved draft")
+            if not current and "weight_kg" in request["input"]:
+                raise ServiceError(409, "DRAFT_REQUIRED", "save the case draft before requesting approval")
             if (case["source_ref"], case["source_version"]) != (request["source_ref"], request["source_version"]):
                 raise ServiceError(409, "SOURCE_NOT_SELECTED", "source does not match the case's current pinned source")
             source = connection.execute(
@@ -719,6 +772,9 @@ def make_handler(store: ApprovalStore, identities: dict[str, Principal]):
                     self._send(200, {"status": "ok", "environment": "synthetic-local", "production_authority": False})
                     return
                 principal = self._principal()
+                if method == "POST" and len(parts) == 3 and parts[0] == "cases" and parts[2] == "draft":
+                    self._send(200, store.revise_case(principal, parts[1], self._body()))
+                    return
                 if method == "POST" and parts == ["approvals"]:
                     result = store.create_approval(principal, self._body())
                     self._send(200 if result["replayed"] else 201, result)
