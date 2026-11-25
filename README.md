@@ -21,6 +21,7 @@ prototype/
   import_quotes.py         # 仅待审核报价导入
   import_workbook.py       # 原始工作簿存档与来源校验
   create_demo.py           # 从零生成合成测试数据
+  approval_service.py      # loopback-only SQLite 合成审批后端
   tests/                  # Python 回归测试
   harness/                # Harness 适配器及 Node 测试
   source/, output/        # 本机生成，不提交 Git
@@ -66,4 +67,4 @@ printf '%s' '{"product_name":"塑料收纳盒"}' | .venv/bin/python prototype/fr
 ## 后续 MVP
 
 询价 → 报价草稿 → 独立人工审批和客户确认 → 订单 → 模拟订舱/运输 → 延误 → 通知草稿 → 归档。
-订单、工作流调度、持久化审批、追踪与前端尚未实现。计划详见 [协作说明](docs/TEAM.md) 与 [迁移记录](docs/MIGRATION.md)。
+订单、工作流调度、追踪与前端尚未实现。FP-02 另有一个只用于本机合成数据的持久审批 API 骨架；它不是生产审批服务，也不接入报价 UI。运行方式和限制见 [本地审批后端说明](docs/FP-02-backend-minimum.md)。计划详见 [协作说明](docs/TEAM.md) 与 [迁移记录](docs/MIGRATION.md)。
