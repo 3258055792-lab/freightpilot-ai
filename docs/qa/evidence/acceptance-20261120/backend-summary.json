@@ -1,0 +1,914 @@
+{
+  "commit": "3e5b3416d8576dd30bcaba557c1a95cd2432ece6",
+  "service_sha256": "ba47305156ffdcac79713709249c8d8bad70d8b067b4e0b29cb7f54f577d04b6",
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/health",
+      "role": null,
+      "body": null,
+      "status": 200,
+      "response": {
+        "environment": "synthetic-local",
+        "production_authority": false,
+        "status": "ok"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/approvals",
+      "role": "MODEL",
+      "body": {
+        "idempotency_key": "independent-role-0001",
+        "case": {
+          "id": "case-synthetic-001",
+          "version": 1
+        },
+        "scope": "classification_trial",
+        "source_ref": "synthetic-source-1",
+        "source_version": "v1",
+        "input": {
+          "product_name": "合成塑料收纳盒"
+        }
+      },
+      "status": 201,
+      "response": {
+        "replayed": false,
+        "approval": {
+          "approval_id": "approval-3b22003dc1094180b36a3508f80825b3",
+          "revision": 1,
+          "state": "PENDING",
+          "case": {
+            "id": "case-synthetic-001",
+            "version": 1
+          },
+          "source": {
+            "bytes_sha256": "620dcf30f1c3ca4ea60f506f65dbba90231659f83e36237e8ed103dcd2000d3e",
+            "ref": "synthetic-source-1",
+            "version": "v1"
+          },
+          "snapshot_hash": "4445af6444fed7d0e1e41508dedc8193e6755248415ba835aa27923bc3ddd8e9",
+          "decision_record": null
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/approvals/approval-3b22003dc1094180b36a3508f80825b3",
+      "role": null,
+      "body": null,
+      "status": 401,
+      "response": {
+        "error_code": "UNAUTHENTICATED"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/approvals/approval-3b22003dc1094180b36a3508f80825b3/decisions",
+      "role": "MODEL",
+      "body": {
+        "idempotency_key": "decision-approval-3b22003dc1094180b36a3508f80825b3",
+        "expected_revision": 1,
+        "snapshot_hash": "4445af6444fed7d0e1e41508dedc8193e6755248415ba835aa27923bc3ddd8e9",
+        "decision": "APPROVE",
+        "reason": "独立合成验收"
+      },
+      "status": 403,
+      "response": {
+        "error_code": "FORBIDDEN"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/approvals/approval-3b22003dc1094180b36a3508f80825b3/decisions",
+      "role": "VIEWER",
+      "body": {
+        "idempotency_key": "decision-approval-3b22003dc1094180b36a3508f80825b3",
+        "expected_revision": 1,
+        "snapshot_hash": "4445af6444fed7d0e1e41508dedc8193e6755248415ba835aa27923bc3ddd8e9",
+        "decision": "APPROVE",
+        "reason": "独立合成验收"
+      },
+      "status": 403,
+      "response": {
+        "error_code": "FORBIDDEN"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/approvals/approval-3b22003dc1094180b36a3508f80825b3/decisions",
+      "role": "HUMAN",
+      "body": {
+        "idempotency_key": "decision-approval-3b22003dc1094180b36a3508f80825b3",
+        "expected_revision": 1,
+        "snapshot_hash": "4445af6444fed7d0e1e41508dedc8193e6755248415ba835aa27923bc3ddd8e9",
+        "decision": "APPROVE",
+        "reason": "独立合成验收",
+        "actor_id": "human-test",
+        "confirmed": true
+      },
+      "status": 400,
+      "response": {
+        "error_code": "INVALID_REQUEST"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/approvals/approval-3b22003dc1094180b36a3508f80825b3",
+      "role": "VIEWER",
+      "body": null,
+      "status": 200,
+      "response": {
+        "approval_id": "approval-3b22003dc1094180b36a3508f80825b3",
+        "revision": 1,
+        "state": "PENDING",
+        "case": {
+          "id": "case-synthetic-001",
+          "version": 1
+        },
+        "source": {
+          "bytes_sha256": "620dcf30f1c3ca4ea60f506f65dbba90231659f83e36237e8ed103dcd2000d3e",
+          "ref": "synthetic-source-1",
+          "version": "v1"
+        },
+        "snapshot_hash": "4445af6444fed7d0e1e41508dedc8193e6755248415ba835aa27923bc3ddd8e9",
+        "decision_record": null
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/approvals",
+      "role": "MODEL",
+      "body": {
+        "idempotency_key": "independent-role-0001",
+        "case": {
+          "id": "case-synthetic-001",
+          "version": 1
+        },
+        "scope": "classification_trial",
+        "source_ref": "synthetic-source-1",
+        "source_version": "v1",
+        "input": {
+          "product_name": "合成塑料收纳盒"
+        }
+      },
+      "status": 200,
+      "response": {
+        "replayed": true,
+        "approval": {
+          "approval_id": "approval-3b22003dc1094180b36a3508f80825b3",
+          "revision": 1,
+          "state": "PENDING",
+          "case": {
+            "id": "case-synthetic-001",
+            "version": 1
+          },
+          "source": {
+            "bytes_sha256": "620dcf30f1c3ca4ea60f506f65dbba90231659f83e36237e8ed103dcd2000d3e",
+            "ref": "synthetic-source-1",
+            "version": "v1"
+          },
+          "snapshot_hash": "4445af6444fed7d0e1e41508dedc8193e6755248415ba835aa27923bc3ddd8e9",
+          "decision_record": null
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/approvals",
+      "role": "MODEL",
+      "body": {
+        "idempotency_key": "independent-role-0001",
+        "case": {
+          "id": "case-synthetic-001",
+          "version": 1
+        },
+        "scope": "classification_trial",
+        "source_ref": "synthetic-source-1",
+        "source_version": "v1",
+        "input": {
+          "product_name": "另一合成商品"
+        }
+      },
+      "status": 409,
+      "response": {
+        "error_code": "IDEMPOTENCY_KEY_REUSED"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/approvals/approval-3b22003dc1094180b36a3508f80825b3/decisions",
+      "role": "HUMAN",
+      "body": {
+        "idempotency_key": "decision-approval-3b22003dc1094180b36a3508f80825b3",
+        "expected_revision": 1,
+        "snapshot_hash": "4445af6444fed7d0e1e41508dedc8193e6755248415ba835aa27923bc3ddd8e9",
+        "decision": "APPROVE",
+        "reason": "独立合成验收"
+      },
+      "status": 200,
+      "response": {
+        "replayed": false,
+        "approval": {
+          "approval_id": "approval-3b22003dc1094180b36a3508f80825b3",
+          "revision": 2,
+          "state": "APPROVED",
+          "case": {
+            "id": "case-synthetic-001",
+            "version": 1
+          },
+          "source": {
+            "bytes_sha256": "620dcf30f1c3ca4ea60f506f65dbba90231659f83e36237e8ed103dcd2000d3e",
+            "ref": "synthetic-source-1",
+            "version": "v1"
+          },
+          "snapshot_hash": "4445af6444fed7d0e1e41508dedc8193e6755248415ba835aa27923bc3ddd8e9",
+          "decision_record": {
+            "actor_id": "human-test",
+            "actor_type": "human",
+            "created_at": "2026-11-20T14:36:03.457Z",
+            "decision": "APPROVE",
+            "decision_id": "decision-dc5c5028bbf84f8290d97e27782a514c",
+            "reason": "独立合成验收",
+            "snapshot_hash": "4445af6444fed7d0e1e41508dedc8193e6755248415ba835aa27923bc3ddd8e9"
+          }
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/operations",
+      "role": "EXECUTOR",
+      "body": {
+        "operation_id": "independent-race-operation-0002",
+        "approval_id": "approval-3b22003dc1094180b36a3508f80825b3",
+        "expected_approval_revision": 2,
+        "case": {
+          "id": "case-synthetic-001",
+          "version": 1
+        },
+        "snapshot_hash": "4445af6444fed7d0e1e41508dedc8193e6755248415ba835aa27923bc3ddd8e9",
+        "action": "simulate_classification_trial"
+      },
+      "status": 200,
+      "response": {
+        "replayed": false,
+        "operation": {
+          "approval_id": "approval-3b22003dc1094180b36a3508f80825b3",
+          "operation_id": "independent-race-operation-0002",
+          "request_digest": "6a83c5da94675fd5a447cf45fccebccaad1f65fb7572f4ba8f87e39bfcaa909d",
+          "status": "SUCCEEDED"
+        },
+        "effect": {
+          "snapshot_hash": "4445af6444fed7d0e1e41508dedc8193e6755248415ba835aa27923bc3ddd8e9",
+          "operation_id": "independent-race-operation-0002",
+          "effect_id": "effect-93c346b1287e4d22bccf27cacd967378",
+          "usable_for_quote": false,
+          "external_side_effect": false
+        },
+        "result": {
+          "operation_id": "independent-race-operation-0002",
+          "status": "SIMULATED",
+          "result_id": "result-78b978a107aa4009a21112ea5cf22e43",
+          "result_hash": "f6028c3d49618d24c8e6fdc49973aee184345d4155b85a391e04034831b47ac6",
+          "usable_for_quote": false,
+          "total_payable": null
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/operations",
+      "role": "EXECUTOR",
+      "body": {
+        "operation_id": "independent-race-operation-0001",
+        "approval_id": "approval-3b22003dc1094180b36a3508f80825b3",
+        "expected_approval_revision": 2,
+        "case": {
+          "id": "case-synthetic-001",
+          "version": 1
+        },
+        "snapshot_hash": "4445af6444fed7d0e1e41508dedc8193e6755248415ba835aa27923bc3ddd8e9",
+        "action": "simulate_classification_trial"
+      },
+      "status": 409,
+      "response": {
+        "error_code": "APPROVAL_NOT_APPROVED"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/health",
+      "role": null,
+      "body": null,
+      "status": 200,
+      "response": {
+        "environment": "synthetic-local",
+        "production_authority": false,
+        "status": "ok"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/operations",
+      "role": "EXECUTOR",
+      "body": {
+        "operation_id": "independent-race-operation-0002",
+        "approval_id": "approval-3b22003dc1094180b36a3508f80825b3",
+        "expected_approval_revision": 2,
+        "case": {
+          "id": "case-synthetic-001",
+          "version": 1
+        },
+        "snapshot_hash": "4445af6444fed7d0e1e41508dedc8193e6755248415ba835aa27923bc3ddd8e9",
+        "action": "simulate_classification_trial"
+      },
+      "status": 200,
+      "response": {
+        "replayed": true,
+        "operation": {
+          "approval_id": "approval-3b22003dc1094180b36a3508f80825b3",
+          "operation_id": "independent-race-operation-0002",
+          "request_digest": "6a83c5da94675fd5a447cf45fccebccaad1f65fb7572f4ba8f87e39bfcaa909d",
+          "status": "SUCCEEDED"
+        },
+        "effect": {
+          "snapshot_hash": "4445af6444fed7d0e1e41508dedc8193e6755248415ba835aa27923bc3ddd8e9",
+          "operation_id": "independent-race-operation-0002",
+          "effect_id": "effect-93c346b1287e4d22bccf27cacd967378",
+          "usable_for_quote": false,
+          "external_side_effect": false
+        },
+        "result": {
+          "operation_id": "independent-race-operation-0002",
+          "status": "SIMULATED",
+          "result_id": "result-78b978a107aa4009a21112ea5cf22e43",
+          "result_hash": "f6028c3d49618d24c8e6fdc49973aee184345d4155b85a391e04034831b47ac6",
+          "usable_for_quote": false,
+          "total_payable": null
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/operations/independent-race-operation-0002",
+      "role": "VIEWER",
+      "body": null,
+      "status": 200,
+      "response": {
+        "operation": {
+          "approval_id": "approval-3b22003dc1094180b36a3508f80825b3",
+          "operation_id": "independent-race-operation-0002",
+          "request_digest": "6a83c5da94675fd5a447cf45fccebccaad1f65fb7572f4ba8f87e39bfcaa909d",
+          "status": "SUCCEEDED"
+        },
+        "effect": {
+          "snapshot_hash": "4445af6444fed7d0e1e41508dedc8193e6755248415ba835aa27923bc3ddd8e9",
+          "operation_id": "independent-race-operation-0002",
+          "effect_id": "effect-93c346b1287e4d22bccf27cacd967378",
+          "usable_for_quote": false,
+          "external_side_effect": false
+        },
+        "result": {
+          "operation_id": "independent-race-operation-0002",
+          "status": "SIMULATED",
+          "result_id": "result-78b978a107aa4009a21112ea5cf22e43",
+          "result_hash": "f6028c3d49618d24c8e6fdc49973aee184345d4155b85a391e04034831b47ac6",
+          "usable_for_quote": false,
+          "total_payable": null
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/effects/effect-93c346b1287e4d22bccf27cacd967378",
+      "role": "VIEWER",
+      "body": null,
+      "status": 200,
+      "response": {
+        "snapshot_hash": "4445af6444fed7d0e1e41508dedc8193e6755248415ba835aa27923bc3ddd8e9",
+        "operation_id": "independent-race-operation-0002",
+        "effect_id": "effect-93c346b1287e4d22bccf27cacd967378",
+        "usable_for_quote": false,
+        "external_side_effect": false
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/results/result-78b978a107aa4009a21112ea5cf22e43",
+      "role": "VIEWER",
+      "body": null,
+      "status": 200,
+      "response": {
+        "operation_id": "independent-race-operation-0002",
+        "status": "SIMULATED",
+        "result_id": "result-78b978a107aa4009a21112ea5cf22e43",
+        "result_hash": "f6028c3d49618d24c8e6fdc49973aee184345d4155b85a391e04034831b47ac6",
+        "usable_for_quote": false,
+        "total_payable": null
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/audit/approval/approval-3b22003dc1094180b36a3508f80825b3",
+      "role": "VIEWER",
+      "body": null,
+      "status": 200,
+      "response": {
+        "events": [
+          {
+            "event_type": "APPROVAL_CREATED",
+            "actor_principal": "model-test",
+            "payload": {
+              "create_digest": "d9ef46b0bfc0217a16c7c2536124a50339740b9cf52c2b226822762c56656ef1",
+              "snapshot_hash": "4445af6444fed7d0e1e41508dedc8193e6755248415ba835aa27923bc3ddd8e9"
+            }
+          },
+          {
+            "event_type": "HUMAN_DECISION_RECORDED",
+            "actor_principal": "human-test",
+            "payload": {
+              "decision": "APPROVE",
+              "decision_id": "decision-dc5c5028bbf84f8290d97e27782a514c",
+              "snapshot_hash": "4445af6444fed7d0e1e41508dedc8193e6755248415ba835aa27923bc3ddd8e9"
+            }
+          },
+          {
+            "event_type": "APPROVAL_CONSUMED",
+            "actor_principal": "executor-test",
+            "payload": {
+              "operation_id": "independent-race-operation-0002"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/operations",
+      "role": "EXECUTOR",
+      "body": {
+        "operation_id": "independent-race-operation-0002",
+        "approval_id": "approval-3b22003dc1094180b36a3508f80825b3",
+        "expected_approval_revision": 2,
+        "case": {
+          "id": "case-synthetic-001",
+          "version": 1
+        },
+        "snapshot_hash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+        "action": "simulate_classification_trial"
+      },
+      "status": 409,
+      "response": {
+        "error_code": "OPERATION_ID_REUSED"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/approvals",
+      "role": "MODEL",
+      "body": {
+        "idempotency_key": "independent-reject-0001",
+        "case": {
+          "id": "case-synthetic-001",
+          "version": 1
+        },
+        "scope": "classification_trial",
+        "source_ref": "synthetic-source-1",
+        "source_version": "v1",
+        "input": {
+          "product_name": "合成塑料收纳盒"
+        }
+      },
+      "status": 201,
+      "response": {
+        "replayed": false,
+        "approval": {
+          "approval_id": "approval-6b53c7771d244ad0a49f4e11d0b2aab6",
+          "revision": 1,
+          "state": "PENDING",
+          "case": {
+            "id": "case-synthetic-001",
+            "version": 1
+          },
+          "source": {
+            "bytes_sha256": "620dcf30f1c3ca4ea60f506f65dbba90231659f83e36237e8ed103dcd2000d3e",
+            "ref": "synthetic-source-1",
+            "version": "v1"
+          },
+          "snapshot_hash": "4445af6444fed7d0e1e41508dedc8193e6755248415ba835aa27923bc3ddd8e9",
+          "decision_record": null
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/approvals/approval-6b53c7771d244ad0a49f4e11d0b2aab6/decisions",
+      "role": "HUMAN",
+      "body": {
+        "idempotency_key": "decision-approval-6b53c7771d244ad0a49f4e11d0b2aab6",
+        "expected_revision": 1,
+        "snapshot_hash": "4445af6444fed7d0e1e41508dedc8193e6755248415ba835aa27923bc3ddd8e9",
+        "decision": "REJECT",
+        "reason": "独立合成验收"
+      },
+      "status": 200,
+      "response": {
+        "replayed": false,
+        "approval": {
+          "approval_id": "approval-6b53c7771d244ad0a49f4e11d0b2aab6",
+          "revision": 2,
+          "state": "REJECTED",
+          "case": {
+            "id": "case-synthetic-001",
+            "version": 1
+          },
+          "source": {
+            "bytes_sha256": "620dcf30f1c3ca4ea60f506f65dbba90231659f83e36237e8ed103dcd2000d3e",
+            "ref": "synthetic-source-1",
+            "version": "v1"
+          },
+          "snapshot_hash": "4445af6444fed7d0e1e41508dedc8193e6755248415ba835aa27923bc3ddd8e9",
+          "decision_record": {
+            "actor_id": "human-test",
+            "actor_type": "human",
+            "created_at": "2026-11-20T14:36:05.446Z",
+            "decision": "REJECT",
+            "decision_id": "decision-e297c12808824014b423f6c667698385",
+            "reason": "独立合成验收",
+            "snapshot_hash": "4445af6444fed7d0e1e41508dedc8193e6755248415ba835aa27923bc3ddd8e9"
+          }
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/health",
+      "role": null,
+      "body": null,
+      "status": 200,
+      "response": {
+        "environment": "synthetic-local",
+        "production_authority": false,
+        "status": "ok"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/approvals",
+      "role": "MODEL",
+      "body": {
+        "idempotency_key": "independent-reject-0001",
+        "case": {
+          "id": "case-synthetic-001",
+          "version": 1
+        },
+        "scope": "classification_trial",
+        "source_ref": "synthetic-source-1",
+        "source_version": "v1",
+        "input": {
+          "product_name": "合成塑料收纳盒"
+        }
+      },
+      "status": 200,
+      "response": {
+        "replayed": true,
+        "approval": {
+          "approval_id": "approval-6b53c7771d244ad0a49f4e11d0b2aab6",
+          "revision": 2,
+          "state": "REJECTED",
+          "case": {
+            "id": "case-synthetic-001",
+            "version": 1
+          },
+          "source": {
+            "bytes_sha256": "620dcf30f1c3ca4ea60f506f65dbba90231659f83e36237e8ed103dcd2000d3e",
+            "ref": "synthetic-source-1",
+            "version": "v1"
+          },
+          "snapshot_hash": "4445af6444fed7d0e1e41508dedc8193e6755248415ba835aa27923bc3ddd8e9",
+          "decision_record": {
+            "actor_id": "human-test",
+            "actor_type": "human",
+            "created_at": "2026-11-20T14:36:05.446Z",
+            "decision": "REJECT",
+            "decision_id": "decision-e297c12808824014b423f6c667698385",
+            "reason": "独立合成验收",
+            "snapshot_hash": "4445af6444fed7d0e1e41508dedc8193e6755248415ba835aa27923bc3ddd8e9"
+          }
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/operations",
+      "role": "EXECUTOR",
+      "body": {
+        "operation_id": "independent-rejected-operation-old",
+        "approval_id": "approval-6b53c7771d244ad0a49f4e11d0b2aab6",
+        "expected_approval_revision": 2,
+        "case": {
+          "id": "case-synthetic-001",
+          "version": 1
+        },
+        "snapshot_hash": "4445af6444fed7d0e1e41508dedc8193e6755248415ba835aa27923bc3ddd8e9",
+        "action": "simulate_classification_trial"
+      },
+      "status": 409,
+      "response": {
+        "error_code": "APPROVAL_NOT_APPROVED"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/operations",
+      "role": "EXECUTOR",
+      "body": {
+        "operation_id": "independent-rejected-operation-new",
+        "approval_id": "approval-6b53c7771d244ad0a49f4e11d0b2aab6",
+        "expected_approval_revision": 2,
+        "case": {
+          "id": "case-synthetic-001",
+          "version": 1
+        },
+        "snapshot_hash": "4445af6444fed7d0e1e41508dedc8193e6755248415ba835aa27923bc3ddd8e9",
+        "action": "simulate_classification_trial"
+      },
+      "status": 409,
+      "response": {
+        "error_code": "APPROVAL_NOT_APPROVED"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/approvals/approval-6b53c7771d244ad0a49f4e11d0b2aab6/decisions",
+      "role": "HUMAN",
+      "body": {
+        "idempotency_key": "decision-approval-6b53c7771d244ad0a49f4e11d0b2aab6",
+        "expected_revision": 2,
+        "snapshot_hash": "4445af6444fed7d0e1e41508dedc8193e6755248415ba835aa27923bc3ddd8e9",
+        "decision": "APPROVE",
+        "reason": "独立合成验收"
+      },
+      "status": 409,
+      "response": {
+        "error_code": "IDEMPOTENCY_KEY_REUSED"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/approvals",
+      "role": "MODEL",
+      "body": {
+        "idempotency_key": "independent-stale-0001",
+        "case": {
+          "id": "case-synthetic-001",
+          "version": 1
+        },
+        "scope": "classification_trial",
+        "source_ref": "synthetic-source-1",
+        "source_version": "v1",
+        "input": {
+          "product_name": "合成塑料收纳盒"
+        }
+      },
+      "status": 201,
+      "response": {
+        "replayed": false,
+        "approval": {
+          "approval_id": "approval-887ebfffb57447f988d7f0611698975d",
+          "revision": 1,
+          "state": "PENDING",
+          "case": {
+            "id": "case-synthetic-001",
+            "version": 1
+          },
+          "source": {
+            "bytes_sha256": "620dcf30f1c3ca4ea60f506f65dbba90231659f83e36237e8ed103dcd2000d3e",
+            "ref": "synthetic-source-1",
+            "version": "v1"
+          },
+          "snapshot_hash": "4445af6444fed7d0e1e41508dedc8193e6755248415ba835aa27923bc3ddd8e9",
+          "decision_record": null
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/approvals/approval-887ebfffb57447f988d7f0611698975d/decisions",
+      "role": "HUMAN",
+      "body": {
+        "idempotency_key": "decision-approval-887ebfffb57447f988d7f0611698975d",
+        "expected_revision": 1,
+        "snapshot_hash": "4445af6444fed7d0e1e41508dedc8193e6755248415ba835aa27923bc3ddd8e9",
+        "decision": "APPROVE",
+        "reason": "独立合成验收"
+      },
+      "status": 200,
+      "response": {
+        "replayed": false,
+        "approval": {
+          "approval_id": "approval-887ebfffb57447f988d7f0611698975d",
+          "revision": 2,
+          "state": "APPROVED",
+          "case": {
+            "id": "case-synthetic-001",
+            "version": 1
+          },
+          "source": {
+            "bytes_sha256": "620dcf30f1c3ca4ea60f506f65dbba90231659f83e36237e8ed103dcd2000d3e",
+            "ref": "synthetic-source-1",
+            "version": "v1"
+          },
+          "snapshot_hash": "4445af6444fed7d0e1e41508dedc8193e6755248415ba835aa27923bc3ddd8e9",
+          "decision_record": {
+            "actor_id": "human-test",
+            "actor_type": "human",
+            "created_at": "2026-11-20T14:36:06.843Z",
+            "decision": "APPROVE",
+            "decision_id": "decision-f9457471c395426389937403ea2e4978",
+            "reason": "独立合成验收",
+            "snapshot_hash": "4445af6444fed7d0e1e41508dedc8193e6755248415ba835aa27923bc3ddd8e9"
+          }
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/health",
+      "role": null,
+      "body": null,
+      "status": 200,
+      "response": {
+        "environment": "synthetic-local",
+        "production_authority": false,
+        "status": "ok"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/operations",
+      "role": "EXECUTOR",
+      "body": {
+        "operation_id": "independent-stale-operation-first",
+        "approval_id": "approval-887ebfffb57447f988d7f0611698975d",
+        "expected_approval_revision": 2,
+        "case": {
+          "id": "case-synthetic-001",
+          "version": 1
+        },
+        "snapshot_hash": "4445af6444fed7d0e1e41508dedc8193e6755248415ba835aa27923bc3ddd8e9",
+        "action": "simulate_classification_trial"
+      },
+      "status": 409,
+      "response": {
+        "error_code": "APPROVAL_INVALIDATED"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/operations",
+      "role": "EXECUTOR",
+      "body": {
+        "operation_id": "independent-stale-operation-retry",
+        "approval_id": "approval-887ebfffb57447f988d7f0611698975d",
+        "expected_approval_revision": 2,
+        "case": {
+          "id": "case-synthetic-001",
+          "version": 1
+        },
+        "snapshot_hash": "4445af6444fed7d0e1e41508dedc8193e6755248415ba835aa27923bc3ddd8e9",
+        "action": "simulate_classification_trial"
+      },
+      "status": 409,
+      "response": {
+        "error_code": "APPROVAL_NOT_APPROVED"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/approvals/approval-887ebfffb57447f988d7f0611698975d",
+      "role": "VIEWER",
+      "body": null,
+      "status": 200,
+      "response": {
+        "approval_id": "approval-887ebfffb57447f988d7f0611698975d",
+        "revision": 3,
+        "state": "INVALIDATED",
+        "case": {
+          "id": "case-synthetic-001",
+          "version": 1
+        },
+        "source": {
+          "bytes_sha256": "620dcf30f1c3ca4ea60f506f65dbba90231659f83e36237e8ed103dcd2000d3e",
+          "ref": "synthetic-source-1",
+          "version": "v1"
+        },
+        "snapshot_hash": "4445af6444fed7d0e1e41508dedc8193e6755248415ba835aa27923bc3ddd8e9",
+        "decision_record": {
+          "actor_id": "human-test",
+          "actor_type": "human",
+          "created_at": "2026-11-20T14:36:06.843Z",
+          "decision": "APPROVE",
+          "decision_id": "decision-f9457471c395426389937403ea2e4978",
+          "reason": "独立合成验收",
+          "snapshot_hash": "4445af6444fed7d0e1e41508dedc8193e6755248415ba835aa27923bc3ddd8e9"
+        }
+      }
+    }
+  ],
+  "groups": [
+    {
+      "name": "角色与伪造字段",
+      "status": "PASS",
+      "details": {
+        "state": "PENDING",
+        "counts": {
+          "approvals": 1,
+          "decisions": 0,
+          "operations": 0,
+          "effects": 0,
+          "results": 0
+        }
+      }
+    },
+    {
+      "name": "创建重放与载荷冲突",
+      "status": "PASS",
+      "details": {
+        "approval_id": "approval-3b22003dc1094180b36a3508f80825b3",
+        "counts": {
+          "approvals": 1,
+          "decisions": 0,
+          "operations": 0,
+          "effects": 0,
+          "results": 0
+        }
+      }
+    },
+    {
+      "name": "不同操作并发与进程重启后的持久重放",
+      "status": "PASS",
+      "details": {
+        "winning_operation": "independent-race-operation-0002",
+        "result_hash": "f6028c3d49618d24c8e6fdc49973aee184345d4155b85a391e04034831b47ac6",
+        "counts": {
+          "approvals": 1,
+          "decisions": 1,
+          "operations": 1,
+          "effects": 1,
+          "results": 1
+        }
+      }
+    },
+    {
+      "name": "拒绝后真实进程重启与重试",
+      "status": "PASS",
+      "details": {
+        "approval_id": "approval-6b53c7771d244ad0a49f4e11d0b2aab6",
+        "state": "REJECTED",
+        "counts": {
+          "approvals": 2,
+          "decisions": 2,
+          "operations": 1,
+          "effects": 1,
+          "results": 1
+        }
+      }
+    },
+    {
+      "name": "来源和案例版本变更失效",
+      "status": "PASS",
+      "details": {
+        "approval_id": "approval-887ebfffb57447f988d7f0611698975d",
+        "state": "INVALIDATED",
+        "fixture_source_sha256": "e949fd81ac54b140abc622561f2a3ff70fcb7ee3da413bbfbf1d4deb93dc7fbc",
+        "fixture_method": "service stopped; isolated seed DB updated using known schema",
+        "counts": {
+          "approvals": 3,
+          "decisions": 3,
+          "operations": 1,
+          "effects": 1,
+          "results": 1
+        }
+      }
+    }
+  ],
+  "service_starts": 4,
+  "status": "PASS",
+  "service_stopped": true,
+  "http_observations": 32,
+  "upstream_tests": {
+    "tests_run": 10,
+    "passed": 10,
+    "exit_code": 0,
+    "resource_warnings": 4,
+    "warning_summary": "Existing suite leaves HTTPError responses to implicit cleanup"
+  },
+  "reuse_guard": {
+    "exit_code": 2,
+    "database_unchanged": true,
+    "summary_unchanged": true
+  },
+  "qa_script_sha256": "b661349718114323a92597d10c3cd98bdfdd0ab89ec822c7c08ae442de98188d"
+}

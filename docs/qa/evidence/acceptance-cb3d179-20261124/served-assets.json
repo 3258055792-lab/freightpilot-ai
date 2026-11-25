@@ -1,0 +1,27 @@
+﻿[
+    {
+        "asset":  "app.js",
+        "sha256":  "A88C500E732A3DB4CE2A8DC8C0F30057E5E51CEBA07AF0E4662D421B6E342808",
+        "matched":  true
+    },
+    {
+        "asset":  "core.js",
+        "sha256":  "21E0989585BAE4EBE697D4FEF9EC50C60378F65C76F6247845B3D1C2B3627654",
+        "matched":  true
+    },
+    {
+        "asset":  "inquiry-panel.js",
+        "sha256":  "0EED051B5F95D1E1EEF53EC0E93B182B2E53D588EF961B11EAA18730C6E09893",
+        "matched":  true
+    },
+    {
+        "asset":  "style.css",
+        "sha256":  "3C5184CF24C6B2F9E860F774B4E660DD9B137813B2EFA9E5B74E9F86DA2F0E2F",
+        "matched":  true
+    },
+    {
+        "asset":  "demo-rates.json",
+        "sha256":  "B88C43E080E9A6595CF8836BE75DE805BCD88D400F6C16E32F88E058BDA70951",
+        "matched":  true
+    }
+]

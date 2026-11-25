@@ -1,0 +1,186 @@
+{
+  "commit": "06f2d28190cba3e370f355d0ab975c0ca604a959",
+  "beforeCountry": [
+    "  - paragraph: 基础运费 3 CBM × 820 USD/CBM = 2460.00 USD · rate-A-v1.xlsx / E5",
+    "  - generic: 试算状态",
+    "  - generic: 未生成",
+    "  - textbox \"目的国 待补充\":"
+  ],
+  "aBefore": {
+    "radio": {
+      "checked": false,
+      "disabled": false
+    },
+    "lines": [
+      "  - paragraph: 服务端版本 2 · 塑料收纳盒 · 3 CBM · 400 kg",
+      "  - paragraph: 基础运费 3 CBM × 820 USD/CBM = 2460.00 USD · rate-A-v1.xlsx / E5",
+      "  - paragraph: 试算许可 · 已使用",
+      "  - generic: 基础运费已生成",
+      "  - generic: 内部草稿待送审",
+      "  - generic: 未下单",
+      "      - row \"巴西海运 基础运费 · 模拟 已试算 3 CBM × 820 USD/CBM = 2460.00 USD 内部草稿待送审 · 到门时效、派送及清关费用待核 选择巴西海运基础运费 选择基础运费 查看试算记录\":",
+      "          - generic: 内部草稿待送审 · 到门时效、派送及清关费用待核"
+    ]
+  },
+  "aSelected": {
+    "radio": {
+      "checked": true,
+      "disabled": false
+    },
+    "lines": [
+      "  - paragraph: 服务端版本 2 · 塑料收纳盒 · 3 CBM · 400 kg",
+      "  - paragraph: 基础运费 3 CBM × 820 USD/CBM = 2460.00 USD · rate-A-v1.xlsx / E5",
+      "  - paragraph: 试算许可 · 已使用",
+      "  - generic: 基础运费已生成",
+      "  - generic: 内部草稿待送审",
+      "  - generic: 未下单",
+      "      - row \"巴西海运 基础运费 · 模拟 已试算 3 CBM × 820 USD/CBM = 2460.00 USD 内部草稿待送审 · 到门时效、派送及清关费用待核 选择巴西海运基础运费 选择基础运费 查看试算记录\":",
+      "          - generic: 内部草稿待送审 · 到门时效、派送及清关费用待核"
+    ]
+  },
+  "aReload": {
+    "radio": {
+      "checked": true,
+      "disabled": false
+    },
+    "lines": [
+      "  - paragraph: 服务端版本 2 · 塑料收纳盒 · 3 CBM · 400 kg",
+      "  - paragraph: 基础运费 3 CBM × 820 USD/CBM = 2460.00 USD · rate-A-v1.xlsx / E5",
+      "  - paragraph: 试算许可 · 已使用",
+      "  - generic: 基础运费已生成",
+      "  - generic: 内部草稿待送审",
+      "  - generic: 未下单",
+      "      - row \"巴西海运 基础运费 · 模拟 已试算 3 CBM × 820 USD/CBM = 2460.00 USD 内部草稿待送审 · 到门时效、派送及清关费用待核 选择巴西海运基础运费 选择基础运费 查看试算记录\":",
+      "          - generic: 内部草稿待送审 · 到门时效、派送及清关费用待核"
+    ]
+  },
+  "aApproved": {
+    "radio": {
+      "checked": true,
+      "disabled": false
+    },
+    "lines": [
+      "  - paragraph: 服务端版本 2 · 塑料收纳盒 · 3 CBM · 400 kg",
+      "  - paragraph: 基础运费 3 CBM × 820 USD/CBM = 2460.00 USD · rate-A-v1.xlsx / E5",
+      "  - paragraph: 内部草稿审核 · 已批准",
+      "  - generic: 基础运费已生成",
+      "  - generic: 内部草稿已批准",
+      "  - generic: 未下单",
+      "      - row \"巴西海运 基础运费 · 模拟 已试算 3 CBM × 820 USD/CBM = 2460.00 USD 内部草稿已批准 · 到门时效、派送及清关费用待核 选择巴西海运基础运费 选择基础运费 查看试算记录\":",
+      "          - generic: 内部草稿已批准 · 到门时效、派送及清关费用待核"
+    ]
+  },
+  "bNew": {
+    "radio": null,
+    "lines": [
+      "  - paragraph: 服务端版本 3 · 塑料收纳盒 · 3 CBM · 400 kg",
+      "  - generic: 未下单"
+    ]
+  },
+  "bCalculated": {
+    "radio": {
+      "checked": false,
+      "disabled": false
+    },
+    "lines": [
+      "  - paragraph: 服务端版本 3 · 塑料收纳盒 · 3 CBM · 400 kg",
+      "  - paragraph: 基础运费 3 CBM × 760 USD/CBM = 2280.00 USD · rate-B-v1.xlsx / E5",
+      "  - paragraph: 试算许可 · 已使用",
+      "  - generic: 基础运费已生成",
+      "  - generic: 内部草稿待送审",
+      "  - generic: 未下单",
+      "      - row \"巴西海运 基础运费 · 模拟 已试算 3 CBM × 760 USD/CBM = 2280.00 USD 内部草稿待送审 · 到门时效、派送及清关费用待核 选择巴西海运基础运费 选择基础运费 查看试算记录\":",
+      "          - generic: 内部草稿待送审 · 到门时效、派送及清关费用待核"
+    ]
+  },
+  "bApproved": {
+    "radio": {
+      "checked": true,
+      "disabled": false
+    },
+    "lines": [
+      "  - paragraph: 服务端版本 3 · 塑料收纳盒 · 3 CBM · 400 kg",
+      "  - paragraph: 基础运费 3 CBM × 760 USD/CBM = 2280.00 USD · rate-B-v1.xlsx / E5",
+      "  - paragraph: 内部草稿审核 · 已批准",
+      "  - generic: 基础运费已生成",
+      "  - generic: 内部草稿已批准",
+      "  - generic: 未下单",
+      "      - row \"巴西海运 基础运费 · 模拟 已试算 3 CBM × 760 USD/CBM = 2280.00 USD 内部草稿已批准 · 到门时效、派送及清关费用待核 选择巴西海运基础运费 选择基础运费 查看试算记录\":",
+      "          - generic: 内部草稿已批准 · 到门时效、派送及清关费用待核"
+    ]
+  },
+  "aReturned": {
+    "radio": null,
+    "lines": [
+      "  - paragraph: 服务端版本 4 · 塑料收纳盒 · 3 CBM · 400 kg",
+      "  - generic: 未下单"
+    ]
+  },
+  "a4Fresh": {
+    "radio": {
+      "checked": false,
+      "disabled": false
+    },
+    "lines": [
+      "  - paragraph: 服务端版本 4 · 塑料收纳盒 · 3 CBM · 400 kg",
+      "  - paragraph: 基础运费 3 CBM × 820 USD/CBM = 2460.00 USD · rate-A-v1.xlsx / E5",
+      "  - paragraph: 试算许可 · 已使用",
+      "  - generic: 基础运费已生成",
+      "  - generic: 内部草稿待送审",
+      "  - generic: 未下单",
+      "      - row \"巴西海运 基础运费 · 模拟 已试算 3 CBM × 820 USD/CBM = 2460.00 USD 内部草稿待送审 · 到门时效、派送及清关费用待核 选择巴西海运基础运费 选择基础运费 查看试算记录\":",
+      "          - generic: 内部草稿待送审 · 到门时效、派送及清关费用待核"
+    ]
+  },
+  "a4Pending": {
+    "radio": {
+      "checked": true,
+      "disabled": false
+    },
+    "lines": [
+      "  - paragraph: 服务端版本 4 · 塑料收纳盒 · 3 CBM · 400 kg",
+      "  - paragraph: 基础运费 3 CBM × 820 USD/CBM = 2460.00 USD · rate-A-v1.xlsx / E5",
+      "  - paragraph: 内部草稿审核 · 待审批",
+      "  - generic: 基础运费已生成",
+      "  - generic: 内部草稿待审核",
+      "  - generic: 未下单",
+      "      - row \"巴西海运 基础运费 · 模拟 已试算 3 CBM × 820 USD/CBM = 2460.00 USD 内部草稿待审核 · 到门时效、派送及清关费用待核 选择巴西海运基础运费 选择基础运费 查看试算记录\":",
+      "          - generic: 内部草稿待审核 · 到门时效、派送及清关费用待核"
+    ]
+  },
+  "rejected": {
+    "radio": {
+      "checked": false,
+      "disabled": true
+    },
+    "lines": [
+      "  - paragraph: 服务端版本 4 · 塑料收纳盒 · 3 CBM · 400 kg",
+      "  - paragraph: 基础运费 3 CBM × 820 USD/CBM = 2460.00 USD · rate-A-v1.xlsx / E5",
+      "  - paragraph: 内部草稿审核 · 已拒绝",
+      "  - generic: 基础运费已生成",
+      "  - generic: 内部草稿已拒绝",
+      "  - generic: 未下单",
+      "      - row \"巴西海运 基础运费 · 模拟 已试算 3 CBM × 820 USD/CBM = 2460.00 USD 内部草稿已拒绝 · 到门时效、派送及清关费用待核 选择巴西海运基础运费 选择基础运费 查看试算记录\":",
+      "          - generic: 内部草稿已拒绝 · 到门时效、派送及清关费用待核"
+    ]
+  },
+  "exportPreview": "# 内部试算记录（合成）\n新客户询价\n案例 1c5c7235-e514-466c-9298-e90453d22411 · 后端版本 v4\n品名：塑料收纳盒\n总体积：3 CBM\n总毛重：400 kg\n基础运费：2460.00 USD\n3 CBM × 820 USD/CBM = 2460.00 USD\n最终应付：待核定\n运价来源：rate-A-v1.xlsx / 巴西海运双清包税!E5\nSHA-256：72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc\n运价仍未审核，未确认当前有效期。\n未评估所有附加费，试算不代表最终应付总价。\n付款、品名、单件规格、包装、派送和保险等条件性费用待核定。\n内部草稿审核：已拒绝\n审批记录：approval-2213dd5a4933405f9d1d36e93bc1bef0\n\n历版试算与审核\nv2 · rate-A-v1.xlsx · 3 CBM × 820 USD/CBM = 2460.00 USD\n巴西海运双清包税!E4 / E5 · SHA-256 72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc\n试算许可：已使用 · approval-dcf641d2e5454392a18c647eee12a517\n草稿审核：曾批准，现已失效 · approval-df3aacb021b64d60ab219d86b341d631\nv3 · rate-B-v1.xlsx · 3 CBM × 760 USD/CBM = 2280.00 USD\n巴西海运双清包税!E4 / E5 · SHA-256 b17fb83927e41102509dd93fbecc1cdf3492ce66dd3800196b8dad8205a6c8a0\n试算许可：已使用 · approval-ce4bb8edf8da4a87a5807c582f9d3624\n草稿审核：曾批准，现已失效 · approval-9571cdffc9a045e39dc1b5e54f8da14a\nv4 · rate-A-v1.xlsx · 3 CBM × 820 USD/CBM = 2460.00 USD\n巴西海运双清包税!E4 / E5 · SHA-256 72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc\n试算许可：已使用 · approval-3b104d88bab24977b7e0712251706125\n草稿审核：已拒绝 · approval-2213dd5a4933405f9d1d36e93bc1bef0\n本记录仅供团队复核模拟业务。",
+  "list": "新客户询价\n1c5c7235 · v5\n\t巴西\n渠道待选择\n\t候选分类\t草稿\n未生成\n\t未下单\t↗ 复制",
+  "homeAfterReload": "新客户询价\n1c5c7235 · v5\n\t巴西\n渠道待选择\n\t候选分类\t草稿\n未生成\n\t未下单\t↗ 复制",
+  "finalRefresh": {
+    "radio": {
+      "checked": false,
+      "disabled": true
+    },
+    "lines": [
+      "  - paragraph: 服务端版本 4 · 塑料收纳盒 · 3 CBM · 400 kg",
+      "  - paragraph: 基础运费 3 CBM × 820 USD/CBM = 2460.00 USD · rate-A-v1.xlsx / E5",
+      "  - paragraph: 内部草稿审核 · 已拒绝",
+      "  - generic: 基础运费已生成",
+      "  - generic: 内部草稿已拒绝",
+      "  - generic: 未下单",
+      "      - row \"巴西海运 基础运费 · 模拟 已试算 3 CBM × 820 USD/CBM = 2460.00 USD 内部草稿已拒绝 · 到门时效、派送及清关费用待核 选择巴西海运基础运费 选择基础运费 查看试算记录\":",
+      "          - generic: 内部草稿已拒绝 · 到门时效、派送及清关费用待核"
+    ]
+  }
+}

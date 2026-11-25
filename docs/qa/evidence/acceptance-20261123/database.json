@@ -1,0 +1,66 @@
+{
+  "commit": "06f2d28190cba3e370f355d0ab975c0ca604a959",
+  "served_sha256": {
+    "core.js": "21e0989585bae4ebe697d4fef9ec50c60378f65c76f6247845b3d1c2b3627654",
+    "app.js": "d79a25f182e12c5b1843494830e1ab0104561efa295494dfb2b6c86301da2193",
+    "inquiry-panel.js": "0eed051b5f95d1e1eef53ec0e93b182b2e53d588ef961b11eaa18730c6e09893"
+  },
+  "last_observed_counts": {
+    "case_drafts": 3,
+    "approvals": 6,
+    "decisions": 6,
+    "operations": 3,
+    "effects": 3,
+    "results": 3
+  },
+  "approvals": [
+    {
+      "case_id": "1c5c7235-e514-466c-9298-e90453d22411",
+      "case_version": 2,
+      "scope": "classification_trial",
+      "state": "CONSUMED",
+      "approval_id": "approval-dcf641d2e5454392a18c647eee12a517",
+      "source_ref": "A"
+    },
+    {
+      "case_id": "1c5c7235-e514-466c-9298-e90453d22411",
+      "case_version": 2,
+      "scope": "internal_quote_review",
+      "state": "INVALIDATED",
+      "approval_id": "approval-df3aacb021b64d60ab219d86b341d631",
+      "source_ref": "A"
+    },
+    {
+      "case_id": "1c5c7235-e514-466c-9298-e90453d22411",
+      "case_version": 3,
+      "scope": "classification_trial",
+      "state": "CONSUMED",
+      "approval_id": "approval-ce4bb8edf8da4a87a5807c582f9d3624",
+      "source_ref": "B"
+    },
+    {
+      "case_id": "1c5c7235-e514-466c-9298-e90453d22411",
+      "case_version": 3,
+      "scope": "internal_quote_review",
+      "state": "INVALIDATED",
+      "approval_id": "approval-9571cdffc9a045e39dc1b5e54f8da14a",
+      "source_ref": "B"
+    },
+    {
+      "case_id": "1c5c7235-e514-466c-9298-e90453d22411",
+      "case_version": 4,
+      "scope": "classification_trial",
+      "state": "CONSUMED",
+      "approval_id": "approval-3b104d88bab24977b7e0712251706125",
+      "source_ref": "A"
+    },
+    {
+      "case_id": "1c5c7235-e514-466c-9298-e90453d22411",
+      "case_version": 4,
+      "scope": "internal_quote_review",
+      "state": "REJECTED",
+      "approval_id": "approval-2213dd5a4933405f9d1d36e93bc1bef0",
+      "source_ref": "A"
+    }
+  ]
+}

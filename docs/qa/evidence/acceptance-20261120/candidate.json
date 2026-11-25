@@ -1,0 +1,46 @@
+{
+  "frontend_base": "9d4f03486470a7a2c1ba535a2b2ea392b2e4bff3",
+  "patch_sha256": "7bc21785cebdb287e6168430db8a264b96fa971d6eb6ff6870df6248ffa19dd7",
+  "patch_bytes": 10975,
+  "patch_origin": "Pachat group y3ImWqRWHSAlCysN seq 203 attachment iXltuSxissD75vnL",
+  "patch_declared_commit_unverified": "cb63879e1214e803c7e65cedd7d13c6cff5d5e12",
+  "files": {
+    "HANDOFF.md": "3dba332cfb23c1ee27f5af25d9d3ab66be9830ca940c51e1f046b2d5341b2bbe",
+    "README.md": "59549f23008d8b6cba04a5417b6f7f627fba1f9a4ff490ad949fda5e54860e3b",
+    "TEST-RESULTS.txt": "5673dc19ce6b0394d6499b7437f3aa53d165c89648f2bdc84eb989c646698534",
+    "dist/app.js": "c82f49b7c330a3ed756e1e4dfe46b6895facc46a79a64ba043bde5d5b204cb44",
+    "dist/core.js": "a247181a34c81da3aa0016d1edcad2c5543724491b06473002adc46940ce7e77",
+    "dist/demo-rates.json": "b88c43e080e9a6595cf8836be75de805bcd88d400f6c16e32f88e058bda70951",
+    "dist/index.html": "9a4e1132ad53240628610cffedf92fb6d3fd7c7819941eea029bad40fd5373cb",
+    "dist/style.css": "3c5184cf24c6b2f9e860f774b4e660dd9b137813b2efa9e5b74e9f86da2f0e2f",
+    "fixtures.json": "ad532c634b7952215941dba1ddb5af78d291d0ab923ff805544fa5f49d950023",
+    "package.json": "9ae21b0d630d74f81b99f5c39b38c1a534aa34aa24f2d296195f1cafb1606b2f",
+    "tests/ui-regression.test.mjs": "4e9393c4771041b3b1f087822419b90e517c4f884f1f957f44bb6520c7519e7a",
+    "tests/workflow.test.mjs": "bd526865cf0ea1794768597f5a94d6acbb80395bc573d116ead6524144b64162"
+  },
+  "manifest_matches": 12,
+  "backend_commit": "3e5b3416d8576dd30bcaba557c1a95cd2432ece6",
+  "node_independent_base": {
+    "passed": 4,
+    "failed": 0
+  },
+  "node_independent_patched": {
+    "passed": 4,
+    "failed": 0
+  },
+  "frontend_upstream_independently_rerun": {
+    "passed": 16,
+    "failed": 0
+  },
+  "backend_upstream_independently_rerun": {
+    "passed": 10,
+    "failed": 0
+  },
+  "backend_independent_groups": {
+    "passed": 5,
+    "failed": 0
+  },
+  "browser": "Windows Edge extension",
+  "preview": "http://127.0.0.1:58850/",
+  "scope": "synthetic only; separate modules; no integration, merge or publication"
+}

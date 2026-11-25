@@ -1,0 +1,27 @@
+✖ home, library, detail and export agree on the server revision and unresolved destination (11.4663ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2299.6832
+
+✖ failing tests:
+
+test at ..\baseline\frontend\workbench\tests\qa-current-ui-regression.test.mjs:154:1
+✖ home, library, detail and export agree on the server revision and unresolved destination (11.4663ms)
+  AssertionError [ERR_ASSERTION]: overview() v12
+      at TestContext.<anonymous> (file:///D:/Codex/%E8%B4%A7%E4%BB%A3agent/fp03-offline-cb3d179/baseline/frontend/workbench/tests/qa-current-ui-regression.test.mjs:161:65)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

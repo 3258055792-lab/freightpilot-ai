@@ -1,0 +1,17 @@
+[
+  {
+    "input": "1/2kg",
+    "field": "重量",
+    "value": "2"
+  },
+  {
+    "input": "1e3CBM",
+    "field": "体积",
+    "value": "3"
+  },
+  {
+    "input": "1.5天",
+    "field": "时效",
+    "value": "5"
+  }
+]

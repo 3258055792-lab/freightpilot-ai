@@ -1,0 +1,136 @@
+- complementary:
+  - generic: ↗
+  - strong: FreightPilot
+  - generic: AGENT WORKSPACE
+  - generic: WORKSPACE
+  - navigation:
+    - button "◫ 工作台概览":
+      - generic: ◫
+      - text: 工作台概览
+    - button "▤ 询价与案例":
+      - generic: ▤
+      - text: 询价与案例
+    - button "▦ 报价来源库":
+      - generic: ▦
+      - text: 报价来源库
+    - button "⇢ 订单与物流":
+      - generic: ⇢
+      - text: 订单与物流
+    - button "▷ 比赛演示":
+      - generic: ▷
+      - text: 比赛演示
+    - button "◇ 销售训练":
+      - generic: ◇
+      - text: 销售训练
+  - text: 本机工作台
+  - text: 可解释 · 可追溯 · 人工可控
+  - generic: VERSION 1.0 / DEMO READY
+- main:
+  - generic: 工作空间 / 报价来源库
+  - generic: 仅本地存储 · 未连接实盘
+  - generic: 本机操作员
+  - generic: FP
+  - generic: FREIGHT AGENT WORKSPACE
+  - heading "报价来源库" [level=1]
+  - paragraph: 导入结构化规则，保留文件哈希和单元格定位。未经人工核验的规则不允许计算。
+  - button "下载规则模板"
+  - generic: 请从实际报价表整理 JSON 规则并填写原始文件名、原文件 SHA、工作表、单元格及版本。本页面记录导入 JSON 的 SHA；原始文件可另行上传核对 SHA。导入不会自动标记为已核验。
+  - heading "导入与核验" [level=2]
+  - generic: 导入规则 JSON
+  - generic: 计算原始报价文件 SHA
+  - button "载入演示规则与案例"
+  - paragraph: 所有文件均在浏览器本地处理。
+  - heading "来源规则 · 6" [level=2]
+  - generic: 保留版本快照
+  - table:
+    - rowgroup:
+      - row "规则 / 渠道 适用范围 来源与版本 核验":
+        - columnheader "规则 / 渠道"
+        - columnheader "适用范围"
+        - columnheader "来源与版本"
+        - columnheader "核验"
+        - columnheader
+    - rowgroup:
+      - row "海运 DEMO-1 · 演示 德国 / 普货 5000kg · 30m³ · 35天 到门 / 代理清关 / DAP 已确认 核验人：演示数据":
+        - cell "海运 DEMO-1 · 演示":
+          - text: 海运
+          - generic: DEMO-1 · 演示
+        - cell "德国 / 普货 5000kg · 30m³ · 35天 到门 / 代理清关 / DAP":
+          - text: 德国 / 普货
+          - generic: 5000kg · 30m³ · 35天
+          - generic: 到门 / 代理清关 / DAP
+        - cell:
+          - generic "demo-rates.json · DEMO-2026.11-v1"
+        - cell "已确认":
+          - generic: 已确认
+        - cell "核验人：演示数据"
+      - row "空运 DEMO-2 · 演示 德国 / 普货 5000kg · 30m³ · 7天 到门 / 代理清关 / DAP 已确认 核验人：演示数据":
+        - cell "空运 DEMO-2 · 演示":
+          - text: 空运
+          - generic: DEMO-2 · 演示
+        - cell "德国 / 普货 5000kg · 30m³ · 7天 到门 / 代理清关 / DAP":
+          - text: 德国 / 普货
+          - generic: 5000kg · 30m³ · 7天
+          - generic: 到门 / 代理清关 / DAP
+        - cell:
+          - generic "demo-rates.json · DEMO-2026.11-v1"
+        - cell "已确认":
+          - generic: 已确认
+        - cell "核验人：演示数据"
+      - row "国际快递 DEMO-3 · 演示 德国 / 普货 5000kg · 30m³ · 5天 到门 / 代理清关 / DAP 已确认 核验人：演示数据":
+        - cell "国际快递 DEMO-3 · 演示":
+          - text: 国际快递
+          - generic: DEMO-3 · 演示
+        - cell "德国 / 普货 5000kg · 30m³ · 5天 到门 / 代理清关 / DAP":
+          - text: 德国 / 普货
+          - generic: 5000kg · 30m³ · 5天
+          - generic: 到门 / 代理清关 / DAP
+        - cell:
+          - generic "demo-rates.json · DEMO-2026.11-v1"
+        - cell "已确认":
+          - generic: 已确认
+        - cell "核验人：演示数据"
+      - row "专线 DEMO-4 · 演示 德国 / 普货 5000kg · 30m³ · 12天 到门 / 代理清关 / DAP 已确认 核验人：演示数据":
+        - cell "专线 DEMO-4 · 演示":
+          - text: 专线
+          - generic: DEMO-4 · 演示
+        - cell "德国 / 普货 5000kg · 30m³ · 12天 到门 / 代理清关 / DAP":
+          - text: 德国 / 普货
+          - generic: 5000kg · 30m³ · 12天
+          - generic: 到门 / 代理清关 / DAP
+        - cell:
+          - generic "demo-rates.json · DEMO-2026.11-v1"
+        - cell "已确认":
+          - generic: 已确认
+        - cell "核验人：演示数据"
+      - row "空派 DEMO-5 · 演示 德国 / 普货 5000kg · 30m³ · 9天 到门 / 代理清关 / DAP 已确认 核验人：演示数据":
+        - cell "空派 DEMO-5 · 演示":
+          - text: 空派
+          - generic: DEMO-5 · 演示
+        - cell "德国 / 普货 5000kg · 30m³ · 9天 到门 / 代理清关 / DAP":
+          - text: 德国 / 普货
+          - generic: 5000kg · 30m³ · 9天
+          - generic: 到门 / 代理清关 / DAP
+        - cell:
+          - generic "demo-rates.json · DEMO-2026.11-v1"
+        - cell "已确认":
+          - generic: 已确认
+        - cell "核验人：演示数据"
+      - row "海派 DEMO-6 · 演示 德国 / 普货 5000kg · 30m³ · 30天 到门 / 代理清关 / DAP 已确认 核验人：演示数据":
+        - cell "海派 DEMO-6 · 演示":
+          - text: 海派
+          - generic: DEMO-6 · 演示
+        - cell "德国 / 普货 5000kg · 30m³ · 30天 到门 / 代理清关 / DAP":
+          - text: 德国 / 普货
+          - generic: 5000kg · 30m³ · 30天
+          - generic: 到门 / 代理清关 / DAP
+        - cell:
+          - generic "demo-rates.json · DEMO-2026.11-v1"
+        - cell "已确认":
+          - generic: 已确认
+        - cell "核验人：演示数据"
+  - heading "规则模板说明" [level=2]
+  - paragraph: 每条规则包含目的国、货类、渠道、服务需求、体积/重量上限、时效、币种、计价单位、最低价和附加费。单位支持 kg、m3、shipment；kg 规则可使用明确的体积计重系数。缺少适用范围、未确认费用或未核验来源时不生成报价。
+  - paragraph: 源 Excel、PDF 不会被自动解读为有效运价。可用「下载规则模板」整理本机 AI 报价系统的输出后导入。
+  - generic: FREIGHTPILOT · 货代 Agent 参赛与报价工作台
+  - generic: 所有自动化，都有清晰的人类控制点。

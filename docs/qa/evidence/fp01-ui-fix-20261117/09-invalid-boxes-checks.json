@@ -1,0 +1,23 @@
+[
+  {
+    "input": "1.5箱",
+    "boxes": "",
+    "fullEvidence": "  - spinbutton \"箱数 原文：无效箱数，须人工确认正整数：目的国：德国，货名：塑料收纳盒，货物类别：普货，3CBM，400kg，1.5箱，40天，派送需求：到门，清关需求：代理清关，税费需求：DAP\"",
+    "seaEnabled": false,
+    "approvalEnabled": false
+  },
+  {
+    "input": "-2箱",
+    "boxes": "",
+    "fullEvidence": "  - spinbutton \"箱数 原文：无效箱数，须人工确认正整数：目的国：德国，货名：塑料收纳盒，货物类别：普货，3CBM，400kg，-2箱，40天，派送需求：到门，清关需求：代理清关，税费需求：DAP\"",
+    "seaEnabled": false,
+    "approvalEnabled": false
+  },
+  {
+    "input": "1，5箱",
+    "boxes": "",
+    "fullEvidence": "  - spinbutton \"箱数 原文：无效箱数，须人工确认正整数：目的国：德国，货名：塑料收纳盒，货物类别：普货，3CBM，400kg，1，5箱，40天，派送需求：到门，清关需求：代理清关，税费需求：DAP\"",
+    "seaEnabled": false,
+    "approvalEnabled": false
+  }
+]

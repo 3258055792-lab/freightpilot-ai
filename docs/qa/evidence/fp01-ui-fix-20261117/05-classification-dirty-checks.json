@@ -1,0 +1,20 @@
+[
+  {
+    "test": "客户 / 案例名称",
+    "blocked": true,
+    "preserved": true,
+    "classificationLogs": 0
+  },
+  {
+    "test": "粘贴客户询价",
+    "blocked": true,
+    "preserved": true,
+    "classificationLogs": 0
+  },
+  {
+    "test": "时效（天） 原文：40天",
+    "blocked": true,
+    "preserved": true,
+    "classificationLogs": 0
+  }
+]

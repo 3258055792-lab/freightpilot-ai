@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "captured_date": "2026-11-22",
+  "task": "Pachat #238 primary extraction offline acceptance",
+  "repository": "3258055792-lab/freightpilot-ai",
+  "candidate_sha": "d3d8b638fcb3a9f40dd895191284f952d0d1ab88",
+  "baseline_sha": "d88ee9db48feaaa061b3b1669b2464fd49239b85",
+  "branch": "codex/local-customer-inquiry",
+  "runtime_source": "D:/Codex/货代agent/work/fp22-intake/candidate",
+  "source_verification": "GitHub full SHA checked; independent detached checkout from fetched Git objects; 13/13 workbench manifest files verified before tests.",
+  "scope": "Existing offline synthetic regressions only; no Edge, real model inference, external messages, business edits, commit or push.",
+  "runtime": {
+    "os": "Windows",
+    "python": "3.15.2",
+    "python_executable": "D:/Codex/货代agent/freightpilot-ai/.venv/Scripts/python.exe",
+    "node": "26.13.0",
+    "dependencies_reused": "D:/Codex/货代agent/freightpilot-ai/node_modules",
+    "temp": "D:/Codex/货代agent/work/fp22-intake/temp"
+  },
+  "changed_files": [
+    "frontend/workbench/SHA256SUMS.json",
+    "frontend/workbench/dist/app.js",
+    "frontend/workbench/tests/ui-regression.test.mjs"
+  ],
+  "changes": [
+    "Primary extract action routes nonempty conversational text with missing goods or country to case-intake only when local mode is enabled and no backend draft exists.",
+    "case-intake rejects locked cases.",
+    "Customer transport, quotation, insurance and packaging clauses are retained as escaped original text.",
+    "Manifest and one existing-suite regression added; server case-intake/model implementation unchanged."
+  ],
+  "results": {
+    "manifest": {
+      "verified": 13,
+      "failed": 0,
+      "log": "manifest.log"
+    },
+    "python": {
+      "passed": 46,
+      "failed": 0,
+      "command": "python scripts/check.py",
+      "log": "offline.log"
+    },
+    "harness_agent": {
+      "passed": 27,
+      "failed": 0,
+      "command": "included by scripts/check.py",
+      "log": "offline.log"
+    },
+    "frontend": {
+      "passed": 20,
+      "failed": 0,
+      "command": "node --test tests/*.test.mjs",
+      "cwd": "candidate/frontend/workbench",
+      "log": "frontend.log"
+    },
+    "total_candidate": {
+      "passed": 93,
+      "failed": 0,
+      "skipped": 0
+    },
+    "baseline_control": {
+      "passed": 8,
+      "expected_failed": 1,
+      "command": "node --test old-control/frontend/workbench/tests/ui-regression.test.mjs",
+      "fixture": "Exact new-candidate upstream ui-regression.test.mjs copied into independent d88ee9d product checkout; only that test file changed.",
+      "actual": [
+        "",
+        "",
+        "30",
+        "3",
+        "400"
+      ],
+      "expected": [
+        "塑料收纳盒",
+        "巴西",
+        "30",
+        "3",
+        "400"
+      ],
+      "log": "old-control.log"
+    }
+  },
+  "primary_regression": {
+    "evidence_layer": "Node VM action function with DOM/FormData substitutes and mocked /case-intake HTTP response; render replaced, no browser interaction.",
+    "file": "candidate/frontend/workbench/tests/ui-regression.test.mjs:98",
+    "input": "你好，我们有一批塑料收纳盒，想从中国走海运到巴西。货物共 30 箱，整票总体积 3 立方米，总毛重 400 公斤。这次先不加保险，也不需要额外包装。麻烦帮我估一下这票货的基础海运费，用美元报价。另外，哪些费用还需要单独确认？",
+    "actions": [
+      "local mode marker enabled",
+      "run action('extract')"
+    ],
+    "directly_verified": [
+      "Request uses /case-intake and preserves the exact prompt.",
+      "Returned goods/country and rule-extracted boxes/volume/weight become 塑料收纳盒/巴西/30/3/400.",
+      "Customer notes include 不加保险、不需要额外包装、用美元报价、哪些费用还需要单独确认.",
+      "Tax remains empty.",
+      "Same regression fails on d88ee9d and passes on d3d8b63."
+    ],
+    "model_response_fixture": {
+      "goods": "塑料收纳盒",
+      "country": "巴西",
+      "mode": "海运",
+      "status": "资料已齐"
+    },
+    "not_proven": [
+      "Actual HTTP /case-intake server route",
+      "Actual caseIntake() invocation against Qwen",
+      "Model tool-call/schema correctness for this conversational input",
+      "Rendered browser controls/events/layout",
+      "Only-goods-missing vs only-country-missing variants; locked intake/model-error/late-response branches"
+    ]
+  },
+  "other_evidence_layers": [
+    "Harness/Agent model tests inject model responses while executing real Python tools; these do not prove a live local Qwen model.",
+    "SOP lookup existing offline test checks cited covered questions and refuses unsupported questions.",
+    "Python existing sample quote review test exercises A/B/A persistence, invalidation and rejection with synthetic files."
+  ],
+  "real_windows_qwen": {
+    "status": "blocked_environment_not_executed",
+    "required_endpoint": "http://127.0.0.1:1234/v1/chat/completions",
+    "required_model": "qwen3.5-9b-mlx",
+    "observed_port_1234_listeners": 0,
+    "observed_other_runtime": "Ollama processes present; not the candidate's configured endpoint.",
+    "limitation": "No model discovery, download, launch or inference performed; cannot claim Windows Qwen integration passed."
+  },
+  "environment_incident": {
+    "first_attempt": "System D:/DevEnv/Python/python.exe could verify manifest but create_demo.py failed: ModuleNotFoundError openpyxl.",
+    "classification": "Resolved environment prerequisite, not product failure.",
+    "resolution": "Reused existing project venv; synthetic setup then succeeded; original setup-failure log retained.",
+    "logs": [
+      "fixture-setup.log",
+      "fixture-ready.log"
+    ],
+    "non_failing_warning": "Existing HTTP tests emitted Python ResourceWarning about implicit HTTPError cleanup; all 46 Python tests passed."
+  },
+  "review": {
+    "missed_this_round": "No genuine browser or Windows Qwen end-to-end proof; the new test supplies extracted goods/country itself.",
+    "add_next": "On this exact SHA exercise the same Chinese input through the visible main button and real configured model, then missing-one-field, model-unavailable and stale-response neighbors.",
+    "verify_upgrade": "Preserved old failure/new pass VM control plus 93 existing regressions; promote full UI/model conclusion only after genuine integrated evidence."
+  },
+  "evidence_files": [
+    "manifest.log",
+    "fixture-setup.log",
+    "fixture-ready.log",
+    "offline.log",
+    "frontend.log",
+    "old-control.log"
+  ]
+}

@@ -1,0 +1,230 @@
+{
+  "scope": "Independent Windows offline QA; Pachat #229/#231/#236. Synthetic fixtures only. Browser, real models, publishing and real business excluded.",
+  "upstream": "https://github.com/3258055792-lab/freightpilot-ai.git",
+  "branch": "codex/local-customer-inquiry",
+  "remote_tip_at_fetch": "d3d8b638fcb3a9f40dd895191284f952d0d1ab88",
+  "git_blob_source": "git ls-tree -r HEAD + git ls-files + git cat-file blob HEAD:<path>; hash digest over raw and ordinary checked-out bytes",
+  "versions": {
+    "old": {
+      "commit": "36011592155b899b87168906588d8ea83791faec",
+      "core_autocrlf": "true",
+      "manifest_file_sha256": "dd1834d2260d2470518b4207e8c98a44a9f495d355bb3778a25d1fb1958578dd",
+      "tracked_excluding_manifest": 13,
+      "listed": 12,
+      "head_index_same": true,
+      "windows_bytes_equal_blobs": true,
+      "missing": [
+        "dist/inquiry-panel.js"
+      ],
+      "extra": [],
+      "mismatches": {
+        "dist/app.js": {
+          "listed": "c82f49b7c330a3ed756e1e4dfe46b6895facc46a79a64ba043bde5d5b204cb44",
+          "git_blob": "e56bc20d271883774d098dd76e0b2ede630a9156c96d6993d60ed44a4f4bc134",
+          "windows": "e56bc20d271883774d098dd76e0b2ede630a9156c96d6993d60ed44a4f4bc134"
+        },
+        "dist/core.js": {
+          "listed": "edec759b24dc6ed2188e0421024602eb9473c3f9f063ce85e6a65b6e6fa5d6f7",
+          "git_blob": "a247181a34c81da3aa0016d1edcad2c5543724491b06473002adc46940ce7e77",
+          "windows": "a247181a34c81da3aa0016d1edcad2c5543724491b06473002adc46940ce7e77"
+        },
+        "tests/workflow.test.mjs": {
+          "listed": "ca6776e599c89145465e16da60f3cf712392b46f25bd88e2d2e9ed8d96e3fe7e",
+          "git_blob": "bd526865cf0ea1794768597f5a94d6acbb80395bc573d116ead6524144b64162",
+          "windows": "bd526865cf0ea1794768597f5a94d6acbb80395bc573d116ead6524144b64162"
+        }
+      },
+      "independent_result": "FAIL",
+      "upstream_checker": "not present"
+    },
+    "fix": {
+      "commit": "a70b171f78450dff80a03276e4f1304a4638aef8",
+      "core_autocrlf": "true",
+      "manifest_file_sha256": "96188584d6fa1355ec1e408a0757f3e228b4706c74399959c8706e710a12aa7a",
+      "tracked_excluding_manifest": 13,
+      "listed": 13,
+      "head_index_same": true,
+      "windows_bytes_equal_blobs": true,
+      "missing": [],
+      "extra": [],
+      "mismatches": {},
+      "independent_result": "PASS",
+      "upstream_checker": {
+        "exit": 0,
+        "output": "Workbench manifest: 13 files verified"
+      }
+    },
+    "candidate": {
+      "commit": "d88ee9db48feaaa061b3b1669b2464fd49239b85",
+      "core_autocrlf": "true",
+      "manifest_file_sha256": "22adacb39653fe7dced808a19a73e17658b484b34209422ae10338063423ed39",
+      "tracked_excluding_manifest": 13,
+      "listed": 13,
+      "head_index_same": true,
+      "windows_bytes_equal_blobs": true,
+      "missing": [],
+      "extra": [],
+      "mismatches": {},
+      "independent_result": "PASS",
+      "upstream_checker": {
+        "exit": 0,
+        "output": "Workbench manifest: 13 files verified"
+      }
+    }
+  },
+  "adjacent_inventory": {
+    "change": "staged one synthetic workbench text file in separate local clone; did not update inventory",
+    "observed": "qa-inventory-adjacent.txt: missing manifest entry",
+    "versions_checked": [
+      {
+        "commit": "d88ee9db48feaaa061b3b1669b2464fd49239b85",
+        "checker_exit": 1
+      },
+      {
+        "commit": "a70b171f78450dff80a03276e4f1304a4638aef8",
+        "checker_exit": 1
+      }
+    ],
+    "result": "PASS"
+  },
+  "data_manifest_sha256": "c7f350314283645cbd7d7053009ec090f1cbe8fb0eec6c22ddca51dfa41598b5",
+  "sources": {
+    "rate-A-v1.xlsx": {
+      "sha256": "72b99ebc0b9b5aea45d6f291bc2ee699716a704c5f845c84934426e7f86206cc",
+      "bytes": 4106,
+      "sheet": "巴西海运双清包税",
+      "cells": {
+        "A1": "合成验收运价 A · v1",
+        "A3": "仅供比赛测试，无商业有效期",
+        "A5": "普货一类",
+        "B5": "塑料收纳盒",
+        "E4": "1-5CBM USD/CBM",
+        "E5": 820,
+        "H5": "1CBM:300KG",
+        "B19": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。",
+        "B20": null,
+        "B22": null,
+        "B23": null,
+        "B24": null,
+        "F5": null
+      }
+    },
+    "rate-B-v1.xlsx": {
+      "sha256": "b17fb83927e41102509dd93fbecc1cdf3492ce66dd3800196b8dad8205a6c8a0",
+      "bytes": 4105,
+      "sheet": "巴西海运双清包税",
+      "cells": {
+        "A1": "合成验收运价 B · v1",
+        "A3": "仅供比赛测试，无商业有效期",
+        "A5": "普货一类",
+        "B5": "塑料收纳盒",
+        "E4": "1-5CBM USD/CBM",
+        "E5": 760,
+        "H5": "1CBM:300KG",
+        "B19": "不足1CBM按1CBM；未列费用待核。仅首档有样例运价。",
+        "B20": null,
+        "B22": null,
+        "B23": null,
+        "B24": null,
+        "F5": null
+      }
+    },
+    "SOP-01-v1.md": {
+      "sha256": "8cb172b47d33620c0fd973ebd60fa742ba38fbd70576bb824dbad41c653652f8",
+      "bytes": 311,
+      "section": "§1 基础运费试算资料"
+    }
+  },
+  "offline_sample_results": [
+    {
+      "version": "A",
+      "volume_cbm": "3",
+      "weight_kg": "400",
+      "base_usd": "2460.00",
+      "fee_cell": "B19",
+      "final_payable": null,
+      "usable_for_quote": false
+    },
+    {
+      "version": "B",
+      "volume_cbm": "3",
+      "weight_kg": "400",
+      "base_usd": "2280.00",
+      "fee_cell": "B19",
+      "final_payable": null,
+      "usable_for_quote": false
+    },
+    {
+      "version": "A",
+      "volume_cbm": "3",
+      "weight_kg": "400",
+      "base_usd": "2460.00",
+      "fee_cell": "B19",
+      "final_payable": null,
+      "usable_for_quote": false
+    },
+    {
+      "version": "B",
+      "volume_cbm": "0.5",
+      "weight_kg": "120",
+      "base_usd": "760.00",
+      "fee_cell": "B19",
+      "final_payable": null,
+      "usable_for_quote": false
+    }
+  ],
+  "rule_origin": {
+    "worksheet_provided": "E4 first-band USD/CBM, E5 synthetic unit price, H5 density limit, B19 minimum/fee text (other fee note cells blank)",
+    "confirmed_keys": {
+      "cbm_boundary_assignment": {
+        "5": "1-5CBM",
+        "10": "5-10CBM"
+      },
+      "minimum_billable_cbm": 1,
+      "pricing_method": "whole_shipment"
+    },
+    "origin": "prototype/sample_quote.py:31-36 (calculate_sample); data/sample/fp01/verify.py:31-35 (fixture check). Inserted per synthetic workbook as synthetic_fixture; no human/business approval.",
+    "enforced": "prototype/freight_tools.py:179-182"
+  },
+  "sample_verifier": {
+    "command": "python -B data/sample/fp01/verify.py",
+    "exit": 0
+  },
+  "environment": {
+    "platform": "Windows",
+    "python": "3.15.2",
+    "node": "v26.13.0",
+    "openpyxl": "3.1.5",
+    "separate_clean_fixed_clones": true
+  },
+  "recorded_at": "2026-11-22T14:59:18+08:00",
+  "regressions": {
+    "pinned_commit": "d88ee9db48feaaa061b3b1669b2464fd49239b85",
+    "setup": "Locked npm ci --offline --ignore-scripts --no-audit --no-fund from existing cache; existing pinned openpyxl 3.1.5. python -B prototype/create_demo.py generated synthetic inputs in new candidate only.",
+    "official_offline": {
+      "command": "python -B scripts/check.py",
+      "exit": 0,
+      "python_pass": 46,
+      "node": {
+        "tests": 27,
+        "pass": 27,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log_sha256": "a846929d101b7f3845a35171b07714342cd994e255633979e1f096692384fe2a"
+    },
+    "frontend_logic_vm": {
+      "command": "node --test frontend/workbench/tests/ui-regression.test.mjs frontend/workbench/tests/workflow.test.mjs",
+      "exit": 0,
+      "node": {
+        "tests": 19,
+        "pass": 19,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log_sha256": "b1ea46583d20ad7976028fe9255a7a817aa5e39337c20928e744b3a76c41cb9a"
+    },
+    "model": "Test drivers use stubs, no real model. Loopback-only HTTP in approval tests.",
+    "unverified": "Browser/UI interaction, deployment and newer branch tip are outside this offline result."
+  }
+}
