@@ -1,0 +1,35 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {extract,missing,compare,newCase,edit,confirmClassification,requestApproval,decide,placeOrder,cloneCase,addEvent,validateRule} from '../dist/core.js';
+const rules=JSON.parse(await readFile(new URL('../dist/demo-rates.json',import.meta.url))).rules;
+const text='目的国：德国，货名：收纳盒，货物类别：普货，2方，320kg，20箱，40天，派送需求：到门，清关需求：代理清关，税费需求：DAP';
+function ready(){const c=newCase();c.fields=extract(text).fields;c.selected='海运';confirmClassification(c,'测试人员');return c}
+test('missing fields remain blank and ambiguous quantities are not guessed',()=>{const a=extract('配件发德国 10箱');assert.equal(a.fields.country,'');assert.equal(a.fields.category,'');assert.equal(a.fields.boxes,'10');assert(missing(a.fields).includes('weight'));assert.equal(extract('实重 100kg，体积重 200kg').fields.weight,'');assert.equal(extract('时效 10天 或 15天').fields.days,'')});
+test('all explicit fields extracted; invalid positive quantities block',()=>{const f=extract(text).fields;assert.equal(missing(f).length,0);for(const v of ['-1','0','no','Infinity'])assert(missing({...f,weight:v}).includes('weight'));assert(missing({...f,boxes:'1.5'}).includes('boxes'))});
+test('service, dimensions, transit and verification all participate in matching',()=>{const f=extract(text).fields;assert.equal(compare(f,rules).find(r=>r.channel==='海运').status,'可直接计算');for(const override of [{country:'美国'},{tax:'DDP'},{customs:'自行清关'},{volume:'100'},{weight:'9000'},{days:'1'},{delivery:'自提'}])assert(compare({...f,...override},rules).every(r=>r.status==='需人工询价'));assert(compare(f,rules.map(r=>({...r,verified:false}))).every(r=>r.status==='需人工询价'));assert(compare({...f,category:'危险品'},rules).every(r=>r.status==='不支持'));assert.equal(compare(f,rules).find(r=>r.channel==='专线').status,'需人工询价')});
+test('request needs classification and locks a precomputed amount without approving or displaying it',()=>{const c=newCase();c.fields=extract(text).fields;c.selected='海运';assert.throws(()=>requestApproval(c,rules,'人'));confirmClassification(c,'人');requestApproval(c,rules,'人');assert.equal(c.approval,'待审批');assert.equal(c.trial,'未生成');assert.equal(c.order,'未下单');assert.throws(()=>requestApproval(c,rules,'人'))});
+test('reject is terminal across edit, approve, retry and order paths',()=>{const c=ready();requestApproval(c,rules,'人');decide(c,false,'人');assert.equal(c.trial,'已停止');assert.throws(()=>decide(c,true,'人'));assert.throws(()=>requestApproval(c,rules,'人'));assert.throws(()=>edit(c,c.fields,'人'));assert.throws(()=>placeOrder(c,'人',true));const fresh=cloneCase(c);assert.equal(fresh.approval,'未申请');assert.equal(fresh.locked,false);assert.equal(fresh.classification,'候选分类')});
+test('snapshot survives source changes; approval and customer order are each once',()=>{const c=ready(),rs=structuredClone(rules);requestApproval(c,rs,'人');rs[0].rate=99999;assert.equal(c.snapshot.row.rule.rate,380);decide(c,true,'人');assert.equal(c.snapshot.row.total,880);assert.throws(()=>decide(c,true,'人'));assert.throws(()=>placeOrder(c,'人',false));placeOrder(c,'人',true);assert.equal(c.order,'待订舱');assert.throws(()=>placeOrder(c,'人',true));addEvent(c,{node:'运输中',location:'上海港',note:'测试',exception:true},'人');assert.equal(c.exception,'异常待处理')});
+test('weight billing honors volumetric factor and per-currency charges',()=>{const r=compare(extract(text).fields,rules).find(r=>r.channel==='空运');assert.equal(r.quantity,334);assert.equal(r.total,9806);assert.equal(r.rule.currency,'CNY')});
+test('restart retains locked workflow and duplicate protection',()=>{const c=ready();requestApproval(c,rules,'人');decide(c,true,'人');const restored=JSON.parse(JSON.stringify(c));assert.equal(restored.locked,true);assert.throws(()=>decide(restored,true,'人'));assert.throws(()=>edit(restored,restored.fields,'人'))});
+test('invalid source definitions are refused',()=>{rules.forEach(validateRule);assert.throws(()=>validateRule({...rules[0],rate:-1}));assert.throws(()=>validateRule({...rules[0],cell:''}));assert.throws(()=>validateRule({...rules[0],surcharges:[{name:'bad',amount:NaN}]}))});
+test('ranges, thousands separators and per-box quantities require a human',()=>{for(const t of ['重量 100-200kg','重量 2,320kg','每箱 20kg，共20箱','重量 -20kg'])assert.equal(extract(t).fields.weight,'');assert.equal(extract('体积 1～2方').fields.volume,'')});
+
+test('incomplete quantity tokens retain evidence and prevent approval',()=>{
+ for(const [key,original,invalid] of [
+  ['weight','320kg','1/2kg'],['volume','2方','1e3方'],['days','40天','1.5天'],
+  ['weight','320kg','1 200kg'],['volume','2方','−3方'],['days','40天','1～3天']
+ ]){
+  const input=text.replace(original,invalid);
+  const {fields,evidence}=extract(input);
+  assert.equal(fields[key],'',invalid);
+  assert.ok(evidence[key].includes(invalid));
+  assert.ok(missing(fields).includes(key));
+  const c=newCase();c.fields=fields;c.selected='海运';confirmClassification(c,'测试');
+  assert.throws(()=>requestApproval(c,rules,'测试'),/不能直接计算/);
+  assert.equal(c.snapshot,undefined);
+ }
+ const valid=extract(text.replace('320kg','320.5kg').replace('2方','2.75方')).fields;
+ assert.equal(valid.weight,'320.5');assert.equal(valid.volume,'2.75');assert.equal(valid.days,'40');
+});

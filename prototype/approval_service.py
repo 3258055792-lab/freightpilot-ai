@@ -10,7 +10,6 @@ import ipaddress
 import json
 import os
 import re
-import re
 import sqlite3
 import sys
 import unicodedata
@@ -250,8 +249,10 @@ class ApprovalStore:
     @staticmethod
     def _draft_input(payload, *, require_dimensions=False):
         fields = {"weight_kg", "volume_cbm"}
-        values = _check_keys(payload, {"product_name"}, fields)
+        values = _check_keys(payload, {"product_name"}, fields | {"destination_country"})
         result = {"product_name": unicodedata.normalize("NFC", require_string(values["product_name"], "product_name", 2, 80))}
+        if "destination_country" in values:
+            result["destination_country"] = require_string(values["destination_country"], "destination_country", 1, 80)
         if require_dimensions or fields.intersection(values):
             for field in sorted(fields):
                 value = values.get(field)
@@ -262,26 +263,38 @@ class ApprovalStore:
 
     def revise_case(self, principal, case_id, payload):
         self._require_role(principal, {"human"})
-        body = _check_keys(payload, {"expected_version", "input"})
+        body = _check_keys(payload, {"expected_version", "input"}, {"rate_source"})
         expected = require_positive_int(body["expected_version"], "expected_version")
         draft = canonical_json(self._draft_input(body["input"], require_dimensions=True))
         key = (principal.tenant_id, case_id)
         connection = _connect(self.database)
         try:
             connection.execute("BEGIN IMMEDIATE")
-            case = connection.execute("SELECT version FROM cases WHERE tenant_id=? AND case_id=?", key).fetchone()
+            case = connection.execute("SELECT version,source_ref,source_version FROM cases WHERE tenant_id=? AND case_id=?", key).fetchone()
             if not case:
                 raise ServiceError(404, "CASE_NOT_FOUND", "case not found")
             version = case["version"]
+            ref, source_version = case["source_ref"], case["source_version"]
+            if "rate_source" in body:
+                from sample_quote import FILES, sample_bytes
+                ref = body["rate_source"]
+                if not isinstance(ref, str) or ref not in FILES:
+                    raise ServiceError(400, "INVALID_SOURCE", "选择合成来源 A 或 B")
+                raw = sample_bytes(ref)
+                source_version = hashlib.sha256(raw).hexdigest()
+                connection.execute("INSERT OR IGNORE INTO source_versions VALUES(?,?,?,?,?,?)",
+                                   (principal.tenant_id, ref, source_version, raw, source_version, now_utc()))
+            if ref in ("A", "B") and body["input"].get("destination_country") not in (None, "巴西"):
+                raise ServiceError(400, "INVALID_DESTINATION", "巴西海运样例不适用于所填目的国")
             current = connection.execute("SELECT input_json FROM case_drafts WHERE tenant_id=? AND case_id=? AND version=?", (*key, version)).fetchone()
-            if current and current[0] == draft and expected in (version, version - 1):
+            if (ref, source_version) == (case["source_ref"], case["source_version"]) and current and current[0] == draft and expected in (version, version - 1):
                 connection.commit()
                 return {"version": version, "changed": False}
             if version != expected:
                 raise ServiceError(409, "CASE_VERSION_STALE", "reload the current case version")
             version += 1
             connection.execute("INSERT INTO case_drafts VALUES(?,?,?,?)", (*key, version, draft))
-            connection.execute("UPDATE cases SET version=? WHERE tenant_id=? AND case_id=?", (version, *key))
+            connection.execute("UPDATE cases SET version=?,source_ref=?,source_version=? WHERE tenant_id=? AND case_id=?", (version, ref, source_version, *key))
             connection.execute("UPDATE approvals SET state='INVALIDATED',revision=revision+1,updated_at=? WHERE tenant_id=? AND case_id=? AND state IN ('PENDING','APPROVED')", (now_utc(), *key))
             self._audit(connection, principal, "case", case_id, "DRAFT_REVISED", {"version": version})
             connection.commit()
@@ -300,8 +313,8 @@ class ApprovalStore:
         case_id = require_string(case["id"], "case.id", 1, 64)
         case_version = require_positive_int(case["version"], "case.version")
         scope = require_string(payload["scope"], "scope", 1, 64)
-        if scope != "classification_trial":
-            raise ServiceError(400, "UNSUPPORTED_SCOPE", "only classification_trial is implemented")
+        if scope not in {"classification_trial", "internal_quote_review"}:
+            raise ServiceError(400, "UNSUPPORTED_SCOPE", "unsupported approval scope")
         source_ref = require_string(payload["source_ref"], "source_ref", 1, 128)
         source_version = require_string(payload["source_version"], "source_version", 1, 64)
         if source_version.lower() == "latest":
@@ -358,6 +371,12 @@ class ApprovalStore:
                 raise ServiceError(409, "DRAFT_REQUIRED", "save the case draft before requesting approval")
             if (case["source_ref"], case["source_version"]) != (request["source_ref"], request["source_version"]):
                 raise ServiceError(409, "SOURCE_NOT_SELECTED", "source does not match the case's current pinned source")
+            if case["source_ref"] in ("A", "B"):
+                existing_scope = connection.execute(
+                    "SELECT 1 FROM approvals WHERE tenant_id=? AND case_id=? AND case_version=? AND scope=?",
+                    (principal.tenant_id, case["case_id"], case["version"], request["scope"])).fetchone()
+                if existing_scope:
+                    raise ServiceError(409, "APPROVAL_EXISTS", "本版已经申请该类审批")
             source = connection.execute(
                 "SELECT * FROM source_versions WHERE tenant_id=? AND source_ref=? AND source_version=?",
                 (principal.tenant_id, request["source_ref"], request["source_version"]),
@@ -379,6 +398,17 @@ class ApprovalStore:
                 "input": request["input"],
                 "simulator_version": SIMULATOR_VERSION,
             }
+            if request["scope"] == "internal_quote_review":
+                prior = connection.execute(
+                    "SELECT r.result_json,r.result_hash FROM approvals a JOIN operations o ON o.approval_id=a.approval_id "
+                    "JOIN results r ON r.operation_id=o.operation_id AND r.tenant_id=o.tenant_id "
+                    "WHERE a.tenant_id=? AND a.case_id=? AND a.case_version=? AND a.source_bytes_sha256=? "
+                    "AND a.scope='classification_trial' AND a.state='CONSUMED' ORDER BY a.rowid DESC LIMIT 1",
+                    (principal.tenant_id, case["case_id"], case["version"], source_hash)).fetchone()
+                if not prior or "quote" not in json.loads(prior[0]):
+                    raise ServiceError(409, "QUOTE_REQUIRED", "请先完成当前版本的试算")
+                snapshot["quote"] = json.loads(prior[0])["quote"]
+                snapshot["trial_result_hash"] = prior[1]
             snapshot_json = canonical_json(snapshot)
             snapshot_hash = sha256_text(snapshot_json)
             timestamp = now_utc()
@@ -505,6 +535,8 @@ class ApprovalStore:
                 raise ServiceError(400, "UNSUPPORTED_ACTION", "only a synthetic classification-trial simulation is implemented")
 
             approval = self._scoped_approval(connection, principal, approval_id)
+            if approval["scope"] != "classification_trial":
+                raise ServiceError(409, "SCOPE_MISMATCH", "草稿审核不能授权试算")
             if approval["state"] != "APPROVED":
                 raise ServiceError(409, "APPROVAL_NOT_APPROVED", "only an approved, unconsumed authorization can be executed")
             if approval["revision"] != expected_revision or approval["snapshot_hash"] != snapshot_hash:
@@ -557,6 +589,14 @@ class ApprovalStore:
                 "total_payable": None,
                 "message": "Synthetic local authorization record only; no quote, booking, payment, or external action was performed.",
             }
+            if approval["source_ref"] in ("A", "B"):
+                from sample_quote import calculate_sample
+                raw = connection.execute("SELECT raw_bytes FROM source_versions WHERE tenant_id=? AND source_ref=? AND source_version=?",
+                                         (principal.tenant_id, approval["source_ref"], approval["source_version"])).fetchone()[0]
+                if hashlib.sha256(raw).hexdigest() != approval["source_bytes_sha256"]:
+                    raise ServiceError(409, "SOURCE_CHANGED", "运价原件与审批快照不一致")
+                result["quote"] = calculate_sample(approval["source_ref"], raw, json.loads(approval["snapshot_json"])["input"])
+                result["message"] = "已生成合成内部报价草稿，等待另行审核。"
             result_json = canonical_json(result)
             result_hash = sha256_text(result_json)
             connection.execute(
